@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QGridLayout,QMainWindow,QApplication, QWidget, QPushButton,QMenu,QAction,QToolButton,QHBoxLayout
-from PyQt5.QtGui import QPainter, QColor, QPen
+from PyQt5.QtGui import QPainter, QColor, QPen, QFont
 from PyQt5.QtCore import Qt
 from Language.Language_Interface import Language
 from Language.Polski import Polski
@@ -35,30 +35,27 @@ class MainWindow(QMainWindow):
         Language_Menu.addAction(self.Language_Polski)
         Language_Menu.addAction(self.Language_English)
 
-        Language_Choice = QToolButton(parent = self)
-        Language_Choice.setText("Wybierz Język")
-        Language_Choice.setMenu(Language_Menu)
-        Language_Choice.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Language_Menu rozwijało się natychmiast
-        Language_Choice.setStyleSheet("color: black;border-radius: 5px;background-color: #4CAF50;font-family: Arial;")
-        Language_Choice.setFixedSize(120,30)
+        self.Language_Choice = QToolButton(parent = self)
+        self.Language_Choice.setText("Język")
+        self.Language_Choice.setMenu(Language_Menu)
+        self.Language_Choice.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Language_Menu rozwijało się natychmiast
+        self.Language_Choice.setStyleSheet("color: black;border-radius: 5px;background-color: #4CAF50;font-family: Arial;")
 
         #########################################################
         # Przycisk nowy i kontunuuj turniej
         self.New_Tournament = QPushButton("Kliknij mnie", self)
-        self.New_Tournament.setFixedSize(150, 50)
         self.Continue_Tournament = QPushButton("Kliknij mnie",self)
-        self.Continue_Tournament.setFixedSize(150,50)
 
         #########################################################
         # Siatka dla Przyciskow
         Layout = QGridLayout() 
-        Layout.addWidget(Language_Choice,0,2)
+        Layout.addWidget(self.Language_Choice,0,2)
         Layout.addWidget(self.New_Tournament,1,1)
         Layout.addWidget(self.Continue_Tournament,1,2)
 
         Layout.setAlignment(self.New_Tournament, Qt.AlignTop | Qt.AlignCenter) #srodkowanie New_tournament
         Layout.setAlignment(self.Continue_Tournament,Qt.AlignTop | Qt.AlignCenter) #srodkowanie Continue_Tournament
-        Layout.setAlignment(Language_Choice, Qt.AlignTop | Qt.AlignRight) #Ustawianie Language_Menu jezyka na prawo
+        Layout.setAlignment(self.Language_Choice, Qt.AlignTop | Qt.AlignRight) #Ustawianie Language_Menu jezyka na prawo
         
         #########################################################
         # Widget Glowny
@@ -90,9 +87,21 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(self.Language.Title())
         self.New_Tournament.setText(self.Language.New_Tournament())
         self.Continue_Tournament.setText(self.Language.Continue_Tournament())
+        self.Language_Choice.setText(self.Language.Choose_Language())
         self.show()
 
+    #funkcja ktora jest wywolywana przy zmianie wielkosci okna
+    def resizeEvent(self,event):
+        font = QFont()
+        font.setPointSize((self.width()+self.height())//90) #ustawienie wielkosci czcionki
+        self.Language_Choice.setFont(font)
+        self.New_Tournament.setFont(font)
+        self.Continue_Tournament.setFont(font)
 
+        #Ustawienie wielkosci przyciskow
+        self.Language_Choice.setFixedSize(self.width()//5+50,self.height()//10)
+        self.New_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
+        self.Continue_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
 
 def main():    
     app = QApplication(sys.argv)
