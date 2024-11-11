@@ -39,7 +39,7 @@ class MainWindow(QMainWindow):
         Language_Choice.setText("Wybierz Język")
         Language_Choice.setMenu(Language_Menu)
         Language_Choice.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Language_Menu rozwijało się natychmiast
-        Language_Choice.setStyleSheet("color: black;border-radius: 2px;background-color: #4CAF50;font-family: Arial;")
+        Language_Choice.setStyleSheet("color: black;border-radius: 5px;background-color: #4CAF50;font-family: Arial;")
         Language_Choice.setFixedSize(120,30)
 
         #########################################################
