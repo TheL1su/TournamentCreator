@@ -9,9 +9,11 @@ import sys
 
 class MainWindow(QMainWindow):
 
+    from CT_Window import ContinueTournament_Window
+    from NT_Window import NewTournament_Window
+
     def __init__(self):
         super().__init__()
-
         self.initUI()
 
     def initUI(self):
@@ -43,8 +45,13 @@ class MainWindow(QMainWindow):
 
         #########################################################
         # Przycisk nowy i kontunuuj turniej
-        self.New_Tournament = QPushButton("Kliknij mnie", self)
-        self.Continue_Tournament = QPushButton("Kliknij mnie",self)
+        self.New_Tournament = QPushButton("Nowy Turniej", self)
+        self.Continue_Tournament = QPushButton("Kontynuuj Turniej",self)
+        
+        #########################################################
+        # Funkcje wywolywane przy nacisnieciu przycisku NewTournament i ContinueTournament
+        self.New_Tournament.clicked.connect(self.NewTournament_Window)
+        self.Continue_Tournament.clicked.connect(self.ContinueTournament_Window)
 
         #########################################################
         # Siatka dla Przyciskow
@@ -102,6 +109,7 @@ class MainWindow(QMainWindow):
         self.Language_Choice.setFixedSize(self.width()//5+50,self.height()//10)
         self.New_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
         self.Continue_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
+
 
 def main():    
     app = QApplication(sys.argv)
