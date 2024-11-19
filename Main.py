@@ -10,7 +10,7 @@ import sys
 class MainWindow(QMainWindow):
 
     from CT_Window import ContinueTournament_Window
-    from NT_Window import NewTournament_Window
+    from NT_Window import NewTournament_Window,Min_on_submit,Max_on_submit
 
     def __init__(self):
         super().__init__()
@@ -18,10 +18,11 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
         #########################################################
-        #default Jezyk i Geometria
+        #default Jezyk i Geometria oraz tryb
         self.Language = Polski() #default Jezyk 
         self.setGeometry(100, 100, 400, 300)
-        self.setWindowTitle(self.Language.Title())     
+        self.setWindowTitle(self.Language.Title())
+        self.Mode = "INIT"     
 
         #########################################################
         # Kolor tla
@@ -60,15 +61,17 @@ class MainWindow(QMainWindow):
         Layout.addWidget(self.New_Tournament,1,1)
         Layout.addWidget(self.Continue_Tournament,1,2)
 
+        #########################################################
+        # Ustawienie przyciskow na siatce
         Layout.setAlignment(self.New_Tournament, Qt.AlignTop | Qt.AlignCenter) #srodkowanie New_tournament
         Layout.setAlignment(self.Continue_Tournament,Qt.AlignTop | Qt.AlignCenter) #srodkowanie Continue_Tournament
         Layout.setAlignment(self.Language_Choice, Qt.AlignTop | Qt.AlignRight) #Ustawianie Language_Menu jezyka na prawo
         
         #########################################################
         # Widget Glowny
-        Central_widget = QWidget(self)
-        Central_widget.setLayout(Layout)
-        self.setCentralWidget(Central_widget)
+        self.Central_widget = QWidget(self)
+        self.Central_widget.setLayout(Layout)
+        self.setCentralWidget(self.Central_widget)
 
         #########################################################
         # Zmiana jezyka aplikacji
@@ -99,17 +102,23 @@ class MainWindow(QMainWindow):
 
     #funkcja ktora jest wywolywana przy zmianie wielkosci okna
     def resizeEvent(self,event):
-        font = QFont()
-        font.setPointSize((self.width()+self.height())//90) #ustawienie wielkosci czcionki
-        self.Language_Choice.setFont(font)
-        self.New_Tournament.setFont(font)
-        self.Continue_Tournament.setFont(font)
+        if self.Mode == "INIT":
+            font = QFont()
+            font.setPointSize((self.width()+self.height())//90) #ustawienie wielkosci czcionki
+            self.Language_Choice.setFont(font)
+            self.New_Tournament.setFont(font)
+            self.Continue_Tournament.setFont(font)
 
-        #Ustawienie wielkosci przyciskow
-        self.Language_Choice.setFixedSize(self.width()//5+50,self.height()//10)
-        self.New_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
-        self.Continue_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
+            #Ustawienie wielkosci przyciskow
+            self.Language_Choice.setFixedSize(self.width()//5+50,self.height()//10)
+            self.New_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
+            self.Continue_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
 
+        if self.Mode == "NT":
+            pass #do zaimplementowania - zmiana wielkosci przyciskow przy zmianie rozmiaru okna
+        
+        if self.Mode == "CT":
+            pass #do zaimplementowania - zmiana wielkosci przyciskow przy zmianie rozmiaru okna
 
 def main():    
     app = QApplication(sys.argv)

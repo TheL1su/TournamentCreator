@@ -12,3 +12,33 @@ class Polski(Language):
     
     def Continue_Tournament(self):
         return 'Kontynuuj Turniej'
+    
+    def Enter_Min_Players_At_Table(self):
+        return 'Minimalna liczba graczy przy stoliku:'
+    
+    def Enter_Max_Players_At_Table(self):
+        return 'Maksymalna liczba graczy przy stoliku:'
+    
+    def Submit(self):
+        return 'Zatwierdź'
+    
+    def Error(self):
+        return 'BŁĄÐ!'
+    
+    def Value(self):
+        return 'Wprowadzona wartość'
+    
+    def Min_Bigger_Than_Max(self):
+        return 'Minimalna wartość większa niż maksymalna!'
+
+    def Max_Lower_Than_Min(self):
+        return 'Maksymalna wartość mniejsza niż minimalna!'
+    
+    def Value_Not_Set(self):
+        return 'Wartość nie ustawiona!'
+    
+    def Value_Set(self):
+        return 'Ustawiona wartość:'
+
+    def Choose_Tournament_Type(self):
+        return 'Wybierz rodzaj Turnieju'
