@@ -114,10 +114,10 @@ class MainWindow(QMainWindow):
             self.New_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
             self.Continue_Tournament.setFixedSize(self.width()//4+60,self.height()//10)
 
-        if self.Mode == "NT":
+        elif self.Mode == "NT":
             pass #do zaimplementowania - zmiana wielkosci przyciskow przy zmianie rozmiaru okna
         
-        if self.Mode == "CT":
+        elif self.Mode == "CT":
             pass #do zaimplementowania - zmiana wielkosci przyciskow przy zmianie rozmiaru okna
 
 def main():    
