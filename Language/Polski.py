@@ -38,7 +38,7 @@ class Polski(Language):
         return 'Wartość nie ustawiona!'
     
     def Value_Set(self):
-        return 'Ustawiona wartość:'
+        return 'Ustawiona wartość: '
 
     def Choose_Tournament_Type(self):
         return 'Wybierz rodzaj Turnieju'

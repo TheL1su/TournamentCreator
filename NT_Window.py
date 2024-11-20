@@ -44,7 +44,7 @@ def NewTournament_Window(self):
     self.Tournament_Type = QToolButton(parent = self)
     self.Tournament_Type.setText(self.Language.Choose_Tournament_Type())
     self.Tournament_Type.setMenu(Tournament_Menu)
-    self.Tournament_Type.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Language_Menu rozwijało się natychmiast
+    self.Tournament_Type.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Tournament_Menu rozwijało się natychmiast
     self.Tournament_Type.setStyleSheet("color: black;border-radius: 3px;background-color: rgb(0, 128, 255);font-family: Arial;")
     self.Tournament_Type.setFixedSize(300,20)
     #########################################################
@@ -125,3 +125,6 @@ def Max_on_submit(self):
         #brak wpisanej wartosci
         QMessageBox.warning(self, self.Language.Error(), self.Languege.Value_Not_Set())
 
+def resize_nt(self):
+    """zmiana wielkosci przyciskow przy zmianie rozmiaru okna NT"""
+    pass

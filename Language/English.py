@@ -36,10 +36,10 @@ class English(Language):
         return 'Maximal value lower than minimal!'
     
     def Value_Set(self):
-        return 'Value set:'
+        return 'Value set: '
 
     def Value_Not_Set(self):
         return 'Value not set'
     
     def Choose_Tournament_Type(self):
-        return 'Choose_Tournament_Type'
+        return 'Choose Tournament Type'
