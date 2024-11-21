@@ -3,6 +3,7 @@ from PyQt5.QtGui import QColor, QFont
 from PyQt5.QtCore import Qt
 from Language.Polski import Polski
 from Language.English import English
+from Widgets import Widgets
 
 def initUI(self):
     #########################################################
@@ -10,6 +11,7 @@ def initUI(self):
     self.Language = Polski() #default Jezyk 
     self.setGeometry(100, 100, 400, 300)
     self.setWindowTitle(self.Language.Title())
+    self.widgetsStyle = Widgets()
     self.Mode = "INIT"     
 
     #########################################################
@@ -26,11 +28,7 @@ def initUI(self):
     Language_Menu.addAction(self.Language_Polski)
     Language_Menu.addAction(self.Language_English)
 
-    self.Language_Choice = QToolButton(parent = self)
-    self.Language_Choice.setText(self.Language.Choose_Language())
-    self.Language_Choice.setMenu(Language_Menu)
-    self.Language_Choice.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Language_Menu rozwijało się natychmiast
-    self.Language_Choice.setStyleSheet("color: black;border-radius: 5px;background-color: #4CAF50;font-family: Arial;")
+    self.Language_Choice = self.widgetsStyle.create_tool_button(parent=self, text=self.Language.Choose_Language(), menu=Language_Menu)
 
     #########################################################
     # Przycisk nowy i kontunuuj turniej

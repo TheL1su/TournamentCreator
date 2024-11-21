@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QGridLayout,QLabel,QLineEdit,QPushButton,QMessageBox,QWidget,QToolButton,QMenu,QAction
+from PyQt5.QtWidgets import QGridLayout,QLineEdit,QPushButton,QMessageBox,QWidget,QMenu,QAction
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtGui import QIntValidator, QRegularExpressionValidator
 
 
 def NewTournament_Window(self):
@@ -14,10 +14,8 @@ def NewTournament_Window(self):
 
     #########################################################
     # Labele do Ustawien Turnieju 
-    Label_Min_Players_at_Table = QLabel(self.Language.Enter_Min_Players_At_Table())
-    Label_Min_Players_at_Table.setStyleSheet('color: white;font-weight: bold')
-    Label_Max_Players_at_Table = QLabel(self.Language.Enter_Max_Players_At_Table())
-    Label_Max_Players_at_Table.setStyleSheet('color: white;font-weight: bold')
+    Label_Min_Players_at_Table = self.widgetsStyle.create_label(self.Language.Enter_Min_Players_At_Table())
+    Label_Max_Players_at_Table = self.widgetsStyle.create_label(self.Language.Enter_Min_Players_At_Table())
 
     #########################################################
     # Przyciski do Ustawien Turnieju 
@@ -41,16 +39,24 @@ def NewTournament_Window(self):
 
     #########################################################
     # Przycisk do Rodzaju Turnieju
-    self.Tournament_Type = QToolButton(parent = self)
-    self.Tournament_Type.setText(self.Language.Choose_Tournament_Type())
-    self.Tournament_Type.setMenu(Tournament_Menu)
-    self.Tournament_Type.setPopupMode(QToolButton.InstantPopup)  # Ustawienie, aby Tournament_Menu rozwijało się natychmiast
-    self.Tournament_Type.setStyleSheet("color: black;border-radius: 3px;background-color: rgb(0, 128, 255);font-family: Arial;")
+    self.Tournament_Type = self.widgetsStyle.create_tool_button(parent=self, text=self.Language.Choose_Tournament_Type(), menu=Tournament_Menu)
     self.Tournament_Type.setFixedSize(300,20)
+
     #########################################################
     # Funkcje wywolywane przy nacisnieciu przyciskow zatwierdz
     self.Min_submit_button.clicked.connect(self.Min_on_submit)
     self.Max_submit_button.clicked.connect(self.Max_on_submit)
+
+
+
+    ####### TO DO ########
+    ########################################################
+    # Dodawanie uczestnika
+    # Label_Add_Player = self.widgetsStyle.create_label(self.Language.Enter_Player())
+    # self.Add_Player_input = QLineEdit()
+    # self.Add_Player_input.setFixedWidth(300)
+    # self.Add_Player_input.setValidator(QRegularExpressionValidator("^[A-Z]{1}[a-z]* [A-Z]{1}[a-z]"))  # Przyjmuje tylko liczby całkowite
+    # self.Min_submit_button = QPushButton(self.Language.Submit())
 
     #########################################################
     # Siatka dla Labeli i Przyciskow
@@ -108,7 +114,7 @@ def Min_on_submit(self):
             QMessageBox.information(self, self.Language.Value(), self.Language.Value_Set() + number)
     else:
         #brak wpisanej wartosci
-        QMessageBox.warning(self, self.Language.Error(), self.Languege.Value_Not_Set())
+        QMessageBox.warning(self, self.Language.Error(), self.Language.Value_Not_Set())
 
 # Funkcja do obslugi wpisywania maksymalnej wartosci dla stolu
 def Max_on_submit(self):
@@ -123,7 +129,7 @@ def Max_on_submit(self):
             QMessageBox.information(self, self.Language.Value(), self.Language.Value_Set() + number)
     else:
         #brak wpisanej wartosci
-        QMessageBox.warning(self, self.Language.Error(), self.Languege.Value_Not_Set())
+        QMessageBox.warning(self, self.Language.Error(), self.Language.Value_Not_Set())
 
 def resize_nt(self):
     """zmiana wielkosci przyciskow przy zmianie rozmiaru okna NT"""

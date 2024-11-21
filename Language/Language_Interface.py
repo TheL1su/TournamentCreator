@@ -43,3 +43,6 @@ class Language():
 
     def Choose_Tournament_Type(): #Przycisk do wybierania rodzaju turnieju
         pass
+
+    def Enter_Player():
+        pass
