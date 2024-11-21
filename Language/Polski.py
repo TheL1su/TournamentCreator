@@ -42,3 +42,6 @@ class Polski(Language):
 
     def Choose_Tournament_Type(self):
         return 'Wybierz rodzaj Turnieju'
+    
+    def Enter_Player(self):
+        return 'Wprowadź dane nowego gracza'

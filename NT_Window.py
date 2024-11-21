@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QGridLayout,QLineEdit,QPushButton,QMessageBox,QWidget,QMenu,QAction
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QRegularExpression
 from PyQt5.QtGui import QIntValidator, QRegularExpressionValidator
+from Player import Players, Player
 
 
 def NewTournament_Window(self):
@@ -48,15 +49,13 @@ def NewTournament_Window(self):
     self.Max_submit_button.clicked.connect(self.Max_on_submit)
 
 
-
-    ####### TO DO ########
     ########################################################
     # Dodawanie uczestnika
-    # Label_Add_Player = self.widgetsStyle.create_label(self.Language.Enter_Player())
-    # self.Add_Player_input = QLineEdit()
-    # self.Add_Player_input.setFixedWidth(300)
-    # self.Add_Player_input.setValidator(QRegularExpressionValidator("^[A-Z]{1}[a-z]* [A-Z]{1}[a-z]"))  # Przyjmuje tylko liczby całkowite
-    # self.Min_submit_button = QPushButton(self.Language.Submit())
+    Label_Add_Player = self.widgetsStyle.create_label(self.Language.Enter_Player())
+    self.Add_Player_input = QLineEdit()
+    self.Add_Player_input.setFixedWidth(300)
+    self.Add_Player_input.setValidator(QRegularExpressionValidator(QRegularExpression("^[A-Z]{1}[a-z]* [A-Z]{1}[a-z]*")))  # Przyjmuje tylko liczby całkowite
+    self.Add_Player_button = QPushButton(self.Language.Submit())
 
     #########################################################
     # Siatka dla Labeli i Przyciskow
@@ -77,6 +76,12 @@ def NewTournament_Window(self):
     #########################################################
     # Dodanie Menu Turniejow do siatki
     Layout_NT.addWidget(self.Tournament_Type,4,0)
+
+    #########################################################
+    # Dodawanie dodaj gracza do siatki
+    Layout_NT.addWidget(Label_Add_Player,5,0)
+    Layout_NT.addWidget(self.Add_Player_input,6,0)
+    Layout_NT.addWidget(self.Add_Player_button,6,1)
 
     #########################################################
     # Ustawienie przyciskow na siatce

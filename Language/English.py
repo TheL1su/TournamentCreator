@@ -43,3 +43,6 @@ class English(Language):
     
     def Choose_Tournament_Type(self):
         return 'Choose Tournament Type'
+    
+    def Enter_Player(self):
+        return 'Enter new players data'
