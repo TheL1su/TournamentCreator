@@ -45,4 +45,10 @@ class English(Language):
         return 'Choose Tournament Type'
     
     def Enter_Player(self):
-        return 'Enter new players data'
+        return 'Enter new player data'
+    
+    def Browse(self):
+        return 'Browse'
+    
+    def Title_Tournament_File(self):
+        return 'Find tournament file'

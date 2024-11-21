@@ -3,7 +3,7 @@ import sys
 
 class MainWindow(QMainWindow):
 
-    from CT_Window import ContinueTournament_Window, resize_ct
+    from CT_Window import ContinueTournament_Window, resize_ct,GetFile
     from NT_Window import NewTournament_Window,Min_on_submit,Max_on_submit, resize_nt
     from init import initUI, resize_init, change_language, change_english_language, change_polish_language
 

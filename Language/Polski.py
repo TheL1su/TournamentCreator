@@ -45,3 +45,9 @@ class Polski(Language):
     
     def Enter_Player(self):
         return 'Wprowadź dane nowego gracza'
+    
+    def Browse(self):
+        return 'Przeglądaj'
+    
+    def Title_Tournament_File(self):
+        return 'Znajdz plik turnieju'

@@ -44,5 +44,8 @@ class Language():
     def Choose_Tournament_Type(): #Przycisk do wybierania rodzaju turnieju
         pass
 
-    def Enter_Player():
+    def Enter_Player(): #Przycisk Wprowadz dane nowego gracza 
+        pass
+
+    def Title_Tournament_File(): #Tytul okna do przegladania plikow
         pass
