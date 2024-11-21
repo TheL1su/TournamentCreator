@@ -1,6 +1,8 @@
 
 def ContinueTournament_Window(self):
-    pass
+    #########################################################
+    # Zmiana Trybu
+    self.Mode = "CT"
 
 
 def resize_ct(self):
