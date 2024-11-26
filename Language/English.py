@@ -54,7 +54,7 @@ class English(Language):
         return 'Find tournament file'
     
     def File_Not_Selected(self):
-        return 'Nie wybrano pliku!'
+        return 'File not selected!'
     
     def Empty_File(self):
         return 'Empty file!'
