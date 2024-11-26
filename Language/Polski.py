@@ -51,3 +51,12 @@ class Polski(Language):
     
     def Title_Tournament_File(self):
         return 'Znajdz plik turnieju'
+    
+    def File_Not_Selected(self):
+        return 'Nie wybrano pliku!'
+    
+    def Empty_File(self):
+        return 'Pusty plik!'
+    
+    def Syntax_Error(self):
+        return 'Dane w pliku zawieraja blad!'

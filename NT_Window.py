@@ -10,10 +10,6 @@ def NewTournament_Window(self):
     self.Mode = "NT"
 
     #########################################################
-    # Slownik Turnieju
-    self.TournamentDict = {}
-
-    #########################################################
     # Labele do Ustawien Turnieju 
     Label_Min_Players_at_Table = self.widgetsStyle.create_label(self.Language.Enter_Min_Players_At_Table())
     Label_Max_Players_at_Table = self.widgetsStyle.create_label(self.Language.Enter_Max_Players_At_Table())

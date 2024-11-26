@@ -21,6 +21,10 @@ def initUI(self):
     self.setPalette(Color)
 
     #########################################################
+    # Slownik Turnieju
+    self.TournamentDict = {}
+
+    #########################################################
     # Przycisk Jezyka 
     Language_Menu = QMenu(parent = self)
     self.Language_Polski = QAction("Polski", self)

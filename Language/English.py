@@ -52,3 +52,12 @@ class English(Language):
     
     def Title_Tournament_File(self):
         return 'Find tournament file'
+    
+    def File_Not_Selected(self):
+        return 'Nie wybrano pliku!'
+    
+    def Empty_File(self):
+        return 'Empty file!'
+    
+    def Syntax_Error(self):
+        return 'Data error in file!'

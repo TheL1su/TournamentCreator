@@ -49,3 +49,12 @@ class Language():
 
     def Title_Tournament_File(): #Tytul okna do przegladania plikow
         pass
+
+    def File_Not_Selected(): #Blad przy nie wybraniu pliku
+        pass
+
+    def Empty_File(): #Wybranie pustego pliku
+        pass
+
+    def Syntax_Error(): #Dane w pliku zawieraja blad
+        pass
