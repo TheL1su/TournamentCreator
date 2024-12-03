@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox
 from PyQt5.QtCore import QDir
+from PyQt5.QtCore import Qt
 import json
 import os
 
@@ -12,6 +13,7 @@ def ContinueTournament_Window(self):
     #########################################################
     # Przyciski do Kontynuowania Turnieju
     self.File_Input = QLineEdit()
+    Label_Load_File = self.widgetsStyle.create_label(self.Language.Load_File())
     self.Browse = QPushButton(self.Language.Browse())
     self.Browse.clicked.connect(self.GetFile)
 
@@ -19,6 +21,7 @@ def ContinueTournament_Window(self):
     # Przyciski do potwierdzenia wczytanego pliku i odpalenia turnieju
     self.Confirm = QPushButton(self.Language.Submit())
     self.Confirm.hide()
+    self.Confirm.clicked.connect(self.OpenTournament)
     
     #########################################################
     # Siatka dla Labeli i Przyciskow
@@ -26,9 +29,18 @@ def ContinueTournament_Window(self):
 
     #########################################################
     # Dodawanie Przyciskow do Layoutu
-    Layout_CT.addWidget(self.File_Input,0,0)
-    Layout_CT.addWidget(self.Browse,0,1)
-    Layout_CT.addWidget(self.Confirm,1,0)
+    Layout_CT.addWidget(Label_Load_File)
+    Layout_CT.addWidget(self.File_Input,1,0)
+    Layout_CT.addWidget(self.Browse,1,1)
+    Layout_CT.addWidget(self.Confirm,2,0)
+
+    #########################################################
+    # Layout przyciskow na siatce
+    
+    Layout_CT.setAlignment(Label_Load_File, Qt.AlignBottom)
+    Layout_CT.setAlignment(self.File_Input, Qt.AlignTop)
+    Layout_CT.setAlignment(self.Browse,Qt.AlignTop)
+    Layout_CT.setAlignment(self.Confirm,Qt.AlignTop)
 
     #########################################################
     # Usun stary i Wstaw nowy Widget Glowny
@@ -72,7 +84,7 @@ def OpenFile(self,fileName):
                     # Poprawne wczytanie pliku do slownika
                     self.TournamentDict.update(json_data)
                     #########################################
-                    # Stworzenie przycisku zatwierdz    
+                    # Pokazanie przycisku zatwierdz    
                     self.Show_Confirm_Button()
 
                 #############################################
@@ -93,4 +105,12 @@ def OpenFile(self,fileName):
 
 def Show_Confirm_Button(self):
     self.Confirm.show()
-    
+
+def OpenTournament(self):
+    Type = self.TournamentDict["Type"]
+    if Type == "Swiss": #Szwajcarski
+        pass
+    elif Type == "Knock out": #Pucharowy
+        pass
+    elif Type == "Round Robin": #Kazdy z kazdym
+        pass

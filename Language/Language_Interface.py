@@ -58,3 +58,6 @@ class Language():
 
     def Syntax_Error(): #Dane w pliku zawieraja blad
         pass
+
+    def Load_File(): #Podaj plik zawierajacy historie turnieju
+        pass

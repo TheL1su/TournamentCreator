@@ -61,3 +61,6 @@ class English(Language):
     
     def Syntax_Error(self):
         return 'Data error in file!'
+    
+    def Load_File(self):
+        return 'Choose File that contains tournament data' 

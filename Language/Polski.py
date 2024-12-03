@@ -60,3 +60,6 @@ class Polski(Language):
     
     def Syntax_Error(self):
         return 'Dane w pliku zawieraja blad!'
+    
+    def Load_File(self):
+        return 'Wybierz Plik ktory zawiera dane turnieju' 
