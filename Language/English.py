@@ -15,7 +15,7 @@ class English(Language):
             "Value" : "Value",
             "Min_Bigger_Than_Max" : "Minimal value bigger than maximal!",
             "Max_Lower_Than_Min" : "Maximal value lower than minimal!",
-            "Value_set" : "Value set: ",
+            "Value_Set" : "Value set: ",
             "Value_Not_Set" : "Value not set",
             "Choose_Tournament_Type" : "Choose Tournament Type",
             "Enter_Player" : "Enter new player data",

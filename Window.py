@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from Widgets import Widgets
 from PyQt5.QtGui import QColor
-from Start_Layout import Start_Layout
-
+from Layouts.Start_Layout import Start_Layout
+from Layouts.New_Tournament_Layout import New_Tournament_Layout
+from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 class Window(QMainWindow):
     def __init__(self, app):
         self.app = app
@@ -35,7 +36,6 @@ class Window(QMainWindow):
     def set_widget(self):
         self.Central_widget.setLayout(self.layout)
         self.setCentralWidget(self.Central_widget)
-        # self.initUI()
 
     def resizeEvent(self,event):
         self.layout.resize(self.width(),self.height())
@@ -46,3 +46,18 @@ class Window(QMainWindow):
     def change_language(self, language):
         self.app.change_language(language)
 
+    def delete_later(self):
+        self.Central_widget.deleteLater()
+        self.Central_widget = QWidget(self) 
+
+    def new_tournament(self):
+        self.delete_later()
+        self.layout = New_Tournament_Layout(self)
+        self.set_widget()
+        self.show()
+
+    def continue_tournament(self):
+        self.delete_later()
+        self.layout = Continue_Tournament_Layout(self)
+        self.set_widget()
+        self.show()

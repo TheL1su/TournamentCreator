@@ -1,10 +1,10 @@
-from Layout_Interface import Layout_Interface
+#from Layouts.Layout_Interface import Layout_Interface
 from PyQt5.QtWidgets import QGridLayout, QPushButton,QMenu,QAction,QToolButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt
 
 
-class Start_Layout(Layout_Interface):
+class Start_Layout(QGridLayout):
 
 
 
@@ -29,8 +29,8 @@ class Start_Layout(Layout_Interface):
         
         #########################################################
         # Funkcje wywolywane przy nacisnieciu przycisku NewTournament i ContinueTournament
-        # self.New_Tournament.clicked.connect(self.NewTournament_Window)
-        # self.Continue_Tournament.clicked.connect(self.ContinueTournament_Window)
+        self.New_Tournament.clicked.connect(self.main_window.new_tournament)
+        self.Continue_Tournament.clicked.connect(self.main_window.continue_tournament)
 
         #########################################################
         # Siatka dla Przyciskow
@@ -67,7 +67,7 @@ class Start_Layout(Layout_Interface):
         self.main_window.set_title()
         self.New_Tournament.setText(self.main_window.get_text("New_Tournament"))
         self.Continue_Tournament.setText(self.main_window.get_text("Continue_Tournament"))
-        self.Language_Choice.setText(self.main_window.get_texy("Choose_Language"))
+        self.Language_Choice.setText(self.main_window.get_text("Choose_Language"))
         self.main_window.show()
 
 

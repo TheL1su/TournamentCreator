@@ -15,7 +15,7 @@ class Polski(Language):
             "Value" : "Wprowadzona wartość",
             "Min_Bigger_Than_Max" : "Minimalna wartość większa niż maksymalna!",
             "Max_Lower_Than_Min" : "Maksymalna wartość mniejsza niż minimalna!",
-            "Value_set" : "Ustawiona wartość: ",
+            "Value_Set" : "Ustawiona wartość: ",
             "Value_Not_Set" : "Wartość nie ustawiona!",
             "Choose_Tournament_Type" : "Wybierz rodzaj Turnieju",
             "Enter_Player" : "Wprowadź dane nowego gracza",
