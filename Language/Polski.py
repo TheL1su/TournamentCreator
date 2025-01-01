@@ -1,65 +1,33 @@
 from Language.Language_Interface import Language
 
 class Polski(Language):
-    def Title(self):
-        return 'Witamy w Kreatorze Turniejów'
-    
-    def Choose_Language(self):
-        return 'Język'
 
-    def New_Tournament(self):
-        return 'Nowy Turniej'
-    
-    def Continue_Tournament(self):
-        return 'Kontynuuj Turniej'
-    
-    def Enter_Min_Players_At_Table(self):
-        return 'Minimalna liczba graczy przy stoliku:'
-    
-    def Enter_Max_Players_At_Table(self):
-        return 'Maksymalna liczba graczy przy stoliku:'
-    
-    def Submit(self):
-        return 'Zatwierdź'
-    
-    def Error(self):
-        return 'BŁĄÐ!'
-    
-    def Value(self):
-        return 'Wprowadzona wartość'
-    
-    def Min_Bigger_Than_Max(self):
-        return 'Minimalna wartość większa niż maksymalna!'
+    def __init__(self):
+        self.dictionary = {
+            "Title" : "Witamy w Kreatorze Turniejów",
+            "Choose_Language" : "Język",
+            "New_Tournament" : "Nowy Turniej",
+            "Continue_Tournament" : "Kontynuuj Turniej",
+            "Enter_Min_Players_At_Table" : "Minimalna liczba graczy przy stoliku:",
+            "Enter_Max_Players_At_Table" : "Maksymalna liczba graczy przy stoliku:",
+            "Submit" : "Zatwierdź",
+            "Error" : "BŁĄÐ!",
+            "Value" : "Wprowadzona wartość",
+            "Min_Bigger_Than_Max" : "Minimalna wartość większa niż maksymalna!",
+            "Max_Lower_Than_Min" : "Maksymalna wartość mniejsza niż minimalna!",
+            "Value_set" : "Ustawiona wartość: ",
+            "Value_Not_Set" : "Wartość nie ustawiona!",
+            "Choose_Tournament_Type" : "Wybierz rodzaj Turnieju",
+            "Enter_Player" : "Wprowadź dane nowego gracza",
+            "Browse" : "Przeglądaj",
+            "Title_Tournament_File" : "Znajdz plik turnieju",
+            "File_Not_Selected" : "Nie wybrano pliku!",
+            "Empty_File" : "Pusty plik!",
+            "Syntax_Error" : "Dane w pliku zawieraja blad!",
+            "Load_File" : "Wybierz plik ktory zawiera dane turnieju"
 
-    def Max_Lower_Than_Min(self):
-        return 'Maksymalna wartość mniejsza niż minimalna!'
+        }
+        
+    def getText(self,text):
+        return self.dictionary[text]
     
-    def Value_Not_Set(self):
-        return 'Wartość nie ustawiona!'
-    
-    def Value_Set(self):
-        return 'Ustawiona wartość: '
-
-    def Choose_Tournament_Type(self):
-        return 'Wybierz rodzaj Turnieju'
-    
-    def Enter_Player(self):
-        return 'Wprowadź dane nowego gracza'
-    
-    def Browse(self):
-        return 'Przeglądaj'
-    
-    def Title_Tournament_File(self):
-        return 'Znajdz plik turnieju'
-    
-    def File_Not_Selected(self):
-        return 'Nie wybrano pliku!'
-    
-    def Empty_File(self):
-        return 'Pusty plik!'
-    
-    def Syntax_Error(self):
-        return 'Dane w pliku zawieraja blad!'
-    
-    def Load_File(self):
-        return 'Wybierz Plik ktory zawiera dane turnieju' 
