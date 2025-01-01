@@ -1,7 +1,7 @@
 from abc import abstractmethod
 #Interfejs dla Jezykow
-class Language():
+class Language:
 
     @abstractmethod
-    def getText(self,text):
+    def get_text(self,text):
         pass

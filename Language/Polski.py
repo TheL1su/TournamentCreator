@@ -28,6 +28,6 @@ class Polski(Language):
 
         }
         
-    def getText(self,text):
+    def get_text(self,text):
         return self.dictionary[text]
     
