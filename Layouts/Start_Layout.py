@@ -20,7 +20,7 @@ class Start_Layout(QGridLayout):
         Language_Menu.addAction(self.Language_Polski)
         Language_Menu.addAction(self.Language_English)
 
-        self.Language_Choice = self.main_window.widgetsStyle.create_tool_button(parent=self.main_window, text=self.main_window.get_text("Choose_Language"), menu=Language_Menu)
+        self.Language_Choice = self.main_window.create_tool_button("Choose_Language",Language_Menu)
 
         #########################################################
         # Przycisk nowy i kontunuuj turniej

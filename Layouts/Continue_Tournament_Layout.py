@@ -14,7 +14,7 @@ class Continue_Tournament_Layout(QGridLayout):
             #########################################################
         # Przyciski do Kontynuowania Turnieju
         self.File_Input = QLineEdit()
-        Label_Load_File = self.main_window.widgetsStyle.create_label(self.main_window.get_text("Load_File"))
+        Label_Load_File = self.main_window.create_label("Load_File")
         self.Browse = QPushButton(self.main_window.get_text("Browse"))
         self.Browse.clicked.connect(self.GetFile)
 
@@ -92,10 +92,5 @@ class Continue_Tournament_Layout(QGridLayout):
         self.Confirm.show()
 
     def OpenTournament(self):
-        Type = self.main_window.get_value("Type")
-        if Type == "Swiss": #Szwajcarski
-            pass
-        elif Type == "Knock out": #Pucharowy
-            pass
-        elif Type == "Round Robin": #Kazdy z kazdym
-            pass
+        pass
+        #self.main_window.open_tournament()

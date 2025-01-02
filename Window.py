@@ -56,6 +56,16 @@ class Window(QMainWindow):
         self.app.change_language(language)
 
     #########################################################
+    # Funkcje dla Stylu
+    def create_label(self,text):
+        label = self.get_text(text)
+        return self.widgetsStyle.create_label(label)
+
+    def create_tool_button(self,text,menu):
+        label = self.get_text(text)
+        return self.widgetsStyle.create_tool_button(parent = self,text = label,menu = menu)
+
+    #########################################################
     # Funkcje dla tournament data
     def key_check(self,key):
         return self.app.key_check(key)
@@ -66,6 +76,22 @@ class Window(QMainWindow):
     def tournament_data_update(self,dictionary):
         self.app.tournament_data_update(dictionary)
 
+    #########################################################
+    # Funkcje dla tournament
+    def tournament_add_player(self,player_name):
+        self.app.tournament_add_player(player_name)
+
+    def tournament_min_at_table(self):
+        return self.app.tournament_min_at_table()
+
+    def tournament_set_min_at_table(self,number):
+        self.app.tournament_set_min_at_table(number)
+
+    def tournament_max_at_table(self):
+        return self.app.tournament_max_at_table()
+    
+    def tournament_set_max_at_table(self,number):
+        self.app.tournament_set_max_at_table(number)
     #########################################################
     # Tworzenie nowych layoutow
 
