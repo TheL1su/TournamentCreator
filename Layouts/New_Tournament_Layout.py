@@ -102,49 +102,43 @@ class New_Tournament_Layout(QHBoxLayout):
         self.addLayout(Layout_NT_settings)
         self.addWidget(self.List_of_players_widget)
 
-
-# Funkcja do obslugi wpisywania minimalnej wartosci dla stolu
+    # Funkcja do obslugi wpisywania minimalnej wartosci dla stolu
     def Min_on_submit(self):
         number = self.Min_at_Table_number_input.text()
         if number:
             # Wartosc minimalna wieksza niz maks
-            if "Max_at_table" in self.TournamentDict and number > self.TournamentDict.get("Max_at_table"):
-                QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("Min_Bigger_Than_Max"))
+            if self.main_window.key_check("Max_at_table") and number > self.main_window.get_value("Max_at_table"):
+                QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Min_Bigger_Than_Max"))
             # Ustawienie Wartosci min_at_table w slowniku
             else:
-                self.TournamentDict.update({"Min_at_table": number}) #Ustawienie Wartosci min_at_table w slowniku
-                QMessageBox.information(self, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
+                self.main_window.tournament_data_update({"Min_at_table": number}) #Ustawienie Wartosci min_at_table w slowniku
+                QMessageBox.information(self.main_window, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
         else:
             #brak wpisanej wartosci
-            QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
+            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
 
 # Funkcja do obslugi wpisywania maksymalnej wartosci dla stolu
     def Max_on_submit(self):
         number = self.Max_at_Table_number_input.text()
         if number:
             # Wartosc maksymalna mniejsza niz minimum
-            if "Min_at_table" in self.TournamentDict and number < self.TournamentDict.get("Min_at_table"):
-                QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("Max_Lower_Than_Min"))
+            if self.main_window.key_check("Min_at_table") and number < self.main_window.get_value("Min_at_table"):
+                QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Max_Lower_Than_Min"))
             else:
                 #Ustawienie Wartosci max_at_table w slowniku
-                self.TournamentDict.update({"Max_at_table": number})
-                QMessageBox.information(self, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
+                self.main_window.tournament_data_update({"Max_at_table" : number})
+                QMessageBox.information(self.main_window, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + str(number))
         else:
             #brak wpisanej wartosci
-            QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
+            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
 
 
-# #####################################################
-# # Metoda dodaje gracza i wypisuje go w liście
+    # #####################################################
+    # # Metoda dodaje gracza i wypisuje go w liście
     def Add_player(self):
-        #QListWidgetItem(self.Add_Player_input.text() , self.List_of_players_widget)
-        #self.Add_Player_input.clear()
-        pass
-
-
-# def resize_nt(self):
-#     """zmiana wielkosci przyciskow przy zmianie rozmiaru okna NT"""
-#     pass
+        QListWidgetItem(self.Add_Player_input.text() , self.List_of_players_widget)
+        self.Add_Player_input.clear()
+        
 
     def resize(self,width,height):
         pass

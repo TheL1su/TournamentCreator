@@ -51,7 +51,7 @@ class Continue_Tournament_Layout(QGridLayout):
 
         #########################################################
         # Wybranie pliku z historia turnieju
-        fileName, _ = QFileDialog.getOpenFileName(self, self.main_window.get_text("Title_Tournament_File"), QDir.rootPath() , '*.json')
+        fileName, _ = QFileDialog.getOpenFileName(self.main_window, self.main_window.get_text("Title_Tournament_File"), QDir.rootPath() , '*.json')
         self.File_Input.setText(fileName)
 
         #########################################################
@@ -65,7 +65,7 @@ class Continue_Tournament_Layout(QGridLayout):
                 file_size = os.path.getsize(fileName) #rozmiar pliku
 
                 if file_size==0: #pusty plik
-                    QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("Empty_File"))
+                    QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Empty_File"))
 
                 else:
                     try: #probuje wczytac dane w formacie json
@@ -73,7 +73,7 @@ class Continue_Tournament_Layout(QGridLayout):
                         json_data = json.load(f)
                         #########################################
                         # Poprawne wczytanie pliku do slownika
-                        self.TournamentDict.update(json_data)
+                        self.main_window.tournament_data_update(json_data)
                         #########################################
                         # Pokazanie przycisku zatwierdz    
                         self.Show_Confirm_Button()
@@ -81,24 +81,18 @@ class Continue_Tournament_Layout(QGridLayout):
                     #############################################
                     # Blad w pliku
                     except json.JSONDecodeError as e:
-                        QMessageBox.warning(self, self.main_window.get_text("Error"),self.main_window.get_text("Syntax_Error"))
+                        QMessageBox.warning(self.main_window, self.main_window.get_text("Error"),self.main_window.get_text("Syntax_Error"))
 
         #########################################################
         # Nie Wybrany plik
         except IOError as e:
-            QMessageBox.warning(self, self.main_window.get_text("Error"), self.main_window.get_text("File_Not_Selected"))
-
-        #########################################################
-        # NIE WIEM CZY IMPLEMENTOWAC
-        #except: #handle other exceptions such as attribute errors
-        #    print("Unexpected error:", sys.exc_info()[0]) 
-        #    print("done")
+            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("File_Not_Selected"))
 
     def Show_Confirm_Button(self):
         self.Confirm.show()
 
     def OpenTournament(self):
-        Type = self.TournamentDict["Type"]
+        Type = self.main_window.get_value("Type")
         if Type == "Swiss": #Szwajcarski
             pass
         elif Type == "Knock out": #Pucharowy

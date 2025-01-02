@@ -5,9 +5,11 @@ from Layouts.Start_Layout import Start_Layout
 from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 class Window(QMainWindow):
+
     def __init__(self, app):
         self.app = app
         super().__init__()
+        
         #########################################################
         #default Geometria
         self.setGeometry(100, 100, 400, 300)
@@ -23,11 +25,12 @@ class Window(QMainWindow):
         #########################################################
         # Layout startowy
         self.layout = Start_Layout(self)
-
         self.Central_widget = QWidget(self)
         self.set_widget()
         self.show()
 
+    #########################################################
+    # Ustawianie tytulu
     def set_title(self):
         self.setWindowTitle(self.app.text("Title"))
 
@@ -37,18 +40,34 @@ class Window(QMainWindow):
         self.Central_widget.setLayout(self.layout)
         self.setCentralWidget(self.Central_widget)
 
+    def delete_later(self):
+        self.Central_widget.deleteLater()
+        self.Central_widget = QWidget(self)
+
     def resizeEvent(self,event):
         self.layout.resize(self.width(),self.height())
 
+    #########################################################
+    # Funkcje dla jezyka
     def get_text(self, key):
         return self.app.text(key)
     
     def change_language(self, language):
         self.app.change_language(language)
 
-    def delete_later(self):
-        self.Central_widget.deleteLater()
-        self.Central_widget = QWidget(self) 
+    #########################################################
+    # Funkcje dla tournament data
+    def key_check(self,key):
+        return self.app.key_check(key)
+    
+    def get_value(self,key):
+        return self.app.get_value(key)
+
+    def tournament_data_update(self,dictionary):
+        self.app.tournament_data_update(dictionary)
+
+    #########################################################
+    # Tworzenie nowych layoutow
 
     def new_tournament(self):
         self.delete_later()
