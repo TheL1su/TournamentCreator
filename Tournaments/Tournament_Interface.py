@@ -7,6 +7,7 @@ class Tournament:
 
     def load_data():
         pass
+        
 
     def create_tables():
         pass
