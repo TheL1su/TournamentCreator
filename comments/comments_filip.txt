@@ -1,0 +1,21 @@
+
+
+zrobić iterator po players - funkcja result w Single_elimination
+
+
+dla rundy 0, jezeli na poczatku nie da sie wszystkich graczy podzielic to
+zrob count_tables tylko odejmuj graczy zamiast dodawać
+a tych ktorzy się nie dostali zapisz gdzies ???
+
+
+RUNDA 0
+-podziel ludzi na stoliki
+-lista wolnych losow
+
+-zrob count_tables ale na wszystkich graczach
+-odejmij wolnych i policz ile przechodzi i wyswietl (advancing players)
+-dostajemy rozklad stolikow na RUNDE 1
+
+ZAKONCZ RUNDE 0
+
+result + wolne_losy

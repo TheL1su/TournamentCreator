@@ -1,0 +1,5 @@
+
+
+Przy tworzeniu turnieju nie przepuścić jeśli graczy na liście jest mniej niż minimalna ilość graczy w turnieju.
+
+Podział przy pierwszej rundzie.

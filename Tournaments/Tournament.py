@@ -15,6 +15,9 @@ class Tournament:
     def add_type(self,type):
         if type == "Swiss":
             self.type = Swiss()
+        elif type == "Single_Elimination":
+            self.type = Single_Elimination()
+
 
     def get_min_at_table(self):
         return self.min_at_table
