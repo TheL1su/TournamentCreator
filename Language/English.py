@@ -24,8 +24,10 @@ class English(Language):
             "File_Not_Selected" : "File not selected!",
             "Empty_File" : "Empty file!",
             "Syntax_Error" : "Data error in file!",
-            "Load_File" : "Choose File that contains tournament data"
-
+            "Load_File" : "Choose File that contains tournament data",
+            "Specify_Value_For_Round" : "Specify number of games for this round!",
+            "Next_Round" : "Next Round",
+            "Save_And_Exit" : "Save Tournament and Exit!"
         }
         
     def get_text(self,text):

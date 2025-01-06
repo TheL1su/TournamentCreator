@@ -10,7 +10,7 @@ class Application:
     def __init__(self):
         self.language = Polski()
         self.tournament_data = Tournament_Data()
-        self.tournament = Tournament()
+        self.tournament = Tournament(self)
         self.window = Window(self)
 
     #########################################################
@@ -51,3 +51,9 @@ class Application:
 
     def tournament_set_max_at_table(self,number):
         self.tournament.set_max_at_table(number)
+
+    def tournament_add_type(self,tournament_type):
+        self.tournament.add_type(tournament_type)
+
+    def tournament_layout(self):
+        self.window.tournament_layout()

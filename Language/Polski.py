@@ -24,8 +24,10 @@ class Polski(Language):
             "File_Not_Selected" : "Nie wybrano pliku!",
             "Empty_File" : "Pusty plik!",
             "Syntax_Error" : "Dane w pliku zawieraja blad!",
-            "Load_File" : "Wybierz plik ktory zawiera dane turnieju"
-
+            "Load_File" : "Wybierz plik ktory zawiera dane turnieju",
+            "Specify_Value_For_Round" : "Okresl ilosc rozgrywek w tej rundzie!",
+            "Next_Round" : "Nastepna Runda",
+            "Save_And_Exit" : "Zapisz Turniej i wyjdź!"
         }
         
     def get_text(self,text):

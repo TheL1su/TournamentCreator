@@ -1,8 +1,12 @@
 from Tournaments.Player import Player,Players
+from Tournaments.Types.Swiss import Swiss
+from Tournaments.Types.Single_Elimination import Single_Elimination
+
 
 class Tournament:
 
-    def __init__(self):
+    def __init__(self,app):
+        self.app = app
         self.players = Players()
         self.min_at_table = -1
         self.max_at_table = -1
@@ -30,6 +34,15 @@ class Tournament:
 
     def set_max_at_table(self,number):
         self.max_at_table = number
+
+    #########################################################
+    # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
+    def manage(self):
+        #########################################################
+        # Odpal layout turnieju
+        self.app.tournament_layout()
+        
+        pass
 
     def load_data():
         pass

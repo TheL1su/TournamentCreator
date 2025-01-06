@@ -8,6 +8,8 @@ class Tournament:
     def load_data():
         pass
         
+    def manage():
+        pass
 
     def create_tables():
         pass

@@ -4,6 +4,8 @@ from PyQt5.QtGui import QColor
 from Layouts.Start_Layout import Start_Layout
 from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
+from Layouts.Single_Elimination_Layout import Single_Elimination_Layout
+from Layouts.Swiss_Layout import Swiss_Layout
 class Window(QMainWindow):
 
     def __init__(self, app):
@@ -92,9 +94,12 @@ class Window(QMainWindow):
     
     def tournament_set_max_at_table(self,number):
         self.app.tournament_set_max_at_table(number)
+
+    def tournament_add_type(self,tournament_type):
+        self.app.tournament_add_type(tournament_type)
+
     #########################################################
     # Tworzenie nowych layoutow
-
     def new_tournament(self):
         self.delete_later()
         self.layout = New_Tournament_Layout(self)
@@ -104,5 +109,13 @@ class Window(QMainWindow):
     def continue_tournament(self):
         self.delete_later()
         self.layout = Continue_Tournament_Layout(self)
+        self.set_widget()
+        self.show()
+
+    #########################################################
+    # do poprawy
+    def tournament_layout(self):
+        self.delete_later()
+        self.layout = Single_Elimination_Layout(self)
         self.set_widget()
         self.show()

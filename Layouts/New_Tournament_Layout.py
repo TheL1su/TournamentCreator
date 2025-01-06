@@ -29,9 +29,11 @@ class New_Tournament_Layout(QHBoxLayout):
         # Menu Turnieju
         Tournament_Menu = QMenu(parent = self.main_window)
         self.Tournament_Swiss = QAction("System Szwajcarski", self.main_window)
-        self.Tournament_Brasil = QAction("System Brazylijski", self.main_window)
+        self.Tournament_Single_Elimination = QAction("System PlayOff", self.main_window)
+        self.Tournament_Swiss.triggered.connect(lambda: self.add_type("Swiss"))
+        self.Tournament_Single_Elimination.triggered.connect(lambda: self.add_type("Single_Elimination"))
         Tournament_Menu.addAction(self.Tournament_Swiss)
-        Tournament_Menu.addAction(self.Tournament_Brasil)
+        Tournament_Menu.addAction(self.Tournament_Single_Elimination)
 
 
         #########################################################
@@ -138,9 +140,12 @@ class New_Tournament_Layout(QHBoxLayout):
     def Add_player(self):
         QListWidgetItem(self.Add_Player_input.text() , self.List_of_players_widget)
         self.main_window.tournament_add_player(self.Add_Player_input.text())
-
         self.Add_Player_input.clear()
  
+    # #####################################################
+    # # Metoda ustawia tryb turnieju
+    def add_type(self, tournament_type):
+        self.main_window.tournament_add_type(tournament_type)
 
     def resize(self,width,height):
         pass
