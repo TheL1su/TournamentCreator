@@ -62,6 +62,17 @@ class Window(QMainWindow):
     def create_label(self,text):
         label = self.get_text(text)
         return self.widgetsStyle.create_label(label)
+    
+    def create_table_label(self, num):
+        if num == 1:
+            label = self.get_text("Table_And_Points")
+        else:
+            label = self.get_text("Table") + str(num)
+        return self.widgetsStyle.create_label(label)
+    
+    def create_player_label(self, name, num):
+        label = str(num) + ". " + name
+        return self.widgetsStyle.create_label(label)
 
     def create_tool_button(self,text,menu):
         label = self.get_text(text)

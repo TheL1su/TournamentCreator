@@ -27,7 +27,12 @@ class Polski(Language):
             "Load_File" : "Wybierz plik ktory zawiera dane turnieju",
             "Specify_Value_For_Round" : "Okresl ilosc rozgrywek w tej rundzie!",
             "Next_Round" : "Nastepna Runda",
-            "Save_And_Exit" : "Zapisz Turniej i wyjdź!"
+            "Save_And_Exit" : "Zapisz Turniej i wyjdź!",
+            "Table" : "Stolik nr: ",
+            "Table_And_Points" : "Stolik nr: 1      Duże punkty     Małe punkty",
+            "Swiss" : "System Szwajcarski",
+            "PlayOff" : "Play-off",
+            "Points_Not_Filed" : "Uzupełnij brakujące punkty"
         }
         
     def get_text(self,text):

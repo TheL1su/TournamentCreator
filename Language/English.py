@@ -27,7 +27,12 @@ class English(Language):
             "Load_File" : "Choose File that contains tournament data",
             "Specify_Value_For_Round" : "Specify number of games for this round!",
             "Next_Round" : "Next Round",
-            "Save_And_Exit" : "Save Tournament and Exit!"
+            "Save_And_Exit" : "Save Tournament and Exit!",
+            "Table" : "Table nr: ",
+            "Table_And_Points" : "Table nr: 1       Big points      Small Points",
+            "Swiss" : "Swiss-system",
+            "PlayOff" : "Play-off",
+            "Points_Not_Filed" : "Fill missing points"
         }
         
     def get_text(self,text):

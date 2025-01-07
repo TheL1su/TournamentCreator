@@ -28,8 +28,8 @@ class New_Tournament_Layout(QHBoxLayout):
         #########################################################
         # Menu Turnieju
         Tournament_Menu = QMenu(parent = self.main_window)
-        self.Tournament_Swiss = QAction("System Szwajcarski", self.main_window)
-        self.Tournament_Single_Elimination = QAction("System PlayOff", self.main_window)
+        self.Tournament_Swiss = QAction(self.main_window.get_text("Swiss"), self.main_window)
+        self.Tournament_Single_Elimination = QAction(self.main_window.get_text("PlayOff"), self.main_window)
         self.Tournament_Swiss.triggered.connect(lambda: self.add_type("Swiss"))
         self.Tournament_Single_Elimination.triggered.connect(lambda: self.add_type("Single_Elimination"))
         Tournament_Menu.addAction(self.Tournament_Swiss)
