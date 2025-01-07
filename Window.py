@@ -98,6 +98,24 @@ class Window(QMainWindow):
     def tournament_add_type(self,tournament_type):
         self.app.tournament_add_type(tournament_type)
 
+    def get_tables(self):
+        return self.app.get_tables()
+
+    def num_of_players(self):
+        return self.app.num_of_players()
+    
+    def get_name(self,num):
+        return self.app.get_name(num)
+
+    def big_points_change(self,player_cnt,num):
+        self.app.big_points_change(self,player_cnt,num)
+
+    def small_points_change(self,player_cnt,num):
+        self.app.small_points_change(self,player_cnt,num)
+
+    def filed_check(self):
+        return self.app.filed_check()
+
     #########################################################
     # Tworzenie nowych layoutow
     def new_tournament(self):
@@ -119,3 +137,17 @@ class Window(QMainWindow):
         self.layout = Single_Elimination_Layout(self)
         self.set_widget()
         self.show()
+
+
+    #########################################################
+    # wyczysc layout
+    def clear_layout(self,layout):
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+            else:
+                sub_layout = item.layout()
+                if sub_layout:
+                    self.clear_layout(sub_layout)

@@ -8,8 +8,10 @@ class Tournament:
     def __init__(self,app):
         self.app = app
         self.players = Players()
+        self.current_players = Players()
         self.min_at_table = -1
         self.max_at_table = -1
+        self.tables = []
 
     def add_player(self,player):
         name = player.split(" ")[0]
@@ -35,13 +37,36 @@ class Tournament:
     def set_max_at_table(self,number):
         self.max_at_table = number
 
+    def get_tables(self):
+        return self.tables
+
+    def num_of_players(self):
+        return self.current_players.num_of_players()
+    
+    def get_name(self,num):
+        return self.current_players.get_name(num)
+    
+    def big_points_change(self,player_cnt,num):
+        self.current_players.big_points_change(self,player_cnt,num)
+
+    def small_points_change(self,player_cnt,num):
+        self.current_players.small_points_change(self,player_cnt,num)
+
+    def filed_check(self):
+        return self.current_players.filed_check()
+
     #########################################################
     # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
     def manage(self):
         #########################################################
         # Odpal layout turnieju
         self.app.tournament_layout()
-        
+
+        #mamy graczy -> 1 runde
+        #aktualni gracze = result 1 rundy
+
+        #aktualni gracze -> 2runda
+
         pass
 
     def load_data():
