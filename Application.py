@@ -58,11 +58,15 @@ class Application:
     def tournament_layout(self):
         self.window.tournament_layout()
 
-    def num_of_players(self):
-        return self.tournament.num_of_players()
+    def curr_num_of_players(self):
+        return self.tournament.curr_num_of_players()
     
     def get_tables(self):
         return self.tournament.get_tables()
+    
+    def get_prev_tables(self):
+        return self.tournament.get_prev_tables()
+
 
     def get_name(self,num):
         return self.tournament.get_name(num)
@@ -73,5 +77,17 @@ class Application:
     def small_points_change(self,player_cnt,num):
         self.tournament.small_points_change(self,player_cnt,num)
 
+    def get_big_points(self,num):
+        return self.tournament.get_big_points(num)
+
+    def small_big_points(self,num):
+        return self.tournament.small_big_points(num)
+
     def filed_check(self):
         return self.tournament.filed_check()
+    
+    def ready_to_calculate_result(self):
+        self.tournament.ready_to_calculate_result()
+
+    def get_tournament_type(self):
+        return self.tournament.get_type()

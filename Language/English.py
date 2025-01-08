@@ -26,13 +26,19 @@ class English(Language):
             "Syntax_Error" : "Data error in file!",
             "Load_File" : "Choose File that contains tournament data",
             "Specify_Value_For_Round" : "Specify number of games for this round!",
-            "Next_Round" : "Next Round",
+            "Submit_Round" : "Submit Round",
             "Save_And_Exit" : "Save Tournament and Exit!",
             "Table" : "Table nr: ",
             "Table_And_Points" : "Table nr: 1       Big points      Small Points",
             "Swiss" : "Swiss-system",
             "PlayOff" : "Play-off",
-            "Points_Not_Filed" : "Fill missing points"
+            "Points_Not_Filed" : "Fill missing points",
+            "Advancing_Players_Information" : "Places that advance from all tables to next round:",
+            "Lucky_Loosers" : "Number of players that advance from ",
+            "Place" : " place:",
+            "Next_Round" : "Next round",
+            "Ranking" : "Ranking:",
+            "Player" : "Player"
         }
         
     def get_text(self,text):

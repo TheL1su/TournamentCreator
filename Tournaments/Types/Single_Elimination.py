@@ -18,7 +18,7 @@ class Single_Elimination(Type_Interface):
         advancing_players = Players()
         place_at_table = 1
         table = 1
-        maybe_lucky_looser = list()
+        maybe_lucky_looser = Players()
         lucky_looser_place = advancing_places + 1
         for i in range(num_of_players):
             # Jezeli przechodzimy do kolejnego stolika to wyzeruj pozycje 
@@ -30,7 +30,7 @@ class Single_Elimination(Type_Interface):
                 advancing_players.add_player(players.list[i])
             # Dodaj do potencjalnej listy lucky looser
             elif place_at_table == lucky_looser_place:
-                maybe_lucky_looser.append(players.list[i])
+                maybe_lucky_looser.add_player(players.list[i])
             
             place_at_table += 1
             table = players.list[i].tables[-1]
@@ -38,8 +38,11 @@ class Single_Elimination(Type_Interface):
         maybe_lucky_looser.sort(key=lambda x:  (x.big_points,x.small_points), reverse=True)
         for i in range(lucky_loosers):
             advancing_players.add_player(maybe_lucky_looser[i])
-                
-        return advancing_players
+        
+        for i in range(lucky_loosers):
+            maybe_lucky_looser.pop(0)
+
+        return advancing_players,maybe_lucky_looser
     
     #####################################################
     # zwraca ilość stolików i ilość osób przy każdym stoliku

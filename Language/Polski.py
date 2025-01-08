@@ -26,13 +26,19 @@ class Polski(Language):
             "Syntax_Error" : "Dane w pliku zawieraja blad!",
             "Load_File" : "Wybierz plik ktory zawiera dane turnieju",
             "Specify_Value_For_Round" : "Okresl ilosc rozgrywek w tej rundzie!",
-            "Next_Round" : "Nastepna Runda",
+            "Submit_Round" : "Zatwierdz Runde",
             "Save_And_Exit" : "Zapisz Turniej i wyjdź!",
             "Table" : "Stolik nr: ",
             "Table_And_Points" : "Stolik nr: 1      Duże punkty     Małe punkty",
             "Swiss" : "System Szwajcarski",
             "PlayOff" : "Play-off",
-            "Points_Not_Filed" : "Uzupełnij brakujące punkty"
+            "Points_Not_Filed" : "Uzupełnij brakujące punkty",
+            "Advancing_Players_Information" : "Miejsca ktore w każdym stoliku awansują do nastepnej rundy:",
+            "Lucky_Loosers" : "Liczba graczy awansująca z ",
+            "Place" : " miejsca:",
+            "Next_Round" : "Nastepna runda",
+            "Ranking" : "Ranking:",
+            "Player" : "Gracz"
         }
         
     def get_text(self,text):

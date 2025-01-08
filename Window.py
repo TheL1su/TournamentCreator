@@ -73,6 +73,9 @@ class Window(QMainWindow):
     def create_player_label(self, name, num):
         label = str(num) + ". " + name
         return self.widgetsStyle.create_label(label)
+    
+    def create_num_label(self,num):
+        return self.widgetsStyle.create_label(str(num))
 
     def create_tool_button(self,text,menu):
         label = self.get_text(text)
@@ -112,8 +115,11 @@ class Window(QMainWindow):
     def get_tables(self):
         return self.app.get_tables()
 
-    def num_of_players(self):
-        return self.app.num_of_players()
+    def get_prev_tables(self):
+        return self.app.prev_tables()
+
+    def curr_num_of_players(self):
+        return self.app.curr_num_of_players()
     
     def get_name(self,num):
         return self.app.get_name(num)
@@ -124,8 +130,20 @@ class Window(QMainWindow):
     def small_points_change(self,player_cnt,num):
         self.app.small_points_change(self,player_cnt,num)
 
+    def get_big_points(self,num):
+        return self.app.get_big_points(num)
+
+    def small_big_points(self,num):
+        return self.app.small_big_points(num)
+
     def filed_check(self):
         return self.app.filed_check()
+    
+    def ready_to_calculate_result(self):
+        self.app.ready_to_calculate_result()
+    
+    def get_tournament_type(self):
+        return self.app.get_tournament_type()
 
     #########################################################
     # Tworzenie nowych layoutow
