@@ -83,11 +83,6 @@ class Window(QMainWindow):
 
     #########################################################
     # Funkcje dla tournament data
-    def key_check(self,key):
-        return self.app.key_check(key)
-    
-    def get_value(self,key):
-        return self.app.get_value(key)
 
     def tournament_data_update(self,dictionary):
         self.app.tournament_data_update(dictionary)

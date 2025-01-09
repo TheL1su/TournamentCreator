@@ -1,7 +1,7 @@
 from Tournaments.Player import Player,Players
 from Tournaments.Types.Swiss import Swiss
 from Tournaments.Types.Single_Elimination import Single_Elimination
-
+import Tournament_Data
 
 class Tournament:
 
@@ -9,6 +9,7 @@ class Tournament:
         self.app = app
         self.players = Players()
         self.current_players = Players()
+        self.tournament_data = Tournament_Data(self)
         self.min_at_table = -1
         self.max_at_table = -1
         self.tables = []
@@ -21,6 +22,8 @@ class Tournament:
         self.players.add_player(Player(name,surname))
 
     def add_type(self,tournament_type):
+        self.tournament_data.update({"Type": tournament_type})
+
         if tournament_type == "Swiss":
             self.type = Swiss()
             self.tournament_type_name = "Swiss"
@@ -28,6 +31,11 @@ class Tournament:
             self.type = Single_Elimination()
             self.tournament_type_name = "Single_Elimination"
 
+    def set_type(self,type_):
+        if(type_ == "Swiss"):
+            self.type = Swiss()
+        elif type_ == "Single_Elimination":
+            self.type = Single_Elimination()
 
     def get_min_at_table(self):
         return self.min_at_table
@@ -36,9 +44,11 @@ class Tournament:
         return self.max_at_table
 
     def set_min_at_table(self,number):
+        self.tournament_data.update({"Min_At_Table" : number})
         self.min_at_table = number
 
     def set_max_at_table(self,number):
+        self.tournament_data.update({"Max_At_Table" : number})
         self.max_at_table = number
 
     #########################################################
@@ -90,6 +100,19 @@ class Tournament:
     
     def get_type(self):
         return self.tournament_type_name
+    
+    #########################################################
+    # Funkcje dla tournament data
+    def data_update(self,dictionary):
+        self.tournament_data.update(dictionary)
+
+    def save_players(self):
+        players_data = self.players.save_players()
+        self.tournament_data.update({"Players" : players_data})
+
+    def save_curr_players(self):
+        players_data = self.current_players.save_players()
+        self.tournament_data.update({"Current_Players" : players_data})
 
     #########################################################
     # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
@@ -118,8 +141,17 @@ class Tournament:
 
         pass
 
-    def load_data():
-        pass
+    def load_data(self):
+        #########################################################
+        # zaladowanie min max i typu turnieju
+        self.min_at_table = self.tournament_data.get_value("Min_At_Table")
+        self.max_at_table = self.tournament_data.get_value("Max_At_Table")
+        self.tournament_type_name = self.tournament_data.get_value("Type")
+        self.set_type(self.tournament_type_name)
+        #########################################################
+        # zaladowanie graczy - tournament.players
+        self.tournament_data.load_players(self.players)
+        self.tournament_data.load_current_players(self.players,self.current_players)
 
     def create_tables():
         pass
@@ -127,5 +159,5 @@ class Tournament:
     def end_round():
         pass
 
-    def update_data():
-        pass
+    def update_points(self):
+        self.current_players.update_points()

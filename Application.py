@@ -9,7 +9,6 @@ class Application:
 
     def __init__(self):
         self.language = Polski()
-        self.tournament_data = Tournament_Data()
         self.tournament = Tournament(self)
         self.window = Window(self)
 
@@ -26,14 +25,9 @@ class Application:
 
     #########################################################
     # Funkcje dla Tournament Data
-    def key_check(self,key):
-        return self.tournament_data.key_check(key)
-
-    def get_value(self,key):
-        return self.tournament_data.get_value(key)
 
     def tournament_data_update(self,dictionary):
-        self.tournament_data.update(dictionary)
+        self.tournament.data_update(dictionary)
 
     #########################################################
     # Funkcje dla Tournament

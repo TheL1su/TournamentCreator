@@ -164,7 +164,7 @@ class Single_Elimination_Layout(QGridLayout):
             big = self.main_window.create_label(big_points)
 
             small_points = self.main_window.get_small_points(i)
-            small = self.main_window.create_label(small)
+            small = self.main_window.create_label(small_points)
 
             Layout_Players.addWidget(player_label)
             Layout_Players.addWidget(big)
