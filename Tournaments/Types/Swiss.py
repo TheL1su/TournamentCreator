@@ -1,9 +1,9 @@
 import random
 
-from Type_Interface import Type_Interface
+#from Type_Interface import Type_Interface
 
 
-class Swiss(Type_Interface):
+class Swiss():
     #IF 2 osoby na stolik i 9 graczy
     #IF mniej osob niz minimalna ilosc na stole
 

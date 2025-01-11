@@ -15,7 +15,7 @@ class Single_Elimination_Layout(QGridLayout):
         self.Submit_Round.connect(self.filed_check)
         self.Next_Round.QPushButton(self.main_window.get_text("Next_Round"))
         self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
-
+        self.Save_And_Exit.connect(self.save_exit)
 
         """
         #########################################################
@@ -101,7 +101,7 @@ class Single_Elimination_Layout(QGridLayout):
         #########################################################
         # jezeli nie wszystkie pola z punktami zostaly uzupelnione
         if all_filed is False:
-            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Points_Not_Filed"))
+            self.main_window.show_warning( self.main_window.get_text("Error"), self.main_window.get_text("Points_Not_Filed"))
         else:
         #########################################################
         # zakomunikuj ze wszystkie pola sa uzupelnione
@@ -117,7 +117,7 @@ class Single_Elimination_Layout(QGridLayout):
             text += str(i) + ","
         text += str(advancing_places) + "\n"
         text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
-        QMessageBox.information(self, self.main_window.get_text("Advancing_Players_Information"), text)
+        self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
     #########################################################
     # layout wynikow dla playoff
@@ -176,6 +176,43 @@ class Single_Elimination_Layout(QGridLayout):
         self.addWidget(self.Next_Round,1,0)
         self.addWidget(self.Save_And_Exit,1,1)
         self.show()
+
+
+    def save_exit(self):
+        #########################################################
+        # Otwórz okno dialogowe do zapisywania pliku
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getSaveFileName(
+            self.main_window,
+            self.main_window.get_text("Save_File"),
+            "",
+            self.main_window.get_text("Json_File")
+            ,
+            options=options
+        )
+        #########################################################
+        # Sprawdź, czy użytkownik wybrał ścieżkę
+        if file_path:
+            if not file_path.endswith(".json"):
+                file_path += ".json"
+
+            #########################################################
+            # Zapisz dane do pliku
+            with open(file_path, 'w', encoding='utf-8') as file:
+                self.main_window.save_file(file)
+            self.confirm_exit()
+        else: 
+            self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Path_Not_Selected"))
+
+    def confirm_exit(self):
+        #########################################################
+        # Obsługa odpowiedzi użytkownika
+        response = self.main_window.show_question(self.main_window.get_text("Exit"),self.main_window.get_text("Want_To_Exit"))
+
+        if response == QMessageBox.Yes:
+            self.main_window.close()  # Zamknięcie aplikacji
+
+            
 
     """
     #########################################################

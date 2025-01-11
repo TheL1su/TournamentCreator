@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget
 from Widgets import Widgets
+from MessageBoxes import MessageBoxFactory
 from PyQt5.QtGui import QColor
 from Layouts.Start_Layout import Start_Layout
 from Layouts.New_Tournament_Layout import New_Tournament_Layout
@@ -17,7 +18,7 @@ class Window(QMainWindow):
         self.setGeometry(100, 100, 400, 300)
         self.setWindowTitle(self.app.text("Title"))
         self.widgetsStyle = Widgets()
-
+        self.messageboxFactory = MessageBoxFactory()
         #########################################################
         # Kolor tla
         Color = self.palette()
@@ -82,6 +83,16 @@ class Window(QMainWindow):
         return self.widgetsStyle.create_tool_button(parent = self,text = label,menu = menu)
 
     #########################################################
+    # Funkcje dla MessageBoxa
+    def show_information(self,title, message):
+        self.messageboxFactory.show_information(self,title,message)
+
+    def show_warning(self,title,message):
+        self.messageboxFactory.show_warning(self,title,message)
+
+    def show_question(self,title,message):
+        self.messageboxFactory.show_question(self,title,message)
+    #########################################################
     # Funkcje dla tournament data
 
     def tournament_data_update(self,dictionary):
@@ -139,6 +150,12 @@ class Window(QMainWindow):
     
     def get_tournament_type(self):
         return self.app.get_tournament_type()
+
+    #########################################################
+    # Zapisz plik json
+    def save_file(self,file_):
+        self.app.save_file(file_)
+
 
     #########################################################
     # Tworzenie nowych layoutow

@@ -1,8 +1,8 @@
-from Type_Interface import Type_Interface
-from Player import Player,Players
+#from Type_Interface import Type_Interface
+from Tournaments.Player import Player,Players
 import math
 
-class Single_Elimination(Type_Interface):
+class Single_Elimination():
     #IF min i max przy stole = 2
     def __init__(self):
         pass

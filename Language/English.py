@@ -38,7 +38,13 @@ class English(Language):
             "Place" : " place:",
             "Next_Round" : "Next round",
             "Ranking" : "Ranking:",
-            "Player" : "Player"
+            "Player" : "Player",
+            "Save_File" : "Save file",
+            "Json_File" : "Json file (*.json)",
+            "Exit" : "Exit",
+            "Want_To_Exit" : "Are you sure you want to live?",
+            "Path_Not_Selected" : "Path not selected!",
+            "Start_Tournament" : "Start Tournament"
         }
         
     def get_text(self,text):

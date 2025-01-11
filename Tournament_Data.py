@@ -1,4 +1,4 @@
-
+import json
 
 class Tournament_Data:
     def __init__(self,tournament):
@@ -40,3 +40,6 @@ class Tournament_Data:
         for i in self.data.get("Current_Players"):
             player = players.get_player_by_id(i["id"])
             current_players.add_player(player)
+
+    def save_file(self,file_):
+        json.dump(self.data, file_, indent=4, ensure_ascii=False)

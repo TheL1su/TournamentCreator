@@ -65,7 +65,7 @@ class Continue_Tournament_Layout(QGridLayout):
                 file_size = os.path.getsize(fileName) #rozmiar pliku
 
                 if file_size==0: #pusty plik
-                    QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Empty_File"))
+                    self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Empty_File"))
 
                 else:
                     try: #probuje wczytac dane w formacie json
@@ -81,12 +81,12 @@ class Continue_Tournament_Layout(QGridLayout):
                     #############################################
                     # Blad w pliku
                     except json.JSONDecodeError as e:
-                        QMessageBox.warning(self.main_window, self.main_window.get_text("Error"),self.main_window.get_text("Syntax_Error"))
+                        self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Syntax_Error"))
 
         #########################################################
         # Nie Wybrany plik
         except IOError as e:
-            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("File_Not_Selected"))
+            self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("File_Not_Selected"))
 
     def Show_Confirm_Button(self):
         self.Confirm.show()

@@ -2,7 +2,7 @@ from Language.Polski import Polski
 from Language.English import English
 
 from Window import Window
-from Tournament_Data import Tournament_Data
+
 from Tournaments.Tournament import Tournament
 
 class Application:
@@ -29,6 +29,8 @@ class Application:
     def tournament_data_update(self,dictionary):
         self.tournament.data_update(dictionary)
 
+    def save_file(self,file_):
+        self.tournament.save_file(file_)
     #########################################################
     # Funkcje dla Tournament
     def tournament_add_player(self,player_name):

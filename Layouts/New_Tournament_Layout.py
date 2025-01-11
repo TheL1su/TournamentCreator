@@ -20,10 +20,12 @@ class New_Tournament_Layout(QHBoxLayout):
         self.Min_at_Table_number_input.setFixedWidth(300)
         self.Max_at_Table_number_input = QLineEdit()
         self.Max_at_Table_number_input.setFixedWidth(300)
-        self.Min_at_Table_number_input.setValidator(QIntValidator(1,20))  # Przyjmuje tylko liczby całkowite
-        self.Max_at_Table_number_input.setValidator(QIntValidator(1,20))  # Przyjmuje tylko liczby całkowite
-        self.Min_submit_button = QPushButton(self.main_window.get_text("Submit"))
-        self.Max_submit_button = QPushButton(self.main_window.get_text("Submit"))
+
+        #########################################################
+        # Validator dla Min i Maks - wartosci od 1 do 20
+        validator = QRegularExpressionValidator(QRegularExpression("([1-9]|[1][0-9]|[2][0])"))
+        self.Min_at_Table_number_input.setValidator(validator)
+        self.Max_at_Table_number_input.setValidator(validator)
 
         #########################################################
         # Menu Turnieju
@@ -42,9 +44,13 @@ class New_Tournament_Layout(QHBoxLayout):
         self.Tournament_Type.setFixedSize(300,20)
 
         #########################################################
+        # Przycisk do Rozpoczecia Turnieju
+        self.Start_Tournament = QPushButton(self.main_window.get_text("Start_Tournament"))
+
+        #########################################################
         # Funkcje wywolywane przy nacisnieciu przyciskow zatwierdz
-        self.Min_submit_button.clicked.connect(self.Min_on_submit)
-        self.Max_submit_button.clicked.connect(self.Max_on_submit)
+        self.Min_at_Table_number_input.returnPressed.connect(self.Min_on_submit)
+        self.Max_at_Table_number_input.returnPressed.connect(self.Max_on_submit)
 
 
         ########################################################
@@ -53,12 +59,11 @@ class New_Tournament_Layout(QHBoxLayout):
         self.Add_Player_input = QLineEdit()
         self.Add_Player_input.setFixedWidth(300)
         self.Add_Player_input.setValidator(QRegularExpressionValidator(QRegularExpression("^[A-Z]{1}[a-z]* [A-Z]{1}[a-z]*")))  # Przyjmuje dwa słowa wielką literą
-        self.Add_Player_button = QPushButton(self.main_window.get_text("Submit"))
 
         ########################################################
         # Dodawanie uczestnika
         self.List_of_players_widget = QListWidget()
-        self.Add_Player_button.clicked.connect(self.Add_player)
+        self.Add_Player_input.returnPressed.connect(self.Add_player)
 
         #########################################################
         # Siatka dla Labeli i Przyciskow
@@ -68,14 +73,11 @@ class New_Tournament_Layout(QHBoxLayout):
         # Dodanie Przyciskow - Minimalna ilosc graczy przy stole do siatki
         Layout_NT_settings.addWidget(Label_Min_Players_at_Table,0,0)
         Layout_NT_settings.addWidget(self.Min_at_Table_number_input,1,0)
-        Layout_NT_settings.addWidget(self.Min_submit_button,1,1)
 
         #########################################################
         # Dodanie Przyciskow - Maksymalna ilosc graczy przy stole do siatki
         Layout_NT_settings.addWidget(Label_Max_Players_at_Table,2,0)
         Layout_NT_settings.addWidget(self.Max_at_Table_number_input,3,0)
-        Layout_NT_settings.addWidget(self.Max_submit_button,3,1)
-        
         #########################################################
         # Dodanie Menu Turniejow do siatki
         Layout_NT_settings.addWidget(self.Tournament_Type,4,0)
@@ -84,17 +86,16 @@ class New_Tournament_Layout(QHBoxLayout):
         # Dodawanie dodaj gracza do siatki
         Layout_NT_settings.addWidget(Label_Add_Player,5,0)
         Layout_NT_settings.addWidget(self.Add_Player_input,6,0)
-        Layout_NT_settings.addWidget(self.Add_Player_button,6,1)
-
+        Layout_NT_settings.addWidget(self.Start_Tournament,7,0)
         #########################################################
         # Ustawienie przyciskow na siatce
         Layout_NT_settings.setAlignment(Label_Min_Players_at_Table, Qt.AlignLeft)
         Layout_NT_settings.setAlignment(self.Min_at_Table_number_input, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(self.Min_submit_button,Qt.AlignCenter)
         Layout_NT_settings.setAlignment(Label_Max_Players_at_Table, Qt.AlignLeft)
         Layout_NT_settings.setAlignment(self.Max_at_Table_number_input, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(self.Max_submit_button,Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(self.Add_Player_input,Qt.AlignLeft)
         Layout_NT_settings.setAlignment(self.Tournament_Type,Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(self.Start_Tournament,Qt.AlignCenter)
         Layout_NT_settings.setRowStretch(Layout_NT_settings.rowCount(), 1)
         Layout_NT_settings.setColumnStretch(Layout_NT_settings.columnCount(), 1)
 
@@ -110,14 +111,14 @@ class New_Tournament_Layout(QHBoxLayout):
         if number:
             # Wartosc minimalna wieksza niz maks
             if self.main_window.tournament_max_at_table() != -1 and number > self.main_window.tournament_max_at_table():
-                QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Min_Bigger_Than_Max"))
+                self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Min_Bigger_Than_Max"))
             # Ustawienie Wartosci min_at_table w slowniku
             else:
                 self.main_window.tournament_set_min_at_table(number) #Ustawienie Wartosci min_at_table w slowniku
-                QMessageBox.information(self.main_window, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
+                self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
         else:
             #brak wpisanej wartosci
-            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
+            self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
 
 # Funkcja do obslugi wpisywania maksymalnej wartosci dla stolu
     def Max_on_submit(self):
@@ -125,14 +126,14 @@ class New_Tournament_Layout(QHBoxLayout):
         if number:
             # Wartosc maksymalna mniejsza niz minimum
             if self.main_window.tournament_min_at_table() != -1 and number < self.main_window.tournament_min_at_table():
-                QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Max_Lower_Than_Min"))
+                self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Max_Lower_Than_Min"))
             else:
                 #Ustawienie Wartosci max_at_table w slowniku
                 self.main_window.tournament_set_max_at_table(number)
-                QMessageBox.information(self.main_window, self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + str(number))
+                self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + str(number))
         else:
             #brak wpisanej wartosci
-            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
+            self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
 
 
     # #####################################################

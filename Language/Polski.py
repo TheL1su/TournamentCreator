@@ -38,7 +38,13 @@ class Polski(Language):
             "Place" : " miejsca:",
             "Next_Round" : "Nastepna runda",
             "Ranking" : "Ranking:",
-            "Player" : "Gracz"
+            "Player" : "Gracz",
+            "Save_File" : "Zapisz plik",
+            "Json_File" : "Plik json (*.json)",
+            "Exit" : "Wyjscie",
+            "Want_To_Exit" : "Czy napewno chcesz wyjsc?",
+            "Path_Not_Selected" : "Sciezka nie wybrana!",
+            "Start_Tournament" : "Rozpocznij Turniej"
         }
         
     def get_text(self,text):

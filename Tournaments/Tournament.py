@@ -1,7 +1,7 @@
 from Tournaments.Player import Player,Players
 from Tournaments.Types.Swiss import Swiss
 from Tournaments.Types.Single_Elimination import Single_Elimination
-import Tournament_Data
+from Tournament_Data import Tournament_Data
 
 class Tournament:
 
@@ -114,6 +114,8 @@ class Tournament:
         players_data = self.current_players.save_players()
         self.tournament_data.update({"Current_Players" : players_data})
 
+    def save_file(self,file_):
+        self.tournament_data.save_file(file_)
     #########################################################
     # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
     def manage(self):
