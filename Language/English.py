@@ -45,7 +45,8 @@ class English(Language):
             "Want_To_Exit" : "Are you sure you want to live?",
             "Path_Not_Selected" : "Path not selected!",
             "Start_Tournament" : "Start Tournament",
-            "Submit_And_Continue_Tournament" : "Submit and continue tournament"
+            "Submit_And_Continue_Tournament" : "Submit and continue tournament",
+            "Not_All_Values_Set" : "Not all values are set!"
         }
         
     def get_text(self,text):
