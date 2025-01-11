@@ -7,6 +7,8 @@ from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 from Layouts.Single_Elimination_Layout import Single_Elimination_Layout
 from Layouts.Swiss_Layout import Swiss_Layout
+import os
+
 class Window(QMainWindow):
 
     def __init__(self, app):
@@ -17,8 +19,22 @@ class Window(QMainWindow):
         #default Geometria
         self.setGeometry(100, 100, 400, 300)
         self.setWindowTitle(self.app.text("Title"))
+
+
+        #########################################################
+        # Tlo aplikacji
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        # Specify the filename you're checking
+        filename = 'background.png'
+        # Create the full path to the file
+        file_path = os.path.join(current_directory, filename)
+        self.setStyleSheet(f"QMainWindow {{background-image: url({file_path}); background-repeat: no-repeat; background-position: center;}}")
+
+        #########################################################
+        # Fabryki widgetow i messageboxow
         self.widgetsStyle = Widgets()
         self.messageboxFactory = MessageBoxFactory()
+        
         #########################################################
         # Kolor tla
         Color = self.palette()

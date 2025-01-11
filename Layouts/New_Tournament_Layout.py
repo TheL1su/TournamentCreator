@@ -41,7 +41,7 @@ class New_Tournament_Layout(QHBoxLayout):
         #########################################################
         # Przycisk do Rodzaju Turnieju
         self.Tournament_Type = self.main_window.create_tool_button("Choose_Tournament_Type",Tournament_Menu)
-        self.Tournament_Type.setFixedSize(300,20)
+        self.Tournament_Type.setFixedWidth(300)
 
         #########################################################
         # Przycisk do Rozpoczecia Turnieju
