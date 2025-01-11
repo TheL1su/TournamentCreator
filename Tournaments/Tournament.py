@@ -119,9 +119,10 @@ class Tournament:
     #########################################################
     # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
     def manage(self):
+        pass
         #########################################################
         # Odpal layout turnieju
-        self.app.tournament_layout()
+        #self.app.tournament_layout()
 
         #########################################################
         # petla ktora czeka na wpisanie wszystkich punktow do okna
@@ -141,7 +142,6 @@ class Tournament:
 
         #aktualni gracze -> 2runda
 
-        pass
 
     def load_data(self):
         #########################################################
@@ -154,6 +154,13 @@ class Tournament:
         # zaladowanie graczy - tournament.players
         self.tournament_data.load_players(self.players)
         self.tournament_data.load_current_players(self.players,self.current_players)
+        
+        #########################################################
+        # test do sprawdzenia czy gracze sie wczytali
+        # for i in self.players.list:
+        #     i.pt()
+        # for i in self.current_players.list:
+        #     i.pt()
 
     def create_tables():
         pass

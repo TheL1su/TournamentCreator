@@ -44,7 +44,9 @@ class Polski(Language):
             "Exit" : "Wyjscie",
             "Want_To_Exit" : "Czy napewno chcesz wyjsc?",
             "Path_Not_Selected" : "Sciezka nie wybrana!",
-            "Start_Tournament" : "Rozpocznij Turniej"
+            "Start_Tournament" : "Rozpocznij Turniej",
+            "Submit_And_Continue_Tournament" : "Zatwierdz i kontynuuj turniej",
+            "Not_All_Values_Set" : "Nie wszystkie wartosci zostaly wprowadzone!"
         }
         
     def get_text(self,text):

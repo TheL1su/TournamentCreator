@@ -20,7 +20,8 @@ class Continue_Tournament_Layout(QGridLayout):
 
         #########################################################
         # Przyciski do potwierdzenia wczytanego pliku i odpalenia turnieju
-        self.Confirm = QPushButton(self.main_window.get_text("Submit"))
+        self.Confirm = QPushButton(self.main_window.get_text("Submit_And_Continue_Tournament"))
+        self.Confirm.adjustSize()
         self.Confirm.hide()
         self.Confirm.clicked.connect(self.OpenTournament)
         
@@ -40,7 +41,7 @@ class Continue_Tournament_Layout(QGridLayout):
         self.setAlignment(self.Confirm,Qt.AlignTop)
 
 
-    def resize(self):
+    def resize(self,width,height):
         """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
         pass
 
@@ -92,5 +93,5 @@ class Continue_Tournament_Layout(QGridLayout):
         self.Confirm.show()
 
     def OpenTournament(self):
-        pass
-        #self.main_window.open_tournament()
+        self.main_window.load_data()
+        self.main_window.open_tournament()

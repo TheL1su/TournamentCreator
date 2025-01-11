@@ -35,7 +35,7 @@ class Tournament_Data:
                                 i["tables"],
                                 i["id"]
                                 )
-            
+
     def load_current_players(self,players,current_players):
         for i in self.data.get("Current_Players"):
             player = players.get_player_by_id(i["id"])

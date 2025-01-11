@@ -34,7 +34,7 @@ class Window(QMainWindow):
         # Fabryki widgetow i messageboxow
         self.widgetsStyle = Widgets()
         self.messageboxFactory = MessageBoxFactory()
-        
+
         #########################################################
         # Kolor tla
         Color = self.palette()
@@ -166,6 +166,12 @@ class Window(QMainWindow):
     
     def get_tournament_type(self):
         return self.app.get_tournament_type()
+
+    def load_data(self):
+        self.app.load_data()
+
+    def open_tournament(self):
+        self.app.open_tournament()
 
     #########################################################
     # Zapisz plik json

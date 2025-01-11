@@ -87,3 +87,9 @@ class Application:
 
     def get_tournament_type(self):
         return self.tournament.get_type()
+    
+    def load_data(self):
+        self.tournament.load_data()
+
+    def open_tournament(self):
+        self.tournament.manage()

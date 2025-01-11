@@ -27,6 +27,19 @@ class Player:
         self.curr_big_points = -1
         self.curr_small_points = -1
 
+    #########################################################
+    # Funkcja testowa do wypisywania graczy
+    def pt(self):
+        print(self.first_name,
+        self.last_name,
+        self.big_points,
+        self.small_points,
+        self.curr_big_points,
+        self.curr_small_points,
+        self.tables,
+        self.id)
+        print()
+        
 class Players:
     def __init__(self):
         self.list = list()
@@ -66,7 +79,7 @@ class Players:
         return players_data
     
     def load_player(self,first_name,last_name,big_points,small_points,curr_big_points,curr_small_points,tables,id_):
-        return Player(first_name,last_name,big_points,small_points,curr_big_points,curr_small_points,tables,id_)
+        self.add_player(Player(first_name,last_name,big_points,small_points,curr_big_points,curr_small_points,tables,id_))
     
     def get_player_by_id(self,id_):
         for i in self.list:

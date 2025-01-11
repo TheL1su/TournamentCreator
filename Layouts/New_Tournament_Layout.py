@@ -10,6 +10,13 @@ class New_Tournament_Layout(QHBoxLayout):
         self.main_window = main_window
 
         #########################################################
+        # Tablica informacji czy zostaly wprowadzone informacje:
+        # 0 indeks - Min_at_table
+        # 1 indeks - Max_at_table
+        # 2 indeks - typ turnieju
+        # 3 indeks - dodani gracze
+        self.check_buttons = [False,False,False,False]
+        #########################################################
         # Labele do Ustawien Turnieju 
         Label_Min_Players_at_Table = self.main_window.create_label("Enter_Min_Players_At_Table")
         Label_Max_Players_at_Table = self.main_window.create_label("Enter_Max_Players_At_Table")
@@ -46,7 +53,7 @@ class New_Tournament_Layout(QHBoxLayout):
         #########################################################
         # Przycisk do Rozpoczecia Turnieju
         self.Start_Tournament = QPushButton(self.main_window.get_text("Start_Tournament"))
-
+        self.Start_Tournament.clicked.connect(self.OpenTournament)
         #########################################################
         # Funkcje wywolywane przy nacisnieciu przyciskow zatwierdz
         self.Min_at_Table_number_input.returnPressed.connect(self.Min_on_submit)
@@ -114,6 +121,8 @@ class New_Tournament_Layout(QHBoxLayout):
                 self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Min_Bigger_Than_Max"))
             # Ustawienie Wartosci min_at_table w slowniku
             else:
+                # Wprowadzono wartosc
+                self.check_buttons[0] = True
                 self.main_window.tournament_set_min_at_table(number) #Ustawienie Wartosci min_at_table w slowniku
                 self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
         else:
@@ -129,6 +138,7 @@ class New_Tournament_Layout(QHBoxLayout):
                 self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Max_Lower_Than_Min"))
             else:
                 #Ustawienie Wartosci max_at_table w slowniku
+                self.check_buttons[1] = True
                 self.main_window.tournament_set_max_at_table(number)
                 self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + str(number))
         else:
@@ -139,6 +149,7 @@ class New_Tournament_Layout(QHBoxLayout):
     # #####################################################
     # # Metoda dodaje gracza i wypisuje go w liście
     def Add_player(self):
+        if(self.check_buttons[3] is False): self.check_buttons[3] = True
         QListWidgetItem(self.Add_Player_input.text() , self.List_of_players_widget)
         self.main_window.tournament_add_player(self.Add_Player_input.text())
         self.Add_Player_input.clear()
@@ -146,7 +157,17 @@ class New_Tournament_Layout(QHBoxLayout):
     # #####################################################
     # # Metoda ustawia tryb turnieju
     def add_type(self, tournament_type):
+        self.check_buttons[2] = True
         self.main_window.tournament_add_type(tournament_type)
 
     def resize(self,width,height):
         pass
+
+
+    # #####################################################
+    # funkcja odpalajaca turniej
+    def OpenTournament(self):
+        if(all(self.check_buttons)):
+            self.main_window.open_tournament()
+        else:
+            self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Not_All_Values_Set"))
