@@ -114,7 +114,7 @@ class New_Tournament_Layout(QHBoxLayout):
 
     # Funkcja do obslugi wpisywania minimalnej wartosci dla stolu
     def Min_on_submit(self):
-        number = self.Min_at_Table_number_input.text()
+        number = int(self.Min_at_Table_number_input.text())
         if number:
             # Wartosc minimalna wieksza niz maks
             if self.main_window.tournament_max_at_table() != -1 and number > self.main_window.tournament_max_at_table():
@@ -124,14 +124,14 @@ class New_Tournament_Layout(QHBoxLayout):
                 # Wprowadzono wartosc
                 self.check_buttons[0] = True
                 self.main_window.tournament_set_min_at_table(number) #Ustawienie Wartosci min_at_table w slowniku
-                self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + number)
+                self.main_window.show_information(self.main_window.get_text("Value"), self.main_window.get_text("Value_Set") + str(number))
         else:
             #brak wpisanej wartosci
             self.main_window.show_warning(self.main_window.get_text("Error"), self.main_window.get_text("Value_Not_Set"))
 
 # Funkcja do obslugi wpisywania maksymalnej wartosci dla stolu
     def Max_on_submit(self):
-        number = self.Max_at_Table_number_input.text()
+        number = int(self.Max_at_Table_number_input.text())
         if number:
             # Wartosc maksymalna mniejsza niz minimum
             if self.main_window.tournament_min_at_table() != -1 and number < self.main_window.tournament_min_at_table():
