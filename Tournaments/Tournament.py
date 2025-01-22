@@ -14,7 +14,8 @@ class Tournament:
         self.max_at_table = -1
         self.tables = []
         self.prev_tables = []
-        self.ready_to_calculate = False
+        self.next_tables = []
+        self.round = 0
 
     def add_player(self,player):
         name = player.split(" ")[0]
@@ -96,7 +97,11 @@ class Tournament:
     #########################################################
     # Funkcja informujaca ze mozna przeliczyc wyniki rundy
     def ready_to_calculate_result(self):
-        self.ready_to_calculate = True
+        if type(self.type) == Swiss:
+            self.end_swiss_round()
+        
+        if type(self.type) == Single_Elimination:
+            self.end_single_elimination_round()
     
     def get_type(self):
         return self.tournament_type_name
@@ -119,7 +124,11 @@ class Tournament:
     #########################################################
     # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
     def manage(self):
-        pass
+        if self.round == 0:
+            pass
+
+        else:
+            pass
         #########################################################
         # Odpal layout turnieju
         #self.app.tournament_layout()
@@ -170,3 +179,19 @@ class Tournament:
 
     def update_points(self):
         self.current_players.update_points()
+
+    def end_swiss_round(self):
+        self.update_points()
+        self.current_players.swiss_sort()
+        self.app.result("Swiss")
+
+    def end_single_elimination_round(self):
+        self.current_players.single_elimination_sort()
+        advancing, loosers = self.type.result()
+        self.app.result("Single_Elimination")
+        self.update_points()
+
+    def get_players(self):
+        self.current_players.get_players()
+
+    def start_round(self):

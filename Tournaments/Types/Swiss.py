@@ -7,19 +7,19 @@ class Swiss():
     #IF 2 osoby na stolik i 9 graczy
     #IF mniej osob niz minimalna ilosc na stole
 
-    def create_tables(self,players,min_at_table,max_at_table,round):
+    def create_tables(self,players,tables,min_at_table,max_at_table,round):
         
         num_of_players = len(players.list)
 
-        if round != 0:
-            players.list.sort(key=lambda x: (x.big_points, x.small_points), reverse=True)
-        else:
-            self.tables = self.count_tables(self,players,min_at_table,max_at_table)
-            random.shuffle(players.list)
+        # if round != 0:
+        players.list.sort(key=lambda x: (x.big_points, x.small_points), reverse=True)
+        # else:
+        #     self.tables = self.count_tables(self,players,min_at_table,max_at_table)
+        #     random.shuffle(players.list)
 
         result = []
         start = 0
-        for i, table in enumerate(self.tables):
+        for i, table in enumerate(tables):
             cur_table = players.list[start:start+table]
             cur_table.sort(reversed = True, key = lambda x: sum([table[1] for table in x.tables]))
             result += cur_table

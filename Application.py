@@ -93,3 +93,9 @@ class Application:
 
     def open_tournament(self):
         self.tournament.manage()
+
+    def get_players(self):
+        self.tournament.get_players()
+
+    def result(self, type):
+        self.window.result(type)

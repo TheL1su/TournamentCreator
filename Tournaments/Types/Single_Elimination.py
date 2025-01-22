@@ -39,6 +39,8 @@ class Single_Elimination():
         for i in range(lucky_loosers):
             advancing_players.add_player(maybe_lucky_looser[i])
         
+        #####################################################
+        # usuwa lucky_loosers z listy, zostają "unlucky_loosers"
         for i in range(lucky_loosers):
             maybe_lucky_looser.pop(0)
 

@@ -23,12 +23,16 @@ class Window(QMainWindow):
 
         #########################################################
         # Tlo aplikacji
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-        # Specify the filename you're checking
-        filename = 'background.png'
-        # Create the full path to the file
-        file_path = os.path.join(current_directory, filename)
-        self.setStyleSheet(f"QMainWindow {{background-image: url({file_path}); background-repeat: no-repeat; background-position: center;}}")
+        # current_directory = os.path.dirname(os.path.abspath(__file__))
+        # # Specify the filename you're checking
+        # filename = 'test123.png'
+        # # Create the full path to the file
+        # file_path = os.path.join(current_directory, filename)
+        # if os.path.exists(file_path): 
+        #     print("halo znalazlo mnie")
+        # else: print(f"File '{filename}' does not exist in the same directory as the Python program.")
+        # self.setStyleSheet(f"QMainWindow {{background-image: url({file_path}); background-repeat: no-repeat; background-position: center;}}")
+        self.setStyleSheet("QMainWindow {background-image: url('background.png'); background-repeat: no-repeat; background-position: center;}")
 
         #########################################################
         # Fabryki widgetow i messageboxow
@@ -214,3 +218,9 @@ class Window(QMainWindow):
                 sub_layout = item.layout()
                 if sub_layout:
                     self.clear_layout(sub_layout)
+
+    def get_players(self):
+        self.app.get_players()
+
+    def result(self, type):
+        self.layout.result(type)

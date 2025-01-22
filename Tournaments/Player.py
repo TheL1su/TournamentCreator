@@ -89,3 +89,18 @@ class Players:
     def update_points(self):
         for i in self.list:
             i.update_points()
+
+    def swiss_sort(self):
+        self.list.sort(key=lambda x: (x.big_points, x.small_points), reverse=True)
+
+    def single_elimination_sort(self):
+        self.list.sort(key=lambda x: (x.curr_big_points,x.curr_small_points), reverse=True)
+        self.list.sort(key=lambda x: x.tables[-1])
+
+    def get_players(self):
+        return [ {"name": player.first_name + player.last_name, 
+                  "big_points": player.big_points, 
+                  "small_points": player.small_points,
+                  "curr_big": player.curr_big_points,
+                  "curr_small": player.curr_small_points} 
+                  for player in self.list ]

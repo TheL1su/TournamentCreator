@@ -13,7 +13,8 @@ class Single_Elimination_Layout(QGridLayout):
         # Przyciski nastepna runda, zapisz i wyjdz
         self.Submit_Round = QPushButton(self.main_window.get_text("Submit_Round"))
         self.Submit_Round.connect(self.filed_check)
-        self.Next_Round.QPushButton(self.main_window.get_text("Next_Round"))
+        self.Next_Round = QPushButton(self.main_window.get_text("Next_Round"))
+        self.Next_Round.connect(self.start_next_round)
         self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
         self.Save_And_Exit.connect(self.save_exit)
 
@@ -25,7 +26,7 @@ class Single_Elimination_Layout(QGridLayout):
         self.Submit_Game_Num = QPushButton(self.main_window.get_text("Submit"))
         """
         
-    def add_buttons(self):
+    def add_widgets(self):
         #########################################################
         # Layout
         Layout_Tables = self.add_players_and_tables()
@@ -41,7 +42,7 @@ class Single_Elimination_Layout(QGridLayout):
         #########################################################
         # Layout stolikow 
         Layout = QVBoxLayout()
-        num_of_players = self.main_window.curr_num_of_players()
+        players = self.main_window.get_players()
         
         #########################################################
         # ilos stolikow
@@ -64,8 +65,7 @@ class Single_Elimination_Layout(QGridLayout):
                 # layout gracza
                 Layout_Players = QHBoxLayout()
 
-                name = self.main_window.get_name(player_cnt)
-                player_label = self.main_window.create_player_label(name,j)
+                player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j)
                 Layout_Players.addWidget(player_label)
 
                 Big_points = QLineEdit()
@@ -119,63 +119,60 @@ class Single_Elimination_Layout(QGridLayout):
         text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
-    #########################################################
-    # layout wynikow dla playoff
-    def single_elimination_result(self):
-        #########################################################
-        # wyczysc layout
-        self.main_window.clear_layout(self)
-        Layout = QVBoxLayout()
-        num_of_players = self.main_window.get_prev_tables()
-
-        self.addLayout(Layout)
-        self.addWidget(self.Next_Round,1,0)
-        self.addWidget(self.Save_And_Exit,1,1)
-        self.show()
 
     #########################################################
-    # layout wynikow dla swiss    
-    def swiss_result(self):
-        #########################################################
-        # wyczysc layout
+    # layout wynikow
+    def result(self, type):
         self.main_window.clear_layout(self)
         Layout = QVBoxLayout()
-        num_of_players = self.main_window.curr_num_of_players()
-        
-        ranking = self.main_window.create_label("Ranking")
-        Layout.addWidget(ranking)
+        #########################################################
+        # layout wynikow dla playoff
+        if type == "Single_Elimination":
+            #########################################################
+            # wyczysc layout
+            num_of_players = self.main_window.get_prev_tables()
 
-        Legend = QHBoxLayout()
-        Players = self.main_window.create_label("Player")
-        Big_points = self.main_window.create_label("Big_points")
-        Small_points = self.main_window.create_label("Small_points")
-        Legend.addWidget(Players)
-        Legend.addWidget(Big_points)
-        Legend.addWidget(Small_points)
-        Layout.addWidget(Legend)
+            self.addLayout(Layout)
+            self.addWidget(self.Next_Round,1,0)
+            self.addWidget(self.Save_And_Exit,1,1)
+            self.show()
 
-        for i in range(num_of_players):
-            Layout_Players = QHBoxLayout()
-
-            name = self.main_window.get_name(i)
-            player_label = self.main_window.create_player_label(name,i+1)
+        #########################################################
+        # layout wynikow dla swiss
+        if type == "Swiss":
+            #########################################################
+            # wyczysc layout
+            players_data = self.main_window.get_players()
             
-            big_points = self.main_window.get_big_points(i)
-            big = self.main_window.create_label(big_points)
+            ranking = self.main_window.create_label("Ranking")
+            Layout.addWidget(ranking)
 
-            small_points = self.main_window.get_small_points(i)
-            small = self.main_window.create_label(small_points)
+            Legend = QHBoxLayout()
+            Players = self.main_window.create_label("Player")
+            Big_points = self.main_window.create_label("Big_points")
+            Small_points = self.main_window.create_label("Small_points")
+            Legend.addWidget(Players)
+            Legend.addWidget(Big_points)
+            Legend.addWidget(Small_points)
+            Layout.addWidget(Legend)
 
-            Layout_Players.addWidget(player_label)
-            Layout_Players.addWidget(big)
-            Layout_Players.addWidget(small)
+            for i, player in enumerate(players_data):
+                Layout_Players = QHBoxLayout()
 
-            Layout.addWidget(Layout_Players)
-            
-        self.addLayout(Layout)
-        self.addWidget(self.Next_Round,1,0)
-        self.addWidget(self.Save_And_Exit,1,1)
-        self.show()
+                player_label = self.main_window.create_player_label(player.get("name"),i+1)
+                big = self.main_window.create_num_label(player.get("big_points"))
+                small = self.main_window.create_num_label(player.get("small_points"))
+
+                Layout_Players.addWidget(player_label)
+                Layout_Players.addWidget(big)
+                Layout_Players.addWidget(small)
+
+                Layout.addWidget(Layout_Players)
+                
+            self.addLayout(Layout)
+            self.addWidget(self.Next_Round,1,0)
+            self.addWidget(self.Save_And_Exit,1,1)
+            self.show()
 
 
     def save_exit(self):
@@ -212,7 +209,8 @@ class Single_Elimination_Layout(QGridLayout):
         if response == QMessageBox.Yes:
             self.main_window.close()  # Zamknięcie aplikacji
 
-            
+    def start_next_round(self):
+        pass
 
     """
     #########################################################
