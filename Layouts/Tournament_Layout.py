@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout
 from PyQt5.QtGui import QIntValidator
+import copy
 
 
-class Single_Elimination_Layout(QGridLayout):
+class Tournament_Layout(QGridLayout):
 
 
     def __init__(self, main_window):
@@ -12,11 +13,11 @@ class Single_Elimination_Layout(QGridLayout):
         #########################################################
         # Przyciski nastepna runda, zapisz i wyjdz
         self.Submit_Round = QPushButton(self.main_window.get_text("Submit_Round"))
-        self.Submit_Round.connect(self.filed_check)
+        self.Submit_Round.clicked.connect(self.filed_check)
         self.Next_Round = QPushButton(self.main_window.get_text("Next_Round"))
-        self.Next_Round.connect(self.start_next_round)
+        self.Next_Round.clicked.connect(self.start_next_round)
         self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
-        self.Save_And_Exit.connect(self.save_exit)
+        self.Save_And_Exit.clicked.connect(self.save_exit)
 
         """
         #########################################################
@@ -31,10 +32,10 @@ class Single_Elimination_Layout(QGridLayout):
         # Layout
         Layout_Tables = self.add_players_and_tables()
 
-        self.addLayout(Layout_Tables)
+        self.addLayout(Layout_Tables,0,0)
         self.addWidget(self.Submit_Round,1,0)
 
-        self.show()
+        # self.show()
         #self.addWidget(self.Save_And_Exit,1,1)
 
 
@@ -65,23 +66,23 @@ class Single_Elimination_Layout(QGridLayout):
                 # layout gracza
                 Layout_Players = QHBoxLayout()
 
-                player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j)
+                player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j+1)
                 Layout_Players.addWidget(player_label)
 
                 Big_points = QLineEdit()
                 Big_points.setValidator(QIntValidator(1,1000))
-                Big_points.textChanged.connect(lambda text: self.big_points_change(player_cnt, text))
+                Big_points.textChanged.connect(lambda text, player = player_cnt: self.big_points_change(player, text))
                 
                 Small_points = QLineEdit()
                 Small_points.setValidator(QIntValidator(1,1000)) 
-                Small_points.textChanged.connect(lambda text: self.small_points_change(player_cnt, text))
+                Small_points.textChanged.connect(lambda text, player = player_cnt: self.small_points_change(player, text))
                 
                 Layout_Players.addWidget(Big_points)
                 Layout_Players.addWidget(Small_points)
                 
                 player_cnt += 1
 
-                Layout.addWidget(Layout_Players)
+                Layout.addLayout(Layout_Players)
 
         return Layout
 
@@ -89,6 +90,8 @@ class Single_Elimination_Layout(QGridLayout):
     #     self.main_window.clear_layout(self)
 
     def big_points_change(self,player_cnt,text):
+        print(player_cnt)
+        print(text)
         self.main_window.big_points_change(player_cnt,int(text))
 
 
@@ -110,8 +113,8 @@ class Single_Elimination_Layout(QGridLayout):
     #########################################################
     # Funkcja ktora dla Playoff wyswietla komunikat z ktorych miejsc przechodza osoby
     # do nastepnej rundy
-    def advancing_players_information(self):
-        advancing_places,lucky_loosers = self.main_window.advancing_players()
+    def advancing_players_information(self, advancing_places, lucky_loosers):
+        # advancing_places,lucky_loosers = self.main_window.advancing_players()
         text = self.main_window.get_text("Places_From_Tables_That_Advance") 
         for i in range(1,advancing_places):
             text += str(i) + ","
@@ -149,12 +152,12 @@ class Single_Elimination_Layout(QGridLayout):
 
             Legend = QHBoxLayout()
             Players = self.main_window.create_label("Player")
-            Big_points = self.main_window.create_label("Big_points")
-            Small_points = self.main_window.create_label("Small_points")
+            Big_points = self.main_window.create_label("Big_Points")
+            Small_points = self.main_window.create_label("Small_Points")
             Legend.addWidget(Players)
             Legend.addWidget(Big_points)
             Legend.addWidget(Small_points)
-            Layout.addWidget(Legend)
+            Layout.addLayout(Legend)
 
             for i, player in enumerate(players_data):
                 Layout_Players = QHBoxLayout()
@@ -167,12 +170,12 @@ class Single_Elimination_Layout(QGridLayout):
                 Layout_Players.addWidget(big)
                 Layout_Players.addWidget(small)
 
-                Layout.addWidget(Layout_Players)
+                Layout.addLayout(Layout_Players)
                 
-            self.addLayout(Layout)
+            self.addLayout(Layout,0,0)
             self.addWidget(self.Next_Round,1,0)
             self.addWidget(self.Save_And_Exit,1,1)
-            self.show()
+            # self.show()
 
 
     def save_exit(self):

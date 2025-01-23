@@ -39,6 +39,8 @@ class English(Language):
             "Next_Round" : "Next round",
             "Ranking" : "Ranking:",
             "Player" : "Player",
+            "Big_Points": "Big Points",
+            "Small_Points": "Small Points",
             "Save_File" : "Save file",
             "Json_File" : "Json file (*.json)",
             "Exit" : "Exit",

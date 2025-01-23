@@ -39,6 +39,8 @@ class Polski(Language):
             "Next_Round" : "Nastepna runda",
             "Ranking" : "Ranking:",
             "Player" : "Gracz",
+            "Big_Points": "Duże Punkty",
+            "Small_Points": "Małe Punkty",
             "Save_File" : "Zapisz plik",
             "Json_File" : "Plik json (*.json)",
             "Exit" : "Wyjscie",

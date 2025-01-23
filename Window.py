@@ -5,7 +5,7 @@ from PyQt5.QtGui import QColor
 from Layouts.Start_Layout import Start_Layout
 from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
-from Layouts.Single_Elimination_Layout import Single_Elimination_Layout
+from Layouts.Tournament_Layout import Tournament_Layout
 from Layouts.Swiss_Layout import Swiss_Layout
 import os
 
@@ -32,7 +32,7 @@ class Window(QMainWindow):
         #     print("halo znalazlo mnie")
         # else: print(f"File '{filename}' does not exist in the same directory as the Python program.")
         # self.setStyleSheet(f"QMainWindow {{background-image: url({file_path}); background-repeat: no-repeat; background-position: center;}}")
-        self.setStyleSheet("QMainWindow {background-image: url('background.png'); background-repeat: no-repeat; background-position: center;}")
+        # self.setStyleSheet("QMainWindow {background-image: url('background.png'); background-repeat: no-repeat; background-position: center;}")
 
         #########################################################
         # Fabryki widgetow i messageboxow
@@ -151,10 +151,10 @@ class Window(QMainWindow):
         return self.app.get_name(num)
 
     def big_points_change(self,player_cnt,num):
-        self.app.big_points_change(self,player_cnt,num)
+        self.app.big_points_change(player_cnt,num)
 
     def small_points_change(self,player_cnt,num):
-        self.app.small_points_change(self,player_cnt,num)
+        self.app.small_points_change(player_cnt,num)
 
     def get_big_points(self,num):
         return self.app.get_big_points(num)
@@ -175,6 +175,9 @@ class Window(QMainWindow):
         self.app.load_data()
 
     def open_tournament(self):
+        self.delete_later()
+        self.layout = Tournament_Layout(self)
+        self.set_widget()
         self.app.open_tournament()
 
     #########################################################
@@ -201,7 +204,7 @@ class Window(QMainWindow):
     # do poprawy
     def tournament_layout(self):
         self.delete_later()
-        self.layout = Single_Elimination_Layout(self)
+        self.layout = Tournament_Layout(self)
         self.set_widget()
         self.show()
 
@@ -220,7 +223,14 @@ class Window(QMainWindow):
                     self.clear_layout(sub_layout)
 
     def get_players(self):
-        self.app.get_players()
+        return self.app.get_players()
 
     def result(self, type):
         self.layout.result(type)
+        self.show()
+
+    def tables(self):
+        self.layout.add_widgets()
+
+    def advancing_players_information(self, advancing, lucky):
+        self.layout.advancing_players_information(advancing, lucky)

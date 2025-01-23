@@ -48,25 +48,23 @@ class Single_Elimination():
     
     #####################################################
     # zwraca ilość stolików i ilość osób przy każdym stoliku
-    def count_tables(self,players,min_at_table,max_at_table,round):
-        if round != 0:
-            num_of_players = len(players.list)
-            next_players = math.ceil(num_of_players/2)
+    def count_tables(self,num_of_players,min_at_table,max_at_table):
+        next_players = math.ceil(num_of_players/2)
+        tables = self.try_to_divide(next_players, min_at_table, max_at_table)
+        while not tables:
+            next_players += 1
             tables = self.try_to_divide(next_players, min_at_table, max_at_table)
-            while not tables:
-                next_players += 1
-                tables = self.try_to_divide(next_players, min_at_table, max_at_table)
 
-            return tables
+        return tables
 
     #####################################################
     # czy daną ilość graczy można podzielić na stoliki
     def try_to_divide(self,num_of_players,min_at_table,max_at_table):
         players_at_tables = max_at_table
-        if num_of_players % max_at_table == 0:
-            num_of_tables = num_of_players / max_at_table
-            players_at_tables = max_at_table
-        else:
+        # if num_of_players % max_at_table == 0:
+        num_of_tables = math.ceil(num_of_players / max_at_table)
+            # players_at_tables = max_at_table
+        if num_of_players % max_at_table != 0:
             while(num_of_players / players_at_tables < num_of_players % players_at_tables):
                 players_at_tables -= 1
                 if(players_at_tables < min_at_table):

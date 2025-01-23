@@ -41,8 +41,8 @@ class Player:
         print()
         
 class Players:
-    def __init__(self):
-        self.list = list()
+    def __init__(self, list=[]):
+        self.list = list
 
     def add_player(self, player):
         if(player.get_id()==-1):
@@ -98,7 +98,7 @@ class Players:
         self.list.sort(key=lambda x: x.tables[-1])
 
     def get_players(self):
-        return [ {"name": player.first_name + player.last_name, 
+        return [ {"name": player.first_name +" " + player.last_name, 
                   "big_points": player.big_points, 
                   "small_points": player.small_points,
                   "curr_big": player.curr_big_points,

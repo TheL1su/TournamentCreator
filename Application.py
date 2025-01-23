@@ -68,10 +68,10 @@ class Application:
         return self.tournament.get_name(num)
     
     def big_points_change(self,player_cnt,num):
-        self.tournament.big_points_change(self,player_cnt,num)
+        self.tournament.big_points_change(player_cnt,num)
 
     def small_points_change(self,player_cnt,num):
-        self.tournament.small_points_change(self,player_cnt,num)
+        self.tournament.small_points_change(player_cnt,num)
 
     def get_big_points(self,num):
         return self.tournament.get_big_points(num)
@@ -92,10 +92,16 @@ class Application:
         self.tournament.load_data()
 
     def open_tournament(self):
-        self.tournament.manage()
+        self.tournament.start_tournament()
 
     def get_players(self):
-        self.tournament.get_players()
+        return self.tournament.get_players()
 
     def result(self, type):
         self.window.result(type)
+
+    def tables(self):
+        self.window.tables()
+
+    def advancing_players_information(self, advancing, lucky):
+        self.window.advancing_players_information(advancing, lucky)
