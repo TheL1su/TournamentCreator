@@ -46,6 +46,9 @@ class Player:
 
     def add_table(self, table, seat):
         self.tables.append((table,seat))
+
+    def tables_len(self):
+        return len(self.tables)
         
 class Players:
     def __init__(self):
@@ -122,5 +125,5 @@ class Players:
         if seats:
             self.list.sort(key=lambda x: x.tables[-1])
 
-        else:
+        elif self.list[0].tables_len():
             self.list.sort(key=lambda x: x.tables[-1][0])

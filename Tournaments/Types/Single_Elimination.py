@@ -6,15 +6,16 @@ class Single_Elimination():
     #IF min i max przy stole = 2
     def __init__(self):
         pass
-    def create_tables(players, tables):
+    def create_tables(self, players, tables):
         players.shuffle()
         players.table_sort(seats=False)
         table = 0
         seat = 0
+        print(len(tables))
         for player in players.list:
-            player.tables.append(table, seat)
+            player.add_table(table, seat)
             table += 1
-            if table >= tables.len:
+            if table >= len(tables):
                 table = 0
                 seat += 1
         players.table_sort()
@@ -57,9 +58,46 @@ class Single_Elimination():
 
         return advancing_players,maybe_lucky_looser
     
+
+
+
+        #####################################################
+        # TODO 
+    def count_tables(self,num_of_players,min_at_table,max_at_table):
+        # num_of_players = len(players.list)
+
+        # if num_of_players % max_at_table == 0:
+        num_of_tables = math.ceil(num_of_players / max_at_table)
+        players_at_tables = max_at_table
+        if num_of_players % max_at_table != 0:
+            # players_at_tables = max_at_table
+            players_at_tables -= 1
+            num_of_tables = num_of_players // players_at_tables
+            while(num_of_tables < num_of_players % players_at_tables):
+                players_at_tables -= 1
+                num_of_tables = num_of_players // players_at_tables
+        self.num_of_tables = num_of_tables
+        self.players_at_tables = players_at_tables
+        self.rest_of_players = num_of_players % players_at_tables
+
+        rest_of_players = num_of_players % players_at_tables 
+
+        result = []
+        cnt = 0
+        for i in range(num_of_tables):
+            if(cnt < rest_of_players):
+                result.append(players_at_tables+1)
+                cnt += 1
+            else:
+                result.append(players_at_tables)
+
+        return result 
+
+
+
     #####################################################
     # zwraca ilość stolików i ilość osób przy każdym stoliku
-    def count_tables(self,num_of_players,min_at_table,max_at_table):
+    def count_tables_(self,num_of_players,min_at_table,max_at_table):
         next_players = math.ceil(num_of_players/2)
         tables = self.try_to_divide(next_players, min_at_table, max_at_table)
         while not tables:

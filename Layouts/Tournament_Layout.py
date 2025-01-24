@@ -119,7 +119,7 @@ class Tournament_Layout(QGridLayout):
         for i in range(1,advancing_places):
             text += str(i) + ","
         text += str(advancing_places) + "\n"
-        text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
+        text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places+1)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
 

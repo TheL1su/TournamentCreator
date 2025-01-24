@@ -20,11 +20,11 @@ class Swiss():
 
         result = []
         start = 0
-        for i,table in enumerate(tables):
+        for table_num, table in enumerate(tables):
             cur_table = players.list[start:start+table]
             cur_table.sort(reverse = True, key = lambda x: sum([table[1] for table in x.tables]))
-            for j,player in enumerate(cur_table):
-                player.add_table(i,j)
+            for seat_num, player in enumerate(cur_table):
+                player.add_table(table_num,seat_num)
             players.list[start:start+table] = cur_table
             result += cur_table
             start += table
