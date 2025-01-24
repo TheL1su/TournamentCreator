@@ -25,9 +25,9 @@ class Start_Layout(QGridLayout):
         #########################################################
         # Przycisk nowy i kontunuuj turniej
         self.New_Tournament = QPushButton(self.main_window.get_text("New_Tournament"), self.main_window)
-        self.New_Tournament.adjustSize()
+        #self.New_Tournament.adjustSize()
         self.Continue_Tournament = QPushButton(self.main_window.get_text("Continue_Tournament"),self.main_window)
-        self.Continue_Tournament.adjustSize()
+        #self.Continue_Tournament.adjustSize()
 
         #########################################################
         # Funkcje wywolywane przy nacisnieciu przycisku NewTournament i ContinueTournament

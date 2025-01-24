@@ -29,7 +29,7 @@ class Polski(Language):
             "Submit_Round" : "Zatwierdz Runde",
             "Save_And_Exit" : "Zapisz Turniej i wyjdź!",
             "Table" : "Stolik nr: ",
-            "Table_And_Points" : "Stolik nr: 1      Duże punkty     Małe punkty",
+            "Table_And_Points" : "Stolik nr: 1          Duże punkty         Małe punkty",
             "Swiss" : "System Szwajcarski",
             "PlayOff" : "Play-off",
             "Points_Not_Filed" : "Uzupełnij brakujące punkty",

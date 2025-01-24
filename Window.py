@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget
+from PyQt5.QtWidgets import QMainWindow, QWidget,QFileDialog,QScrollArea
 from Widgets import Widgets
 from MessageBoxes import MessageBoxFactory
 from PyQt5.QtGui import QColor
@@ -8,6 +8,8 @@ from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 from Layouts.Tournament_Layout import Tournament_Layout
 from Layouts.Swiss_Layout import Swiss_Layout
 from Layouts.Swiss_Result_Layout import Swiss_Result_layout
+from PyQt5.QtCore import Qt
+
 import os
 
 class Window(QMainWindow):
@@ -64,12 +66,56 @@ class Window(QMainWindow):
         self.Central_widget.setLayout(self.layout)
         self.setCentralWidget(self.Central_widget)
 
+    def set_widget_with_scroll(self):
+        self.Central_widget.setLayout(self.layout)
+        self.scroll = QScrollArea() 
+        self.scroll.setWidgetResizable(True) 
+        self.scroll.setAlignment(Qt.AlignCenter)
+        self.scroll.setWidget(self.Central_widget)
+        self.setCentralWidget(self.scroll)
+
+
     def delete_later(self):
         self.Central_widget.deleteLater()
         self.Central_widget = QWidget(self)
 
     def resizeEvent(self,event):
         self.layout.resize(self.width(),self.height())
+
+    #########################################################
+    # Zapisz i wyjdz
+    def save_exit(self):
+        #########################################################
+        # Otwórz okno dialogowe do zapisywania pliku
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getSaveFileName(
+            self,
+            self.get_text("Save_File"),
+            "",
+            self.get_text("Json_File")
+            ,
+            options=options
+        )
+        #########################################################
+        # Sprawdź, czy użytkownik wybrał ścieżkę
+        if file_path:
+            if not file_path.endswith(".json"):
+                file_path += ".json"
+
+            #########################################################
+            # Zapisz dane do pliku
+            with open(file_path, 'w', encoding='utf-8') as file:
+                self.save_file(file)
+            self.confirm_exit()
+        else: 
+            self.show_warning(self.get_text("Error"),self.get_text("Path_Not_Selected"))
+
+    def confirm_exit(self):
+        #########################################################
+        # Obsługa odpowiedzi użytkownika
+        response = self.show_question(self.get_text("Exit"),self.get_text("Want_To_Exit"))
+        if response is True:
+            self.close()  # Zamknięcie aplikacji
 
     #########################################################
     # Funkcje dla jezyka
@@ -112,7 +158,7 @@ class Window(QMainWindow):
         self.messageboxFactory.show_warning(self,title,message)
 
     def show_question(self,title,message):
-        self.messageboxFactory.show_question(self,title,message)
+        return self.messageboxFactory.show_question(self,title,message)
     #########################################################
     # Funkcje dla tournament data
 
@@ -178,8 +224,9 @@ class Window(QMainWindow):
     def open_tournament(self, *, new):
         self.delete_later()
         self.layout = Tournament_Layout(self)
-        self.set_widget()
+        #self.set_widget()
         self.app.open_tournament(new)
+        self.set_widget_with_scroll()
 
     #########################################################
     # Zapisz plik json
@@ -193,13 +240,13 @@ class Window(QMainWindow):
         self.delete_later()
         self.layout = New_Tournament_Layout(self)
         self.set_widget()
-        self.show()
+        #self.show()
 
     def continue_tournament(self):
         self.delete_later()
         self.layout = Continue_Tournament_Layout(self)
         self.set_widget()
-        self.show()
+        #self.show()
 
     #########################################################
     # do poprawy
@@ -230,7 +277,7 @@ class Window(QMainWindow):
         self.delete_later()
         if type == "Swiss":
             self.layout = Swiss_Result_layout(self)
-        self.set_widget()
+        self.set_widget_with_scroll()
         self.show()
 
 
@@ -244,5 +291,5 @@ class Window(QMainWindow):
         self.delete_later()
         self.layout = Tournament_Layout(self)
         self.app.start_new_round()
-        self.set_widget()
-        self.show()
+        self.set_widget_with_scroll()
+        #self.show()

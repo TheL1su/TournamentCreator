@@ -15,7 +15,7 @@ class Swiss_Result_layout(QGridLayout):
         self.Next_Round = QPushButton(self.main_window.get_text("Next_Round"))
         self.Next_Round.clicked.connect(self.start_next_round)
         self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
-        self.Save_And_Exit.clicked.connect(self.save_exit)
+        self.Save_And_Exit.clicked.connect(self.main_window.save_exit)
 
         
 
@@ -58,43 +58,12 @@ class Swiss_Result_layout(QGridLayout):
         # self.show()
 
 
-    def save_exit(self):
-        #########################################################
-        # Otwórz okno dialogowe do zapisywania pliku
-        options = QFileDialog.Options()
-        file_path, _ = QFileDialog.getSaveFileName(
-            self.main_window,
-            self.main_window.get_text("Save_File"),
-            "",
-            self.main_window.get_text("Json_File")
-            ,
-            options=options
-        )
-        #########################################################
-        # Sprawdź, czy użytkownik wybrał ścieżkę
-        if file_path:
-            if not file_path.endswith(".json"):
-                file_path += ".json"
-
-            #########################################################
-            # Zapisz dane do pliku
-            with open(file_path, 'w', encoding='utf-8') as file:
-                self.main_window.save_file(file)
-            self.confirm_exit()
-        else: 
-            self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Path_Not_Selected"))
-
-    def confirm_exit(self):
-        #########################################################
-        # Obsługa odpowiedzi użytkownika
-        response = self.main_window.show_question(self.main_window.get_text("Exit"),self.main_window.get_text("Want_To_Exit"))
-
-        if response == QMessageBox.Yes:
-            self.main_window.close()  # Zamknięcie aplikacji
-
     def start_next_round(self):
         self.main_window.start_new_round()
 
+    def resize(self,width,height):
+        """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
+        pass
     """
     #########################################################
     # Funkcja do sprawedzania czy wpisano ilosc rozgrywek w rundzie

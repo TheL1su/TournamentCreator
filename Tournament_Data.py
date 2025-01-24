@@ -43,3 +43,5 @@ class Tournament_Data:
 
     def save_file(self,file_):
         json.dump(self.data, file_, indent=4, ensure_ascii=False)
+
+        

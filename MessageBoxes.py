@@ -12,7 +12,10 @@ class MessageBoxFactory:
     @staticmethod
     def show_question(parent, title, message):
         response = QMessageBox.question(parent, title, message, QMessageBox.Yes | QMessageBox.No)
-        return response == QMessageBox.Yes
+        if response == QMessageBox.Yes:
+            return True
+        else:
+            return False
 
     @staticmethod
     def show_critical(parent, title, message):

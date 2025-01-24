@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout
+from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout,QSizePolicy
 from PyQt5.QtGui import QIntValidator
 import copy
 
@@ -67,13 +67,19 @@ class Tournament_Layout(QGridLayout):
                 Layout_Players = QHBoxLayout()
 
                 player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j+1)
+                player_label.setFixedWidth(100)
+                player_label.setWordWrap(True)
                 Layout_Players.addWidget(player_label)
 
                 Big_points = QLineEdit()
+                Big_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+                Big_points.setMaximumWidth(100)
                 Big_points.setValidator(QIntValidator(1,1000))
                 Big_points.textChanged.connect(lambda text, player = player_cnt: self.big_points_change(player, text))
                 
                 Small_points = QLineEdit()
+                Small_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+                Small_points.setMaximumWidth(100)
                 Small_points.setValidator(QIntValidator(1,1000)) 
                 Small_points.textChanged.connect(lambda text, player = player_cnt: self.small_points_change(player, text))
                 
@@ -90,8 +96,6 @@ class Tournament_Layout(QGridLayout):
     #     self.main_window.clear_layout(self)
 
     def big_points_change(self,player_cnt,text):
-        print(player_cnt)
-        print(text)
         self.main_window.big_points_change(player_cnt,int(text))
 
 
@@ -122,6 +126,9 @@ class Tournament_Layout(QGridLayout):
         text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places+1)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
+    def resize(self,width,height):
+        """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
+        pass
 
     #########################################################
     # WSZYSTKO POD TYM PRAWDOPODOBNIE DO USUNIĘCIA
@@ -213,7 +220,7 @@ class Tournament_Layout(QGridLayout):
         #########################################################
         # Obsługa odpowiedzi użytkownika
         response = self.main_window.show_question(self.main_window.get_text("Exit"),self.main_window.get_text("Want_To_Exit"))
-
+        
         if response == QMessageBox.Yes:
             self.main_window.close()  # Zamknięcie aplikacji
 
