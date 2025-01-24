@@ -1,3 +1,4 @@
+import random
 
 class Player:
     def __init__(self, first, last,big_points=0,small_points=0,curr_big_points=-1,curr_small_points=-1,tables=[],id_=-1):
@@ -7,7 +8,10 @@ class Player:
         self.small_points = small_points
         self.curr_big_points = curr_big_points
         self.curr_small_points = curr_small_points
-        self.tables = tables
+        if tables:
+            self.tables = tables
+        else:
+            self.tables = list()
         self.id = id_
 
     def filed_check(self):
@@ -39,10 +43,13 @@ class Player:
         self.tables,
         self.id)
         print()
+
+    def add_table(self, table, seat):
+        self.tables.append((table,seat))
         
 class Players:
-    def __init__(self, list=[]):
-        self.list = list
+    def __init__(self):
+        self.list = list()
 
     def add_player(self, player):
         if(player.get_id()==-1):
@@ -104,3 +111,16 @@ class Players:
                   "curr_big": player.curr_big_points,
                   "curr_small": player.curr_small_points} 
                   for player in self.list ]
+    
+    def copy(self, other):
+        self.list = [player for player in other.list]
+
+    def shuffle(self):
+        random.shuffle(self.list)
+
+    def table_sort(self, seats=True):
+        if seats:
+            self.list.sort(key=lambda x: x.tables[-1])
+
+        else:
+            self.list.sort(key=lambda x: x.tables[-1][0])

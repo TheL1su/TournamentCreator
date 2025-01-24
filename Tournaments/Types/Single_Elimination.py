@@ -6,7 +6,18 @@ class Single_Elimination():
     #IF min i max przy stole = 2
     def __init__(self):
         pass
-    def create_tables():
+    def create_tables(players, tables):
+        players.shuffle()
+        players.table_sort(seats=False)
+        table = 0
+        seat = 0
+        for player in players.list:
+            player.tables.append(table, seat)
+            table += 1
+            if table >= tables.len:
+                table = 0
+                seat += 1
+        players.table_sort()
         pass
 
     def result(self,players,advancing_places,lucky_loosers):

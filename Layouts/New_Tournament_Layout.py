@@ -168,6 +168,6 @@ class New_Tournament_Layout(QHBoxLayout):
     # funkcja odpalajaca turniej
     def OpenTournament(self):
         if(all(self.check_buttons)):
-            self.main_window.open_tournament()
+            self.main_window.open_tournament(new=True)
         else:
             self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Not_All_Values_Set"))

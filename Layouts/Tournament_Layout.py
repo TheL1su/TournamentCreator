@@ -124,9 +124,14 @@ class Tournament_Layout(QGridLayout):
 
 
     #########################################################
+    # WSZYSTKO POD TYM PRAWDOPODOBNIE DO USUNIĘCIA
+    # przeniesione do Swiss_Result_Layout
+
+
+    #########################################################
     # layout wynikow
     def result(self, type):
-        self.main_window.clear_layout(self)
+        # self.main_window.clear_layout(self)
         Layout = QVBoxLayout()
         #########################################################
         # layout wynikow dla playoff
@@ -213,7 +218,7 @@ class Tournament_Layout(QGridLayout):
             self.main_window.close()  # Zamknięcie aplikacji
 
     def start_next_round(self):
-        pass
+        self.main_window.start_new_round()
 
     """
     #########################################################

@@ -94,4 +94,4 @@ class Continue_Tournament_Layout(QGridLayout):
 
     def OpenTournament(self):
         self.main_window.load_data()
-        self.main_window.open_tournament()
+        self.main_window.open_tournament(new=False)

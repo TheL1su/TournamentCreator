@@ -91,8 +91,8 @@ class Application:
     def load_data(self):
         self.tournament.load_data()
 
-    def open_tournament(self):
-        self.tournament.start_tournament()
+    def open_tournament(self, new):
+        self.tournament.start_tournament(new)
 
     def get_players(self):
         return self.tournament.get_players()
@@ -105,3 +105,6 @@ class Application:
 
     def advancing_players_information(self, advancing, lucky):
         self.window.advancing_players_information(advancing, lucky)
+
+    def start_new_round(self):
+        self.tournament.start_round()

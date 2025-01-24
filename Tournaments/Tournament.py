@@ -199,9 +199,6 @@ class Tournament:
     def get_players(self):
         return self.current_players.get_players()
 
-    def start_round(self):
-        pass
-
     def start_round_swiss(self):
         self.type.create_tables(self.current_players,self.tables)
         #########################################################
@@ -210,7 +207,7 @@ class Tournament:
 
     def start_single_elimination_round(self):
         num = self.current_players.num_of_players()
-        self.tables = self.next_tables
+        self.tables = self.next_tables.copy()
         self.next_tables = self.type.count_tables((num+1)//2, self.min_at_table, self.max_at_table)
         self.type.create_tables(self.current_players, self.tables)
         advancing, ll = self.type.advancing_players(self.tables, self.next_tables)
@@ -221,13 +218,20 @@ class Tournament:
         # advancing_players_information
         self.app.advancing_players_information(advancing, ll)
 
-    def start_tournament(self):
-        num = self.current_players.num_of_players()
-        self.tables = self.type.count_tables(num, self.min_at_table, self.max_at_table)
-        self.next_tables = self.tables
 
+    def start_round(self):
         if type(self.type) == Swiss:
             self.start_round_swiss()
 
         if type(self.type) == Single_Elimination:
             self.start_single_elimination_round()
+
+
+    def start_tournament(self, new):
+        if new:
+            self.current_players.copy(self.players)
+        num = self.current_players.num_of_players()
+        self.tables = self.type.count_tables(num, self.min_at_table, self.max_at_table)
+        self.next_tables = self.tables.copy()
+
+        self.start_round()

@@ -7,6 +7,7 @@ from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 from Layouts.Tournament_Layout import Tournament_Layout
 from Layouts.Swiss_Layout import Swiss_Layout
+from Layouts.Swiss_Result_Layout import Swiss_Result_layout
 import os
 
 class Window(QMainWindow):
@@ -174,11 +175,11 @@ class Window(QMainWindow):
     def load_data(self):
         self.app.load_data()
 
-    def open_tournament(self):
+    def open_tournament(self, *, new):
         self.delete_later()
         self.layout = Tournament_Layout(self)
         self.set_widget()
-        self.app.open_tournament()
+        self.app.open_tournament(new)
 
     #########################################################
     # Zapisz plik json
@@ -226,11 +227,22 @@ class Window(QMainWindow):
         return self.app.get_players()
 
     def result(self, type):
-        self.layout.result(type)
+        self.delete_later()
+        if type == "Swiss":
+            self.layout = Swiss_Result_layout(self)
+        self.set_widget()
         self.show()
+
 
     def tables(self):
         self.layout.add_widgets()
 
     def advancing_players_information(self, advancing, lucky):
         self.layout.advancing_players_information(advancing, lucky)
+
+    def start_new_round(self):
+        self.delete_later()
+        self.layout = Tournament_Layout(self)
+        self.app.start_new_round()
+        self.set_widget()
+        self.show()
