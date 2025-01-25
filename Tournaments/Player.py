@@ -49,6 +49,22 @@ class Player:
 
     def tables_len(self):
         return len(self.tables)
+    
+    def info(self):
+        return {  "name": self.first_name + " " + self.last_name, 
+                  "big_points": self.big_points, 
+                  "small_points": self.small_points,
+                  "curr_big": self.curr_big_points,
+                  "curr_small": self.curr_small_points,
+                  "table": self.tables[-1],
+                  "id": self.id
+                  } 
+    
+    def big_points_change(self,num):
+        self.curr_big_points = num
+
+    def small_points_change(self,num):
+        self.curr_small_points = num
         
 class Players:
     def __init__(self):
@@ -66,10 +82,10 @@ class Players:
         return self.list[num].first_name+self.list[num].last_name 
     
     def big_points_change(self,player_cnt,num):
-        self.list[player_cnt].curr_big_points = num
+        self.list[player_cnt].big_points_change(num)
 
     def small_points_change(self,player_cnt,num):
-        self.list[player_cnt].curr_small_points = num
+        self.list[player_cnt].small_points_change(num)
 
     def filed_check(self):
         return all([player.filed_check() for player in self.list])
@@ -108,15 +124,11 @@ class Players:
         self.list.sort(key=lambda x: x.tables[-1])
 
     def get_players(self):
-        return [ {"name": player.first_name +" " + player.last_name, 
-                  "big_points": player.big_points, 
-                  "small_points": player.small_points,
-                  "curr_big": player.curr_big_points,
-                  "curr_small": player.curr_small_points} 
+        return [ player.info()
                   for player in self.list ]
     
     def copy(self, other):
-        self.list = [player for player in other.list]
+        self.list = [ player for player in other.list ]
 
     def shuffle(self):
         random.shuffle(self.list)

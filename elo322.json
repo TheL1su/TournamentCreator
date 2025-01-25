@@ -1,0 +1,159 @@
+{
+    "Min_At_Table": 2,
+    "Max_At_Table": 4,
+    "Type": "Swiss",
+    "Players": [
+        {
+            "first_name": "A",
+            "last_name": "A",
+            "big_points": 1,
+            "small_points": 1,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    0
+                ]
+            ],
+            "id": 0
+        },
+        {
+            "first_name": "B",
+            "last_name": "B",
+            "big_points": 3,
+            "small_points": 3,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    1
+                ]
+            ],
+            "id": 1
+        },
+        {
+            "first_name": "C",
+            "last_name": "C",
+            "big_points": 5,
+            "small_points": 5,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    2
+                ]
+            ],
+            "id": 2
+        },
+        {
+            "first_name": "D",
+            "last_name": "D",
+            "big_points": 7,
+            "small_points": 7,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    1,
+                    0
+                ]
+            ],
+            "id": 3
+        },
+        {
+            "first_name": "E",
+            "last_name": "E",
+            "big_points": 9,
+            "small_points": 9,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    1,
+                    1
+                ]
+            ],
+            "id": 4
+        }
+    ],
+    "Current_Players": [
+        {
+            "first_name": "E",
+            "last_name": "E",
+            "big_points": 9,
+            "small_points": 9,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    1,
+                    1
+                ]
+            ],
+            "id": 4
+        },
+        {
+            "first_name": "D",
+            "last_name": "D",
+            "big_points": 7,
+            "small_points": 7,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    1,
+                    0
+                ]
+            ],
+            "id": 3
+        },
+        {
+            "first_name": "C",
+            "last_name": "C",
+            "big_points": 5,
+            "small_points": 5,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    2
+                ]
+            ],
+            "id": 2
+        },
+        {
+            "first_name": "B",
+            "last_name": "B",
+            "big_points": 3,
+            "small_points": 3,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    1
+                ]
+            ],
+            "id": 1
+        },
+        {
+            "first_name": "A",
+            "last_name": "A",
+            "big_points": 1,
+            "small_points": 1,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [
+                [
+                    0,
+                    0
+                ]
+            ],
+            "id": 0
+        }
+    ]
+}

@@ -52,7 +52,7 @@ class Swiss():
         # pass
 
 
-    def count_tables(self,num_of_players,min_at_table,max_at_table):
+    def count_tables(self,num_of_players,min_at_table,max_at_table, new=False):
         # num_of_players = len(players.list)
 
         # if num_of_players % max_at_table == 0:

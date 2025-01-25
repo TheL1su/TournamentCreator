@@ -94,8 +94,8 @@ class Application:
     def open_tournament(self, new):
         self.tournament.start_tournament(new)
 
-    def get_players(self):
-        return self.tournament.get_players()
+    def get_players(self,players):
+        return self.tournament.get_players(players)
 
     def result(self, type):
         self.window.result(type)
@@ -103,8 +103,8 @@ class Application:
     def tables(self):
         self.window.tables()
 
-    def advancing_players_information(self, advancing, lucky):
-        self.window.advancing_players_information(advancing, lucky)
+    def advancing_players_information(self, advancing, lucky, waiting):
+        self.window.advancing_players_information(advancing, lucky, waiting)
 
     def start_new_round(self):
         self.tournament.start_round()

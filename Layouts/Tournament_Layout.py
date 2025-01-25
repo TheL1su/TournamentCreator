@@ -52,6 +52,21 @@ class Tournament_Layout(QGridLayout):
         #########################################################
         # ilos graczy
         player_cnt = 0
+
+        waitnig_label = self.main_window.create_label("Waiting_Players")
+        Layout.addWidget(waitnig_label)
+
+        print([player.get("table") for player in players])
+
+        while players[player_cnt].get("table")[0] == -1:
+            player_label = self.main_window.create_player_label(players[player_cnt].get("name"),player_cnt+1)
+            player_label.setFixedWidth(100)
+            player_label.setWordWrap(True)
+            Layout.addWidget(player_label)
+            player_cnt += 1
+
+        print("player cnt: ",player_cnt)
+        print("num of players:", len(players))
         
         for i in range(len(tables)):
             
@@ -117,13 +132,15 @@ class Tournament_Layout(QGridLayout):
     #########################################################
     # Funkcja ktora dla Playoff wyswietla komunikat z ktorych miejsc przechodza osoby
     # do nastepnej rundy
-    def advancing_players_information(self, advancing_places, lucky_loosers):
+    def advancing_players_information(self, advancing_places, lucky_loosers, waiting):
         # advancing_places,lucky_loosers = self.main_window.advancing_players()
         text = self.main_window.get_text("Places_From_Tables_That_Advance") 
         for i in range(1,advancing_places):
             text += str(i) + ","
-        text += str(advancing_places) + "\n"
-        text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places+1)+self.main_window.get_text("Place") + str(lucky_loosers) + "."
+        text += str(advancing_places) + ".\n"
+        text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places+1)+self.main_window.get_text("Place") + str(lucky_loosers) + ".\n"
+        if waiting:
+            text += str(waiting) + self.main_window.get_text("Waiting_In_Next_Round")
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
     def resize(self,width,height):

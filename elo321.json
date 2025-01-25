@@ -1,0 +1,89 @@
+{
+    "Min_At_Table": 2,
+    "Max_At_Table": 4,
+    "Type": "Swiss",
+    "Players": [
+        {
+            "first_name": "C",
+            "last_name": "C",
+            "big_points": 7,
+            "small_points": 7,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 2
+        },
+        {
+            "first_name": "B",
+            "last_name": "B",
+            "big_points": 5,
+            "small_points": 5,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 1
+        },
+        {
+            "first_name": "D",
+            "last_name": "D",
+            "big_points": 3,
+            "small_points": 3,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 3
+        },
+        {
+            "first_name": "A",
+            "last_name": "A",
+            "big_points": 1,
+            "small_points": 1,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 0
+        }
+    ],
+    "Current_Players": [
+        {
+            "first_name": "C",
+            "last_name": "C",
+            "big_points": 7,
+            "small_points": 7,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 2
+        },
+        {
+            "first_name": "B",
+            "last_name": "B",
+            "big_points": 5,
+            "small_points": 5,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 1
+        },
+        {
+            "first_name": "D",
+            "last_name": "D",
+            "big_points": 3,
+            "small_points": 3,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 3
+        },
+        {
+            "first_name": "A",
+            "last_name": "A",
+            "big_points": 1,
+            "small_points": 1,
+            "curr_big_points": -1,
+            "curr_small_points": -1,
+            "tables": [],
+            "id": 0
+        }
+    ]
+}

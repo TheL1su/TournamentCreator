@@ -9,6 +9,7 @@ class Tournament:
         self.app = app
         self.players = Players()
         self.current_players = Players()
+        self.advancing_players = Players()
         self.tournament_data = Tournament_Data(self)
         self.min_at_table = -1
         self.max_at_table = -1
@@ -189,16 +190,19 @@ class Tournament:
 
     def end_single_elimination_round(self):
         self.current_players.single_elimination_sort()
-        advancing, loosers = self.type.result()
+        self.advancing_players, loosers = self.type.result(self.current_players)
         self.app.result("Single_Elimination")
         self.update_points()
-        self.current_players = advancing
+        self.current_players = self.advancing_players
         self.save_players()
         self.save_curr_players()
 
-    def get_players(self):
-        return self.current_players.get_players()
-
+    def get_players(self, players):
+        if players == "current_players":
+            return self.current_players.get_players()
+        if players == "advancing_players":
+            return self.advancing_players.get_players()
+    
     def start_round_swiss(self):
         self.type.create_tables(self.current_players,self.tables)
         #########################################################
@@ -206,17 +210,19 @@ class Tournament:
         self.app.tables()
 
     def start_single_elimination_round(self):
-        num = self.current_players.num_of_players()
+        num_of_players = self.current_players.num_of_players()
         self.tables = self.next_tables.copy()
-        self.next_tables = self.type.count_tables((num+1)//2, self.min_at_table, self.max_at_table)
+        num_at_tables = sum(self.tables)
+        waiting = num_of_players - num_at_tables
+        self.next_tables = self.type.count_tables(num_of_players, self.min_at_table, self.max_at_table)
         self.type.create_tables(self.current_players, self.tables)
-        advancing, ll = self.type.advancing_players(self.tables, self.next_tables)
+        advancing, ll = self.type.advancing_players(self.tables, self.next_tables, waiting)
         #########################################################
         # wyświetlić stoliki
         self.app.tables()
         #########################################################
         # advancing_players_information
-        self.app.advancing_players_information(advancing, ll)
+        self.app.advancing_players_information(advancing, ll, waiting)
 
 
     def start_round(self):
@@ -231,7 +237,7 @@ class Tournament:
         if new:
             self.current_players.copy(self.players)
         num = self.current_players.num_of_players()
-        self.tables = self.type.count_tables(num, self.min_at_table, self.max_at_table)
+        self.tables = self.type.count_tables(num, self.min_at_table, self.max_at_table, new_tournament=True)
         self.next_tables = self.tables.copy()
 
         self.start_round()

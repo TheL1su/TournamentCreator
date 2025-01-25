@@ -7,3 +7,19 @@ Podział przy pierwszej rundzie.
 Co gdy dwóch graczy ma to samo imię i nazwisko? (Dodać ID)
 
 W single elimination dodać tablicę z listą stolików.
+
+W poprzedniej rundzie mam policzone ile przechodzi ze stolika. Potrzebuję:
+1. sprawdzić kto to będzie
+2. wyświetlić wyniki
+3. przydzielić nowe stoły
+4. Wyświetlić stoły
+
+
+Create_tables dzieli graczy na istniejące już stoliki.
+Count_tables wylicza jakie powinny być stoliki
+
+
+Uzupełnić tables !!! DONE
+
+Po załadowaniu wyświetla graczy podwójnie. Błąd albo w tworzeniu
+nowej rundy, albo w ładowaniu danych. DONE

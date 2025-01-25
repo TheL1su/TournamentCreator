@@ -8,6 +8,7 @@ from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 from Layouts.Tournament_Layout import Tournament_Layout
 from Layouts.Swiss_Layout import Swiss_Layout
 from Layouts.Swiss_Result_Layout import Swiss_Result_layout
+from Layouts.Single_Elimination_Result_Layout import Single_Elimination_Result_layout
 from PyQt5.QtCore import Qt
 
 import os
@@ -131,19 +132,29 @@ class Window(QMainWindow):
         label = self.get_text(text)
         return self.widgetsStyle.create_label(label)
     
+    def create_bold_label(self,text):
+        label = self.get_text(text)
+        return self.widgetsStyle.create_bold_label(label)
+    
     def create_table_label(self, num):
         if num == 1:
             label = self.get_text("Table_And_Points")
         else:
             label = self.get_text("Table") + str(num)
-        return self.widgetsStyle.create_label(label)
+        return self.widgetsStyle.create_bold_label(label)
     
-    def create_player_label(self, name, num):
+    def create_player_label(self, name, num, bold=False):
         label = str(num) + ". " + name
-        return self.widgetsStyle.create_label(label)
+        if bold:
+            return self.widgetsStyle.create_bold_label(label)
+        else:
+            return self.widgetsStyle.create_label(label)
     
     def create_num_label(self,num):
         return self.widgetsStyle.create_label(str(num))
+        
+    def create_bold_num_label(self,num):
+        return self.widgetsStyle.create_bold_label(str(num))
 
     def create_tool_button(self,text,menu):
         label = self.get_text(text)
@@ -270,13 +281,15 @@ class Window(QMainWindow):
                 if sub_layout:
                     self.clear_layout(sub_layout)
 
-    def get_players(self):
-        return self.app.get_players()
+    def get_players(self, players = "current_players"):
+        return self.app.get_players(players)
 
     def result(self, type):
         self.delete_later()
         if type == "Swiss":
             self.layout = Swiss_Result_layout(self)
+        elif type == "Single_Elimination":
+            self.layout = Single_Elimination_Result_layout(self)
         self.set_widget_with_scroll()
         self.show()
 
@@ -284,8 +297,8 @@ class Window(QMainWindow):
     def tables(self):
         self.layout.add_widgets()
 
-    def advancing_players_information(self, advancing, lucky):
-        self.layout.advancing_players_information(advancing, lucky)
+    def advancing_players_information(self, advancing, lucky, waiting):
+        self.layout.advancing_players_information(advancing, lucky, waiting)
 
     def start_new_round(self):
         self.delete_later()

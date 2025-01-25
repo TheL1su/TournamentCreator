@@ -21,3 +21,9 @@ class Widgets:
         label = QLabel(text)
         label.setStyleSheet('color: white;font-weight: normal')
         return label
+    
+    def create_bold_label(self, text):
+        """Metoda tworzy etykiete"""
+        label = QLabel(text)
+        label.setStyleSheet('color: white;font-weight: bold')
+        return label
