@@ -137,10 +137,7 @@ class Window(QMainWindow):
         return self.widgetsStyle.create_bold_label(label)
     
     def create_table_label(self, num):
-        if num == 1:
-            label = self.get_text("Table_And_Points")
-        else:
-            label = self.get_text("Table") + str(num)
+        label = self.get_text("Table") + str(num)
         return self.widgetsStyle.create_bold_label(label)
     
     def create_player_label(self, name, num, bold=False):
@@ -159,6 +156,13 @@ class Window(QMainWindow):
     def create_tool_button(self,text,menu):
         label = self.get_text(text)
         return self.widgetsStyle.create_tool_button(parent = self,text = label,menu = menu)
+    
+    def create_line_edit(self):
+        return self.widgetsStyle.create_line_edit()
+    
+    def create_push_button(self, text):
+        label = self.get_text(text)
+        return self.widgetsStyle.create_push_button(label)
 
     #########################################################
     # Funkcje dla MessageBoxa

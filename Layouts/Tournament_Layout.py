@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout,QSizePolicy
 from PyQt5.QtGui import QIntValidator
+from PyQt5.QtCore import Qt, QRegularExpression
+
 import copy
 
 
-class Tournament_Layout(QGridLayout):
+class Tournament_Layout(QVBoxLayout):
 
 
     def __init__(self, main_window):
@@ -12,12 +14,12 @@ class Tournament_Layout(QGridLayout):
 
         #########################################################
         # Przyciski nastepna runda, zapisz i wyjdz
-        self.Submit_Round = QPushButton(self.main_window.get_text("Submit_Round"))
+        self.Submit_Round = self.main_window.create_push_button("Submit_Round")
         self.Submit_Round.clicked.connect(self.filed_check)
-        self.Next_Round = QPushButton(self.main_window.get_text("Next_Round"))
-        self.Next_Round.clicked.connect(self.start_next_round)
-        self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
-        self.Save_And_Exit.clicked.connect(self.save_exit)
+        # self.Next_Round = QPushButton(self.main_window.get_text("Next_Round"))
+        # self.Next_Round.clicked.connect(self.start_next_round)
+        # self.Save_And_Exit = QPushButton(self.main_window.get_text("Save_And_Exit"))
+        # self.Save_And_Exit.clicked.connect(self.save_exit)
 
         """
         #########################################################
@@ -31,9 +33,10 @@ class Tournament_Layout(QGridLayout):
         #########################################################
         # Layout
         Layout_Tables = self.add_players_and_tables()
-
-        self.addLayout(Layout_Tables,0,0)
-        self.addWidget(self.Submit_Round,1,0)
+        self.addStretch()
+        self.addLayout(Layout_Tables)
+        self.addStretch()
+        self.addWidget(self.Submit_Round)
 
         # self.show()
         #self.addWidget(self.Save_And_Exit,1,1)
@@ -53,10 +56,10 @@ class Tournament_Layout(QGridLayout):
         # ilos graczy
         player_cnt = 0
 
-        waitnig_label = self.main_window.create_label("Waiting_Players")
-        Layout.addWidget(waitnig_label)
+        if players[player_cnt].get("table")[0] == -1:
+            waiting_label = self.main_window.create_label("Waiting_Players")
+            Layout.addWidget(waiting_label)
 
-        print([player.get("table") for player in players])
 
         while players[player_cnt].get("table")[0] == -1:
             player_label = self.main_window.create_player_label(players[player_cnt].get("name"),player_cnt+1)
@@ -65,15 +68,24 @@ class Tournament_Layout(QGridLayout):
             Layout.addWidget(player_label)
             player_cnt += 1
 
-        print("player cnt: ",player_cnt)
-        print("num of players:", len(players))
-        
         for i in range(len(tables)):
             
             #########################################################
-            # Label stolika
+            # Label stolika, duzych i malych punktow
+            Layout_info = QHBoxLayout()
             table_number = self.main_window.create_table_label(i+1)
-            Layout.addWidget(table_number)
+            big_points_info = self.main_window.create_bold_label("Big_Points")
+            small_points_info = self.main_window.create_bold_label("Small_Points")
+            
+            Layout_info.addWidget(table_number)
+            Layout_info.addWidget(big_points_info)
+            Layout_info.addWidget(small_points_info)
+
+            Layout_info.setAlignment(table_number, Qt.AlignCenter)
+            Layout_info.setAlignment(big_points_info, Qt.AlignCenter)
+            Layout_info.setAlignment(small_points_info, Qt.AlignCenter)
+
+            Layout.addLayout(Layout_info)
 
 
             for j in range(tables[i]):
@@ -86,24 +98,30 @@ class Tournament_Layout(QGridLayout):
                 player_label.setWordWrap(True)
                 Layout_Players.addWidget(player_label)
 
-                Big_points = QLineEdit()
-                Big_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+                Big_points = self.main_window.create_line_edit()
+                # Big_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
                 Big_points.setMaximumWidth(100)
                 Big_points.setValidator(QIntValidator(1,1000))
                 Big_points.textChanged.connect(lambda text, player = player_cnt: self.big_points_change(player, text))
                 
-                Small_points = QLineEdit()
-                Small_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+                Small_points = self.main_window.create_line_edit()
+                # Small_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
                 Small_points.setMaximumWidth(100)
                 Small_points.setValidator(QIntValidator(1,1000)) 
                 Small_points.textChanged.connect(lambda text, player = player_cnt: self.small_points_change(player, text))
                 
                 Layout_Players.addWidget(Big_points)
                 Layout_Players.addWidget(Small_points)
+
+                Layout_Players.setAlignment(player_label, Qt.AlignCenter)
+                Layout_Players.setAlignment(Big_points, Qt.AlignCenter)
+                Layout_Players.setAlignment(Small_points, Qt.AlignCenter)
                 
                 player_cnt += 1
 
                 Layout.addLayout(Layout_Players)
+
+            Layout.addSpacing(20)
 
         return Layout
 

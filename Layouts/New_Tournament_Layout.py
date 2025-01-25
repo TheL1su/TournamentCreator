@@ -18,15 +18,15 @@ class New_Tournament_Layout(QHBoxLayout):
         self.check_buttons = [False,False,False,False]
         #########################################################
         # Labele do Ustawien Turnieju 
-        Label_Min_Players_at_Table = self.main_window.create_label("Enter_Min_Players_At_Table")
-        Label_Max_Players_at_Table = self.main_window.create_label("Enter_Max_Players_At_Table")
+        Label_Min_Players_at_Table = self.main_window.create_bold_label("Enter_Min_Players_At_Table")
+        Label_Max_Players_at_Table = self.main_window.create_bold_label("Enter_Max_Players_At_Table")
 
         #########################################################
         # Przyciski do Ustawien Turnieju 
-        self.Min_at_Table_number_input = QLineEdit()
-        # self.Min_at_Table_number_input.setFixedWidth(300)
-        self.Max_at_Table_number_input = QLineEdit()
-        # self.Max_at_Table_number_input.setFixedWidth(300)
+        self.Min_at_Table_number_input = self.main_window.create_line_edit()
+        self.Min_at_Table_number_input.setFixedWidth(50)
+        self.Max_at_Table_number_input = self.main_window.create_line_edit()
+        self.Max_at_Table_number_input.setFixedWidth(50)
 
         #########################################################
         # Validator dla Min i Maks - wartosci od 1 do 20
@@ -52,7 +52,7 @@ class New_Tournament_Layout(QHBoxLayout):
 
         #########################################################
         # Przycisk do Rozpoczecia Turnieju
-        self.Start_Tournament = QPushButton(self.main_window.get_text("Start_Tournament"))
+        self.Start_Tournament = self.main_window.create_push_button("Start_Tournament")
         self.Start_Tournament.clicked.connect(self.OpenTournament)
         #########################################################
         # Funkcje wywolywane przy nacisnieciu przyciskow zatwierdz
@@ -62,9 +62,9 @@ class New_Tournament_Layout(QHBoxLayout):
 
         ########################################################
         # Dodawanie uczestnika
-        Label_Add_Player = self.main_window.create_label("Enter_Player")
-        self.Add_Player_input = QLineEdit()
-        # self.Add_Player_input.setFixedWidth(300)
+        Label_Add_Player = self.main_window.create_bold_label("Enter_Player")
+        self.Add_Player_input = self.main_window.create_line_edit()
+        self.Add_Player_input.setFixedWidth(400)
         self.Add_Player_input.setValidator(QRegularExpressionValidator(QRegularExpression("^[A-Z]{1}[a-z]* [A-Z]{1}[a-z]*")))  # Przyjmuje dwa słowa wielką literą
 
         ########################################################
@@ -75,42 +75,54 @@ class New_Tournament_Layout(QHBoxLayout):
         #########################################################
         # Siatka dla Labeli i Przyciskow
         Layout_NT_settings = QVBoxLayout()
+        Layout_NT_settings.addStretch()
 
         #########################################################
         # Dodanie Przyciskow - Minimalna ilosc graczy przy stole do siatki
         Layout_NT_settings.addWidget(Label_Min_Players_at_Table)
+        Layout_NT_settings.addSpacing(10)
         Layout_NT_settings.addWidget(self.Min_at_Table_number_input)
 
+        Layout_NT_settings.addSpacing(50)
         #########################################################
         # Dodanie Przyciskow - Maksymalna ilosc graczy przy stole do siatki
         Layout_NT_settings.addWidget(Label_Max_Players_at_Table)
+        Layout_NT_settings.addSpacing(10)
         Layout_NT_settings.addWidget(self.Max_at_Table_number_input)
+        Layout_NT_settings.addSpacing(50)
         #########################################################
         # Dodanie Menu Turniejow do siatki
         Layout_NT_settings.addWidget(self.Tournament_Type)
+        Layout_NT_settings.addSpacing(50)
 
         #########################################################
         # Dodawanie dodaj gracza do siatki
         Layout_NT_settings.addWidget(Label_Add_Player)
+        Layout_NT_settings.addSpacing(10)
         Layout_NT_settings.addWidget(self.Add_Player_input)
+        Layout_NT_settings.addSpacing(50)
         Layout_NT_settings.addWidget(self.Start_Tournament)
         #########################################################
         # Ustawienie przyciskow na siatce
-        Layout_NT_settings.setAlignment(Label_Min_Players_at_Table, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(self.Min_at_Table_number_input, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(Label_Max_Players_at_Table, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(self.Max_at_Table_number_input, Qt.AlignLeft)
-        Layout_NT_settings.setAlignment(self.Add_Player_input,Qt.AlignLeft)
+        Layout_NT_settings.setAlignment(Label_Min_Players_at_Table, Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(self.Min_at_Table_number_input, Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(Label_Max_Players_at_Table, Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(self.Max_at_Table_number_input, Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(Label_Add_Player,Qt.AlignCenter)
+        Layout_NT_settings.setAlignment(self.Add_Player_input,Qt.AlignCenter)
         Layout_NT_settings.setAlignment(self.Tournament_Type,Qt.AlignCenter)
         Layout_NT_settings.setAlignment(self.Start_Tournament,Qt.AlignCenter)
+        Layout_NT_settings.addStretch()
         # Layout_NT_settings.setStretch(Layout_NT_settings.rowCount(), 1)
         # Layout_NT_settings.setColumnStretch(Layout_NT_settings.columnCount(), 1)
 
         #########################################################
         # main layout
 
-        self.addLayout(Layout_NT_settings)
-        self.addWidget(self.List_of_players_widget)
+        self.addSpacing(20)
+        self.addLayout(Layout_NT_settings,1)
+        self.addSpacing(20)
+        self.addWidget(self.List_of_players_widget,1)
 
     # Funkcja do obslugi wpisywania minimalnej wartosci dla stolu
     def Min_on_submit(self):

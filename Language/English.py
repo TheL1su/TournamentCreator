@@ -29,7 +29,6 @@ class English(Language):
             "Submit_Round" : "Submit Round",
             "Save_And_Exit" : "Save Tournament and Exit!",
             "Table" : "Table nr: ",
-            "Table_And_Points" : "Table nr: 1       Big points      Small Points",
             "Swiss" : "Swiss-system",
             "PlayOff" : "Play-off",
             "Points_Not_Filed" : "Fill missing points",

@@ -1,10 +1,10 @@
-from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox
+from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout
 from PyQt5.QtCore import QDir
 from PyQt5.QtCore import Qt
 import json
 import os
 
-class Continue_Tournament_Layout(QGridLayout):
+class Continue_Tournament_Layout(QVBoxLayout):
 
     
     def __init__(self, main_window):
@@ -13,36 +13,42 @@ class Continue_Tournament_Layout(QGridLayout):
 
             #########################################################
         # Przyciski do Kontynuowania Turnieju
-        self.File_Input = QLineEdit()
-        Label_Load_File = self.main_window.create_label("Load_File")
-        self.Browse = QPushButton(self.main_window.get_text("Browse"))
+        self.File_Input = self.main_window.create_line_edit()
+        self.File_Input.setFixedWidth(self.main_window.width())
+        Label_Load_File = self.main_window.create_bold_label("Load_File")
+        self.Browse = self.main_window.create_push_button("Browse")
         self.Browse.clicked.connect(self.GetFile)
 
         #########################################################
         # Przyciski do potwierdzenia wczytanego pliku i odpalenia turnieju
-        self.Confirm = QPushButton(self.main_window.get_text("Submit_And_Continue_Tournament"))
+        self.Confirm = self.main_window.create_push_button("Submit_And_Continue_Tournament")
         self.Confirm.adjustSize()
         self.Confirm.hide()
         self.Confirm.clicked.connect(self.OpenTournament)
         
         #########################################################
         # Dodawanie Przyciskow do Layoutu
+        self.addStretch()
         self.addWidget(Label_Load_File)
-        self.addWidget(self.File_Input,1,0)
-        self.addWidget(self.Browse,1,1)
-        self.addWidget(self.Confirm,2,0)
-
+        self.addSpacing(10)
+        self.addWidget(self.File_Input)
+        self.addSpacing(10)
+        self.addWidget(self.Browse)
+        self.addSpacing(200)
+        self.addWidget(self.Confirm)
+        self.addStretch()
         #########################################################
         # Layout przyciskow na siatce
         
-        self.setAlignment(Label_Load_File, Qt.AlignBottom)
-        self.setAlignment(self.File_Input, Qt.AlignTop)
-        self.setAlignment(self.Browse,Qt.AlignTop)
-        self.setAlignment(self.Confirm,Qt.AlignTop)
+        self.setAlignment(Label_Load_File, Qt.AlignCenter)
+        self.setAlignment(self.File_Input, Qt.AlignCenter)
+        self.setAlignment(self.Browse,Qt.AlignCenter)
+        self.setAlignment(self.Confirm,Qt.AlignCenter)
 
 
     def resize(self,width,height):
         """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
+        self.File_Input.setFixedWidth(width//2)
         pass
 
     def GetFile(self):
