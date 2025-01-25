@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget,QFileDialog,QScrollArea
-from Widgets import Widgets
+from Widgets import WidgetsFactory
 from MessageBoxes import MessageBoxFactory
 from PyQt5.QtGui import QColor
 from Layouts.Start_Layout import Start_Layout
@@ -40,7 +40,7 @@ class Window(QMainWindow):
 
         #########################################################
         # Fabryki widgetow i messageboxow
-        self.widgetsStyle = Widgets()
+        self.widgetsStyle = WidgetsFactory()
         self.messageboxFactory = MessageBoxFactory()
 
         #########################################################
@@ -299,6 +299,10 @@ class Window(QMainWindow):
 
     def advancing_players_information(self, advancing, lucky, waiting):
         self.layout.advancing_players_information(advancing, lucky, waiting)
+
+    def last_round_information(self):
+        self.layout.last_round_information()
+
 
     def start_new_round(self):
         self.delete_later()

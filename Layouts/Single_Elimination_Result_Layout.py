@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialo
 from PyQt5.QtGui import QIntValidator
 import copy
 
-class Single_Elimination_Result_layout(QGridLayout):
+class Single_Elimination_Result_layout(QVBoxLayout):
 
     def __init__(self, main_window):
         super().__init__()
@@ -19,9 +19,18 @@ class Single_Elimination_Result_layout(QGridLayout):
         # Layout
         Layout_Tables = self.add_players_and_tables()
 
-        self.addLayout(Layout_Tables,0,0)
-        self.addWidget(self.Next_Round,1,0)
-        self.addWidget(self.Save_And_Exit,1,1)
+        self.addLayout(Layout_Tables)
+
+        tables = self.main_window.get_tables()
+
+        if len(tables) == 1:
+            self.addWidget(self.Save_And_Exit)
+        
+        else:
+            buttons_layout = QHBoxLayout()
+            buttons_layout.addWidget(self.Next_Round)
+            buttons_layout.addWidget(self.Save_And_Exit)
+            self.addLayout(buttons_layout)
 
         # self.show()
         #self.addWidget(self.Save_And_Exit,1,1)

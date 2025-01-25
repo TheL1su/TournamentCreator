@@ -35,6 +35,8 @@ class English(Language):
             "Points_Not_Filed" : "Fill missing points",
             "Advancing_Players_Information" : "Advancing rules",
             "Places_From_Tables_That_Advance" : "Places that advance from all tables to next round:",
+            "Last_Round_Information" : "Final round",
+            "Last_Round_Note" : "This is the final round of the tournament",
             "Lucky_Loosers" : "Number of players that advance from ",
             "Place" : " place: ",
             "Waiting_In_Next_Round" : " players waiting advance to next round.",

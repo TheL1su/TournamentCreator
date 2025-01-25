@@ -214,16 +214,19 @@ class Tournament:
         self.tables = self.next_tables.copy()
         num_at_tables = sum(self.tables)
         waiting = num_of_players - num_at_tables
-        self.next_tables = self.type.count_tables(num_of_players, self.min_at_table, self.max_at_table)
         self.type.create_tables(self.current_players, self.tables)
-        advancing, ll = self.type.advancing_players(self.tables, self.next_tables, waiting)
+        if len(self.tables) != 1:
+            self.next_tables = self.type.count_tables(num_of_players, self.min_at_table, self.max_at_table)
+            advancing, ll = self.type.advancing_players(self.tables, self.next_tables, waiting)
         #########################################################
         # wyświetlić stoliki
         self.app.tables()
-        #########################################################
-        # advancing_players_information
-        self.app.advancing_players_information(advancing, ll, waiting)
-
+        if len(self.tables) == 1:
+            self.app.last_round_information()
+        else:
+            #########################################################
+            # advancing_players_information
+            self.app.advancing_players_information(advancing, ll, waiting)
 
     def start_round(self):
         if type(self.type) == Swiss:

@@ -143,6 +143,12 @@ class Tournament_Layout(QGridLayout):
             text += str(waiting) + self.main_window.get_text("Waiting_In_Next_Round")
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
+
+    def last_round_information(self):
+        text = self.main_window.get_text("Last_Round_Note") 
+        self.main_window.show_information(self.main_window.get_text("Last_Round_Information"), text)
+
+
     def resize(self,width,height):
         """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
         pass

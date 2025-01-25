@@ -35,6 +35,8 @@ class Polski(Language):
             "Points_Not_Filed" : "Uzupełnij brakujące punkty",
             "Advancing_Players_Information" : "Zasady awansu",
             "Places_From_Tables_That_Advance" : "Miejsca ktore w każdym stoliku awansują do nastepnej rundy:",
+            "Last_Round_Information" : "Runda finałowa",
+            "Last_Round_Note" : "Rozpoczyna się finałowa runda turnieju.",
             "Lucky_Loosers" : "Liczba graczy awansująca z ",
             "Place" : " miejsca: ",
             "Waiting_In_Next_Round" : " graczy czekających awansuje do kolejnej kolejnej rundy.",

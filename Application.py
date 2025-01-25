@@ -106,5 +106,8 @@ class Application:
     def advancing_players_information(self, advancing, lucky, waiting):
         self.window.advancing_players_information(advancing, lucky, waiting)
 
+    def last_round_information(self):
+        self.window.last_round_information()
+
     def start_new_round(self):
         self.tournament.start_round()
