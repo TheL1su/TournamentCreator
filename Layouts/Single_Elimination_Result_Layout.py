@@ -14,6 +14,8 @@ class Single_Elimination_Result_layout(QVBoxLayout):
         self.Next_Round.clicked.connect(self.start_next_round)
         self.Save_And_Exit = self.main_window.create_push_button("Save_And_Exit")
         self.Save_And_Exit.clicked.connect(self.main_window.save_exit)
+        self.Exit = self.main_window.create_push_button("End_And_Exit")
+        self.Exit.clicked.connect(self.main_window.confirm_exit)
 
         #########################################################
         # Layout
@@ -25,7 +27,7 @@ class Single_Elimination_Result_layout(QVBoxLayout):
 
 
         if last_round:
-            self.addWidget(self.Save_And_Exit)
+            self.addWidget(self.Exit)
         
         else:
             buttons_layout = QHBoxLayout()

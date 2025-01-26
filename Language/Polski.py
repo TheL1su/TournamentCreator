@@ -28,6 +28,7 @@ class Polski(Language):
             "Specify_Value_For_Round" : "Okresl ilosc rozgrywek w tej rundzie!",
             "Submit_Round" : "Zatwierdz Runde",
             "Save_And_Exit" : "Zapisz Turniej i wyjdź!",
+            "End_And_Exit" : "Zakończ turniej i wyjdź!",
             "Table" : "Stolik nr: ",
             "Swiss" : "System Szwajcarski",
             "PlayOff" : "Play-off",

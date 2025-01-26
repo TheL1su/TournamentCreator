@@ -217,7 +217,7 @@ class Tournament:
         self.type.create_tables(self.current_players, self.tables)
         if len(self.tables) != 1 or waiting:
             self.next_tables = self.type.count_tables(num_of_players, self.min_at_table, self.max_at_table)
-            advancing, ll = self.type.advancing_players(self.tables, self.next_tables, waiting)
+        advancing, ll = self.type.advancing_players(self.tables, self.next_tables, waiting)
         #########################################################
         # wyświetlić stoliki
         self.app.tables()
