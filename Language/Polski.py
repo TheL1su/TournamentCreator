@@ -38,7 +38,7 @@ class Polski(Language):
             "Last_Round_Note" : "Rozpoczyna się finałowa runda turnieju.",
             "Lucky_Loosers" : "Liczba graczy awansująca z ",
             "Place" : " miejsca: ",
-            "Waiting_In_Next_Round" : " graczy czekających awansuje do kolejnej kolejnej rundy.",
+            "Waiting_In_Next_Round" : "Wszyscy czekający gracze awansują do kolejnej kolejnej rundy.",
             "Next_Round" : "Nastepna runda",
             "Ranking" : "Ranking:",
             "Advancing" : "Awansujący:",
@@ -54,7 +54,9 @@ class Polski(Language):
             "Path_Not_Selected" : "Sciezka nie wybrana!",
             "Start_Tournament" : "Rozpocznij Turniej",
             "Submit_And_Continue_Tournament" : "Zatwierdz i kontynuuj turniej",
-            "Not_All_Values_Set" : "Nie wszystkie wartosci zostaly wprowadzone!"
+            "Not_All_Values_Set" : "Nie wszystkie wartosci zostaly wprowadzone!",
+            "Not_Enough_Players" : "Wprowadzona ilość graczy jest niewystarczająca do przeprowadzenia turnieju!",
+            "Cant_Count_Tables" : "Wprowadzona ilość graczy nie pozwala na przeprowadzenie turnieju w systemie szwajcarskim!"
         }
         
     def get_text(self,text):

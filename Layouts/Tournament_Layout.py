@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout,QSizePolicy
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtGui import QIntValidator, QRegularExpressionValidator
 from PyQt5.QtCore import Qt, QRegularExpression
 
 import copy
@@ -57,7 +57,7 @@ class Tournament_Layout(QVBoxLayout):
         player_cnt = 0
 
         if players[player_cnt].get("table")[0] == -1:
-            waiting_label = self.main_window.create_label("Waiting_Players")
+            waiting_label = self.main_window.create_label("Waiting_Players", bold=True)
             Layout.addWidget(waiting_label)
 
 
@@ -67,6 +67,8 @@ class Tournament_Layout(QVBoxLayout):
             player_label.setWordWrap(True)
             Layout.addWidget(player_label)
             player_cnt += 1
+
+        Layout.addSpacing(20)
 
         for i in range(len(tables)):
             
@@ -81,7 +83,7 @@ class Tournament_Layout(QVBoxLayout):
             Layout_info.addWidget(big_points_info)
             Layout_info.addWidget(small_points_info)
 
-            Layout_info.setAlignment(table_number, Qt.AlignCenter)
+            Layout_info.setAlignment(table_number, Qt.AlignLeft)
             Layout_info.setAlignment(big_points_info, Qt.AlignCenter)
             Layout_info.setAlignment(small_points_info, Qt.AlignCenter)
 
@@ -100,20 +102,21 @@ class Tournament_Layout(QVBoxLayout):
 
                 Big_points = self.main_window.create_line_edit()
                 # Big_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+                validator = QRegularExpressionValidator(QRegularExpression("([0-9]|[1-9][0-9]|[1-9][0-9][0-9])"))
                 Big_points.setMaximumWidth(100)
-                Big_points.setValidator(QIntValidator(1,1000))
+                Big_points.setValidator(validator)
                 Big_points.textChanged.connect(lambda text, player = player_cnt: self.big_points_change(player, text))
                 
                 Small_points = self.main_window.create_line_edit()
                 # Small_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
                 Small_points.setMaximumWidth(100)
-                Small_points.setValidator(QIntValidator(1,1000)) 
+                Small_points.setValidator(validator) 
                 Small_points.textChanged.connect(lambda text, player = player_cnt: self.small_points_change(player, text))
                 
                 Layout_Players.addWidget(Big_points)
                 Layout_Players.addWidget(Small_points)
 
-                Layout_Players.setAlignment(player_label, Qt.AlignCenter)
+                Layout_Players.setAlignment(player_label, Qt.AlignLeft)
                 Layout_Players.setAlignment(Big_points, Qt.AlignCenter)
                 Layout_Players.setAlignment(Small_points, Qt.AlignCenter)
                 
@@ -129,11 +132,13 @@ class Tournament_Layout(QVBoxLayout):
     #     self.main_window.clear_layout(self)
 
     def big_points_change(self,player_cnt,text):
-        self.main_window.big_points_change(player_cnt,int(text))
+        if text:
+            self.main_window.big_points_change(player_cnt,int(text))
 
 
     def small_points_change(self,player_cnt,text):
-        self.main_window.small_points_change(player_cnt,int(text))
+        if text:
+            self.main_window.small_points_change(player_cnt,int(text))
     
     def filed_check(self):
         all_filed = self.main_window.filed_check()
@@ -158,7 +163,7 @@ class Tournament_Layout(QVBoxLayout):
         text += str(advancing_places) + ".\n"
         text += self.main_window.get_text("Lucky_Loosers") + str(advancing_places+1)+self.main_window.get_text("Place") + str(lucky_loosers) + ".\n"
         if waiting:
-            text += str(waiting) + self.main_window.get_text("Waiting_In_Next_Round")
+            text += self.main_window.get_text("Waiting_In_Next_Round")
         self.main_window.show_information(self.main_window.get_text("Advancing_Players_Information"), text)
 
 

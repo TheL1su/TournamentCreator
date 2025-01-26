@@ -91,6 +91,9 @@ class Application:
     def load_data(self):
         self.tournament.load_data()
 
+    def can_count_tables(self):
+        return self.tournament.can_count_tables()
+
     def open_tournament(self, new):
         self.tournament.start_tournament(new)
 

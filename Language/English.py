@@ -38,7 +38,7 @@ class English(Language):
             "Last_Round_Note" : "This is the final round of the tournament",
             "Lucky_Loosers" : "Number of players that advance from ",
             "Place" : " place: ",
-            "Waiting_In_Next_Round" : " players waiting advance to next round.",
+            "Waiting_In_Next_Round" : "All waiting players advance to next round.",
             "Next_Round" : "Next round",
             "Ranking" : "Ranking:",
             "Advancing" : "Advancing:",
@@ -54,7 +54,9 @@ class English(Language):
             "Path_Not_Selected" : "Path not selected!",
             "Start_Tournament" : "Start Tournament",
             "Submit_And_Continue_Tournament" : "Submit and continue tournament",
-            "Not_All_Values_Set" : "Not all values are set!"
+            "Not_All_Values_Set" : "Not all values are set!",
+            "Not_Enough_Players" : "The number of players entered is insufficient to conduct the tournament!",
+            "Cant_Count_Tables" : "The entered number of players does not allow the tournament to be held in the Swiss system!"
         }
         
     def get_text(self,text):

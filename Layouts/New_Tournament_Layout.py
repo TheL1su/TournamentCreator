@@ -16,6 +16,7 @@ class New_Tournament_Layout(QHBoxLayout):
         # 2 indeks - typ turnieju
         # 3 indeks - dodani gracze
         self.check_buttons = [False,False,False,False]
+        self.num_of_players = 0
         #########################################################
         # Labele do Ustawien Turnieju 
         Label_Min_Players_at_Table = self.main_window.create_bold_label("Enter_Min_Players_At_Table")
@@ -69,7 +70,7 @@ class New_Tournament_Layout(QHBoxLayout):
 
         ########################################################
         # Dodawanie uczestnika
-        self.List_of_players_widget = QListWidget()
+        self.List_of_players_widget = self.main_window.create_list_widget()
         self.Add_Player_input.returnPressed.connect(self.Add_player)
 
         #########################################################
@@ -164,6 +165,7 @@ class New_Tournament_Layout(QHBoxLayout):
         if(self.check_buttons[3] is False): self.check_buttons[3] = True
         QListWidgetItem(self.Add_Player_input.text() , self.List_of_players_widget)
         self.main_window.tournament_add_player(self.Add_Player_input.text())
+        self.num_of_players += 1
         self.Add_Player_input.clear()
  
     # #####################################################
@@ -179,7 +181,12 @@ class New_Tournament_Layout(QHBoxLayout):
     # #####################################################
     # funkcja odpalajaca turniej
     def OpenTournament(self):
-        if(all(self.check_buttons)):
-            self.main_window.open_tournament(new=True)
-        else:
+        if not all(self.check_buttons):
             self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Not_All_Values_Set"))
+        elif self.num_of_players < self.main_window.tournament_min_at_table():
+            self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Not_Enough_Players"))
+        elif self.main_window.get_tournament_type() == "Swiss" and not self.main_window.can_count_tables():
+            self.main_window.show_warning(self.main_window.get_text("Error"),self.main_window.get_text("Cant_Count_Tables"))
+        else:
+            self.main_window.open_tournament(new=True)
+

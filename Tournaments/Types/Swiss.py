@@ -61,13 +61,18 @@ class Swiss():
         if num_of_players % max_at_table != 0:
             # players_at_tables = max_at_table
             players_at_tables -= 1
-            num_of_tables = num_of_players // players_at_tables
+            num_of_tables = math.ceil(num_of_players / players_at_tables)
+            if players_at_tables < min_at_table:
+                return []
+
             while(num_of_tables < num_of_players % players_at_tables):
                 players_at_tables -= 1
-                num_of_tables = num_of_players // players_at_tables
-        self.num_of_tables = num_of_tables
-        self.players_at_tables = players_at_tables
-        self.rest_of_players = num_of_players % players_at_tables
+                num_of_tables = math.ceil(num_of_players / players_at_tables)
+                if players_at_tables < min_at_table:
+                    return []
+        # self.num_of_tables = num_of_tables
+        # self.players_at_tables = players_at_tables
+        # self.rest_of_players = num_of_players % players_at_tables
 
         rest_of_players = num_of_players % players_at_tables 
 

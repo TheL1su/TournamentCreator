@@ -128,9 +128,9 @@ class Window(QMainWindow):
 
     #########################################################
     # Funkcje dla Stylu
-    def create_label(self,text):
+    def create_label(self,text,*,bold=False, color="white"):
         label = self.get_text(text)
-        return self.widgetsStyle.create_label(label)
+        return self.widgetsStyle.create_label(label, bold=bold, color=color)
     
     def create_bold_label(self,text):
         label = self.get_text(text)
@@ -140,15 +140,12 @@ class Window(QMainWindow):
         label = self.get_text("Table") + str(num)
         return self.widgetsStyle.create_bold_label(label)
     
-    def create_player_label(self, name, num, bold=False):
+    def create_player_label(self, name, num, bold=False, color = "white"):
         label = str(num) + ". " + name
-        if bold:
-            return self.widgetsStyle.create_bold_label(label)
-        else:
-            return self.widgetsStyle.create_label(label)
+        return self.widgetsStyle.create_label(label,bold=bold,color=color)
     
-    def create_num_label(self,num):
-        return self.widgetsStyle.create_label(str(num))
+    def create_num_label(self,num, bold=False, color="white"):
+        return self.widgetsStyle.create_label(str(num), bold=bold, color=color)
         
     def create_bold_num_label(self,num):
         return self.widgetsStyle.create_bold_label(str(num))
@@ -163,6 +160,9 @@ class Window(QMainWindow):
     def create_push_button(self, text):
         label = self.get_text(text)
         return self.widgetsStyle.create_push_button(label)
+    
+    def create_list_widget(self):
+        return self.widgetsStyle.create_list_widget()
 
     #########################################################
     # Funkcje dla MessageBoxa
@@ -235,6 +235,9 @@ class Window(QMainWindow):
 
     def load_data(self):
         self.app.load_data()
+
+    def can_count_tables(self):
+        return self.app.can_count_tables()
 
     def open_tournament(self, *, new):
         self.delete_later()
