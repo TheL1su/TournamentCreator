@@ -51,6 +51,7 @@ class Tournament_Layout(QVBoxLayout):
         #########################################################
         # ilos stolikow
         tables = self.main_window.get_tables()
+        print(tables)
         
         #########################################################
         # ilos graczy

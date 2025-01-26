@@ -132,12 +132,12 @@ class Single_Elimination():
             # players_at_tables = max_at_table
         if num_of_players % max_at_table != 0:
             players_at_tables -=1
-            num_of_tables = math.ceil(num_of_players / players_at_tables)
+            num_of_tables = num_of_players // players_at_tables
             if(players_at_tables < min_at_table):
                 return []
             while(num_of_players / players_at_tables < num_of_players % players_at_tables):
                 players_at_tables -= 1
-                num_of_tables = math.ceil(num_of_players / players_at_tables)
+                num_of_tables = num_of_players // players_at_tables
                 if(players_at_tables < min_at_table):
                     return []
         
