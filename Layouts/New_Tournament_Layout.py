@@ -1,7 +1,7 @@
 #from Layouts.Layout_Interface import Layout_Interface
-from PyQt5.QtWidgets import QGridLayout,QLineEdit,QPushButton,QMessageBox,QWidget,QMenu,QAction, QHBoxLayout, QListWidgetItem, QListWidget, QVBoxLayout
+from PyQt5.QtWidgets import QMenu,QAction, QHBoxLayout, QListWidgetItem, QVBoxLayout
 from PyQt5.QtCore import Qt, QRegularExpression
-from PyQt5.QtGui import QIntValidator, QRegularExpressionValidator
+from PyQt5.QtGui import QRegularExpressionValidator
 
 class New_Tournament_Layout(QHBoxLayout):
 
@@ -49,7 +49,6 @@ class New_Tournament_Layout(QHBoxLayout):
         #########################################################
         # Przycisk do Rodzaju Turnieju
         self.Tournament_Type = self.main_window.create_tool_button("Choose_Tournament_Type",Tournament_Menu)
-        # self.Tournament_Type.setFixedWidth(300)
 
         #########################################################
         # Przycisk do Rozpoczecia Turnieju
@@ -114,8 +113,6 @@ class New_Tournament_Layout(QHBoxLayout):
         Layout_NT_settings.setAlignment(self.Tournament_Type,Qt.AlignCenter)
         Layout_NT_settings.setAlignment(self.Start_Tournament,Qt.AlignCenter)
         Layout_NT_settings.addStretch()
-        # Layout_NT_settings.setStretch(Layout_NT_settings.rowCount(), 1)
-        # Layout_NT_settings.setColumnStretch(Layout_NT_settings.columnCount(), 1)
 
         #########################################################
         # main layout

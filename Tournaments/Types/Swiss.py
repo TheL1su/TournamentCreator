@@ -1,23 +1,12 @@
-import random
 import math
 
-#from Type_Interface import Type_Interface
 
 
 class Swiss():
     #IF 2 osoby na stolik i 9 graczy
     #IF mniej osob niz minimalna ilosc na stole
 
-    def create_tables(self,players,tables):#,min_at_table,max_at_table,round):
-        
-        num_of_players = len(players.list)
-
-        # if round != 0:
-        # players.list.sort(key=lambda x: (x.big_points, x.small_points), reverse=True)
-        # else:
-        #     self.tables = self.count_tables(self,players,min_at_table,max_at_table)
-        #     random.shuffle(players.list)
-
+    def create_tables(self,players,tables):
         result = []
         start = 0
         for table_num, table in enumerate(tables):
@@ -29,37 +18,12 @@ class Swiss():
             result += cur_table
             start += table
 
-        
-
-        #     players_at_tables = max_at_table
-
-
-        #     if num_of_players % max_at_table == 0:
-        #         num_of_tables = num_of_players / max_at_table
-        #         players_at_tables = max_at_table
-        #     else:
-        #         while(num_of_players / players_at_tables < num_of_players % players_at_tables):
-        #             players_at_tables -= 1
-        #     self.num_of_tables = num_of_tables
-        #     self.players_at_tables = players_at_tables
-        #     self.rest_of_players = num_of_players % players_at_tables
-
-        # cnt = 0
-        # for i in range(self.num_of_tables):
-        #     for j in range(self.players_at_tables):
-        #         players.list[cnt] 
-
-        # pass
 
 
     def count_tables(self,num_of_players,min_at_table,max_at_table, new_tournament=False):
-        # num_of_players = len(players.list)
-
-        # if num_of_players % max_at_table == 0:
         num_of_tables = math.ceil(num_of_players / max_at_table)
         players_at_tables = max_at_table
         if num_of_players % max_at_table != 0:
-            # players_at_tables = max_at_table
             players_at_tables -= 1
             num_of_tables = num_of_players // players_at_tables
             if players_at_tables < min_at_table:
@@ -70,9 +34,6 @@ class Swiss():
                 num_of_tables = num_of_players // players_at_tables
                 if players_at_tables < min_at_table:
                     return []
-        # self.num_of_tables = num_of_tables
-        # self.players_at_tables = players_at_tables
-        # self.rest_of_players = num_of_players % players_at_tables
 
         rest_of_players = num_of_players % players_at_tables 
 

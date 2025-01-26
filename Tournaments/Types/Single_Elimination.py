@@ -1,5 +1,4 @@
-#from Type_Interface import Type_Interface
-from Tournaments.Player import Player,Players
+from Tournaments.Player import Players
 import math
 
 class Single_Elimination():
@@ -11,9 +10,7 @@ class Single_Elimination():
         players.table_sort(seats=False)
         table = 0
         seat = 0
-        print(len(tables))
         for player in players.list:
-            print("Seat and table: ", seat, table)
             if seat >= tables[table]:
                 player.add_table(-1,-1)
                 player.big_points_change(0)
@@ -66,12 +63,6 @@ class Single_Elimination():
         for i in range(self.lucky_loosers):
             maybe_lucky_looser.list.pop(0)
 
-        # for i in range(len(advancing_players.list)):
-        #     advancing_players.list[i].pt()
-
-        # for i in range(len(maybe_lucky_looser.list)):
-        #     maybe_lucky_looser.list[i].pt()
-
 
         return advancing_players,maybe_lucky_looser
     
@@ -81,13 +72,9 @@ class Single_Elimination():
         #####################################################
         # TODO 
     def count_tables_(self,num_of_players,min_at_table,max_at_table):
-        # num_of_players = len(players.list)
-
-        # if num_of_players % max_at_table == 0:
         num_of_tables = math.ceil(num_of_players / max_at_table)
         players_at_tables = max_at_table
         if num_of_players % max_at_table != 0:
-            # players_at_tables = max_at_table
             players_at_tables -= 1
             num_of_tables = num_of_players // players_at_tables
             while(num_of_tables < num_of_players % players_at_tables):
@@ -127,9 +114,7 @@ class Single_Elimination():
     # czy daną ilość graczy można podzielić na stoliki
     def try_to_divide(self,num_of_players,min_at_table,max_at_table):
         players_at_tables = max_at_table
-        # if num_of_players % max_at_table == 0:
         num_of_tables = math.ceil(num_of_players / max_at_table)
-            # players_at_tables = max_at_table
         if num_of_players % max_at_table != 0:
             players_at_tables -=1
             num_of_tables = num_of_players // players_at_tables
@@ -167,71 +152,3 @@ class Single_Elimination():
         return advancing_places, lucky_loosers
 
 
-
-# test = Single_Elimination()
-
-# Gracz1 = Player("A","A")
-# Gracz1.big_points = 2
-# Gracz1.small_points = 13
-# Gracz1.tables = [1]
-
-# Gracz2 = Player("B","B")
-# Gracz2.big_points = 3
-# Gracz2.small_points = 7
-# Gracz2.tables = [1]
-
-# Gracz3 = Player("C","C")
-# Gracz3.big_points = 1
-# Gracz3.small_points = 6
-# Gracz3.tables = [1]
-
-# Gracz4 = Player("D","D")
-# Gracz4.big_points = 4
-# Gracz4.small_points = 2
-# Gracz4.tables = [2]
-
-# Gracz5 = Player("E","E")
-# Gracz5.big_points = 3
-# Gracz5.small_points = 1
-# Gracz5.tables = [2]
-
-# Gracz6 = Player("F","F")
-# Gracz6.big_points = 2
-# Gracz6.small_points = 6
-# Gracz6.tables = [2]
-
-# Gracz7 = Player("G","G")
-# Gracz7.big_points = 1
-# Gracz7.small_points = 2
-# Gracz7.tables = [3]
-
-# Gracz8 = Player("H","H")
-# Gracz8.big_points = 3
-# Gracz8.small_points = 2
-# Gracz8.tables = [3]
-
-# Gracz9 = Player("I","I")
-# Gracz9.big_points = 5
-# Gracz9.small_points = 6
-# Gracz9.tables = [3]
-
-
-
-# lista = Players()
-
-# lista.add_player(Gracz1)
-# lista.add_player(Gracz2)
-# lista.add_player(Gracz3)
-
-# lista.add_player(Gracz4)
-# lista.add_player(Gracz5)
-# lista.add_player(Gracz6)
-
-# lista.add_player(Gracz7)
-# lista.add_player(Gracz8)
-# lista.add_player(Gracz9)
-
-# wynik = test.result(lista,1,2)
-
-# for i in wynik.list:
-#     print(i.first_name,i.last_name)

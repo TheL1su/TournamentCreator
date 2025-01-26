@@ -1,5 +1,4 @@
-from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout
-from PyQt5.QtGui import QIntValidator
+from PyQt5.QtWidgets import QVBoxLayout,QHBoxLayout
 from PyQt5.QtCore import Qt
 
 import copy
@@ -71,11 +70,3 @@ class Swiss_Result_layout(QVBoxLayout):
     def resize(self,width,height):
         """zmiana wielkosci przyciskow przy zmianie rozmiaru okna CT"""
         pass
-    """
-    #########################################################
-    # Funkcja do sprawedzania czy wpisano ilosc rozgrywek w rundzie
-    def Game_Num(self):
-        number = self.Game_Num.text()
-        if not number:
-            QMessageBox.warning(self.main_window, self.main_window.get_text("Error"), self.main_window.get_text("Specify_Value_For_Round"))
-    """

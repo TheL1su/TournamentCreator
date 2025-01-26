@@ -1,6 +1,4 @@
-from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout,QSizePolicy
-from PyQt5.QtGui import QIntValidator
-import copy
+from PyQt5.QtWidgets import QVBoxLayout,QHBoxLayout
 
 class Single_Elimination_Result_layout(QVBoxLayout):
 
@@ -35,9 +33,6 @@ class Single_Elimination_Result_layout(QVBoxLayout):
             buttons_layout.addWidget(self.Save_And_Exit)
             self.addLayout(buttons_layout)
 
-        # self.show()
-        #self.addWidget(self.Save_And_Exit,1,1)
-
 
     def add_players_and_tables(self):
         #########################################################
@@ -60,7 +55,6 @@ class Single_Elimination_Result_layout(QVBoxLayout):
             waitnig_label = self.main_window.create_label("Waiting_Players",bold=True)
             Layout.addWidget(waitnig_label)
 
-        print([player.get("table") for player in players])
 
         while players[player_cnt].get("table")[0] == -1:
             player_label = self.main_window.create_player_label(players[player_cnt].get("name"),player_cnt+1,bold=True,color="green")
@@ -70,12 +64,6 @@ class Single_Elimination_Result_layout(QVBoxLayout):
             player_cnt += 1
 
         Layout.addSpacing(50)
-
-        print("player cnt: ",player_cnt)
-        print("num of players:", len(players))
-
-        # advancing_label = self.main_window.create_bold_label("Advancing")
-        # eliminated_label = self.main_window.create_bold_label("Eliminated")
 
         
         for i in range(len(tables)):

@@ -1,8 +1,7 @@
-from PyQt5.QtWidgets import QLineEdit,QPushButton,QGridLayout,QWidget,QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout,QSizePolicy
-from PyQt5.QtGui import QIntValidator, QRegularExpressionValidator
+from PyQt5.QtWidgets import QFileDialog,QMessageBox,QVBoxLayout,QHBoxLayout
+from PyQt5.QtGui import QRegularExpressionValidator
 from PyQt5.QtCore import Qt, QRegularExpression
 
-import copy
 
 
 class Tournament_Layout(QVBoxLayout):
@@ -51,7 +50,6 @@ class Tournament_Layout(QVBoxLayout):
         #########################################################
         # ilos stolikow
         tables = self.main_window.get_tables()
-        print(tables)
         
         #########################################################
         # ilos graczy

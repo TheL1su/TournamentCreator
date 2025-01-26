@@ -122,36 +122,6 @@ class Tournament:
 
     def save_file(self,file_):
         self.tournament_data.save_file(file_)
-    #########################################################
-    # Funkcja odpowiadajaca za rozpoczecie i zarzadzanie turniejem
-    def manage(self):
-        if self.round == 0:
-            pass
-
-        else:
-            pass
-        #########################################################
-        # Odpal layout turnieju
-        #self.app.tournament_layout()
-
-        #########################################################
-        # petla ktora czeka na wpisanie wszystkich punktow do okna
-        #while self.ready_to_calculate is False:
-            #timer = QTimer()
-            #timer.start(1000)
-
-        #DALEJ POLICZ WYNIK RUNDY!
-
-        #adv,eli,new = self.type.result()
-        #self.current_players = adv + new
-
-        #if self.tournament_type_name == ""
-        #    self.result_window()
-        #mamy graczy -> 1 runde
-        #aktualni gracze = result 1 rundy
-
-        #aktualni gracze -> 2runda
-
 
     def load_data(self):
         #########################################################
@@ -165,12 +135,6 @@ class Tournament:
         self.tournament_data.load_players(self.players)
         self.tournament_data.load_current_players(self.players,self.current_players)
         
-        #########################################################
-        # test do sprawdzenia czy gracze sie wczytali
-        # for i in self.players.list:
-        #     i.pt()
-        # for i in self.current_players.list:
-        #     i.pt()
 
     def create_tables():
         pass
@@ -247,9 +211,7 @@ class Tournament:
 
     def can_count_tables(self):
         num = self.players.num_of_players()
-        print(num)
         tables = self.type.count_tables(num, self.min_at_table, self.max_at_table, new_tournament=True)
-        print(tables)
         if tables:
             return True
         else:

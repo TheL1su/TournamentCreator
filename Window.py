@@ -6,12 +6,10 @@ from Layouts.Start_Layout import Start_Layout
 from Layouts.New_Tournament_Layout import New_Tournament_Layout
 from Layouts.Continue_Tournament_Layout import Continue_Tournament_Layout
 from Layouts.Tournament_Layout import Tournament_Layout
-from Layouts.Swiss_Layout import Swiss_Layout
 from Layouts.Swiss_Result_Layout import Swiss_Result_layout
 from Layouts.Single_Elimination_Result_Layout import Single_Elimination_Result_layout
 from PyQt5.QtCore import Qt
 
-import os
 
 class Window(QMainWindow):
 
@@ -242,7 +240,6 @@ class Window(QMainWindow):
     def open_tournament(self, *, new):
         self.delete_later()
         self.layout = Tournament_Layout(self)
-        #self.set_widget()
         self.app.open_tournament(new)
         self.set_widget_with_scroll()
 
@@ -258,13 +255,11 @@ class Window(QMainWindow):
         self.delete_later()
         self.layout = New_Tournament_Layout(self)
         self.set_widget()
-        #self.show()
 
     def continue_tournament(self):
         self.delete_later()
         self.layout = Continue_Tournament_Layout(self)
         self.set_widget()
-        #self.show()
 
     #########################################################
     # do poprawy
@@ -316,4 +311,3 @@ class Window(QMainWindow):
         self.layout = Tournament_Layout(self)
         self.app.start_new_round()
         self.set_widget_with_scroll()
-        #self.show()

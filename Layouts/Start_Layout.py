@@ -1,6 +1,5 @@
 #from Layouts.Layout_Interface import Layout_Interface
-from PyQt5.QtWidgets import QGridLayout, QPushButton,QMenu,QAction,QToolButton
-from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QGridLayout, QMenu,QAction
 from PyQt5.QtCore import Qt
 
 
@@ -25,9 +24,7 @@ class Start_Layout(QGridLayout):
         #########################################################
         # Przycisk nowy i kontunuuj turniej
         self.New_Tournament = self.main_window.create_push_button("New_Tournament")
-        #self.New_Tournament.adjustSize()
         self.Continue_Tournament = self.main_window.create_push_button("Continue_Tournament")
-        #self.Continue_Tournament.adjustSize()
 
         #########################################################
         # Funkcje wywolywane przy nacisnieciu przycisku NewTournament i ContinueTournament
@@ -69,21 +66,8 @@ class Start_Layout(QGridLayout):
         self.New_Tournament.setText(self.main_window.get_text("New_Tournament"))
         self.Continue_Tournament.setText(self.main_window.get_text("Continue_Tournament"))
         self.Language_Choice.setText(self.main_window.get_text("Choose_Language"))
-        #print(self.Continue_Tournament.width(),self.New_Tournament.width())
         
 
 
     def resize(self,width=0,height=0):
-        #self.New_Tournament.setFixedWidth()
-        #self.main_window.show()
-        """zmiana wielkosci przyciskow przy zmianie rozmiaru okna INIT"""
-        # font = QFont()
-        # font.setPointSize((width+height)//90) #ustawienie wielkosci czcionki
-        # self.Language_Choice.setFont(font)
-        # self.New_Tournament.setFont(font)
-        # self.Continue_Tournament.setFont(font)
-
-        #Ustawienie wielkosci przyciskow
-        # self.Language_Choice.setFixedSize(width//5+50,height//10)
-        # self.New_Tournament.setFixedSize(width//4+60,height//10)
-        # self.Continue_Tournament.setFixedSize(width//4+60,height//10)
+        pass
