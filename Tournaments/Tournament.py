@@ -14,9 +14,7 @@ class Tournament:
         self.min_at_table = -1
         self.max_at_table = -1
         self.tables = []
-        self.prev_tables = []
         self.next_tables = []
-        self.round = 0
 
     def add_player(self,player):
         name = player.split(" ")[0]
@@ -58,8 +56,6 @@ class Tournament:
     def get_tables(self):
         return self.tables
     
-    def get_prev_tables(self):
-        return self.prev_tables
 
     #########################################################
     # Funkcja zwracajaca liczbe graczy
@@ -82,13 +78,6 @@ class Tournament:
     def small_points_change(self,player_cnt,num):
         self.current_players.small_points_change(player_cnt,num)
 
-    #########################################################
-    # Funkcje zwracajace  duze i male punkty wszystkich zawodnikowi NIE ZAIMPLEMENTOWANE
-    def get_big_points(self,num):
-        pass
-
-    def small_big_points(self,num):
-        pass
 
     #########################################################
     # Funkcja sprawdzajaca czy wpisano wszystkie duze i male punkty
@@ -136,11 +125,6 @@ class Tournament:
         self.tournament_data.load_current_players(self.players,self.current_players)
         
 
-    def create_tables():
-        pass
-
-    def end_round():
-        pass
 
     def update_points(self):
         self.current_players.update_points()

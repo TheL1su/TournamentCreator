@@ -69,36 +69,6 @@ class Single_Elimination():
 
 
 
-        #####################################################
-        # TODO 
-    def count_tables_(self,num_of_players,min_at_table,max_at_table):
-        num_of_tables = math.ceil(num_of_players / max_at_table)
-        players_at_tables = max_at_table
-        if num_of_players % max_at_table != 0:
-            players_at_tables -= 1
-            num_of_tables = num_of_players // players_at_tables
-            while(num_of_tables < num_of_players % players_at_tables):
-                players_at_tables -= 1
-                num_of_tables = num_of_players // players_at_tables
-        self.num_of_tables = num_of_tables
-        self.players_at_tables = players_at_tables
-        self.rest_of_players = num_of_players % players_at_tables
-
-        rest_of_players = num_of_players % players_at_tables 
-
-        result = []
-        cnt = 0
-        for i in range(num_of_tables):
-            if(cnt < rest_of_players):
-                result.append(players_at_tables+1)
-                cnt += 1
-            else:
-                result.append(players_at_tables)
-
-        return result 
-
-
-
     #####################################################
     # zwraca ilość stolików i ilość osób przy każdym stoliku
     def count_tables(self,num_of_players,min_at_table,max_at_table, new_tournament=False):

@@ -47,9 +47,4 @@ class Swiss():
                 result.append(players_at_tables)
 
         return result 
-
-    def end_round(self):
-        pass
-
-
-    
+   

@@ -11,7 +11,7 @@ class Continue_Tournament_Layout(QVBoxLayout):
         super().__init__()
         self.main_window = main_window
 
-            #########################################################
+        #########################################################
         # Przyciski do Kontynuowania Turnieju
         self.File_Input = self.main_window.create_line_edit()
         self.File_Input.setFixedWidth(self.main_window.width())
