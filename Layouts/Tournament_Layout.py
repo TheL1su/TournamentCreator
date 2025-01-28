@@ -95,8 +95,6 @@ class Tournament_Layout(QVBoxLayout):
                 Layout_Players = QHBoxLayout()
 
                 player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j+1)
-                player_label.setFixedWidth(100)
-                player_label.setWordWrap(True)
                 Layout_Players.addWidget(player_label)
 
                 Big_points = self.main_window.create_line_edit()
