@@ -6,7 +6,7 @@ In our program we adapted clasic tournament systems to work not only for 1:1 gam
 
 ## Features
 
-Tis program let's you:
+This program let's you:
 - **Create a list of players**
 - **Choose one of two tournament types:** Swiss or Single Elimination
 - **Decide how many players can be at the table**
@@ -22,25 +22,32 @@ The app will take care of the rest. It will automaticaly:
 ## 🛠️ Technologies
 
 - **Language:** Python
-- **Libraries:** PyQt5, sys, Application, Window, math, json
+- **Libraries:** PyQt5, sys, math, json
 - **IDE:** VS Code (with recommended extensions)
 
 ## 🚀 Install and run
 
-Coming soon.
+To install the app on **Windows**, go to the [releases page](https://github.com/TheL1su/TournamentCreator/releases/tag/v1.0.0) and download the `.exe` file.
+
+**Linux** version coming soon.
 
 ## 📸 Screenshots
 
 **Starting Page**
 ![Start layout screenshot](screenshots/start_layout_en.png)
+
 **You can start a new tournament**
 ![New tournament screenshot](screenshots/new_tournament.png)
+
 **Or load an existing one**
 ![Continue tournament screenshot](screenshots/continue_tournament.png)
+
 **Division to tables and filling results is intuitive**
 ![Tournament layout screenshot](screenshots/tournament_layout.png)
+
 **And all important information is given at the beginning of a round**
 ![Advancing - play off screenshot](screenshots/advancing_play_off.png)
+
 **Depending on the system results show clearly:**
 - **Which players advance in Play Off**
 ![Play off result screenshot](screenshots/play_off_result.png)
