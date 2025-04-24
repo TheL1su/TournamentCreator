@@ -62,8 +62,8 @@ class Tournament_Layout(QVBoxLayout):
 
         while players[player_cnt].get("table")[0] == -1:
             player_label = self.main_window.create_player_label(players[player_cnt].get("name"),player_cnt+1)
-            player_label.setFixedWidth(100)
-            player_label.setWordWrap(True)
+            # player_label.setFixedWidth(100)
+            # player_label.setWordWrap(True)
             Layout.addWidget(player_label)
             player_cnt += 1
 
@@ -76,9 +76,12 @@ class Tournament_Layout(QVBoxLayout):
             Layout_info = QHBoxLayout()
             table_number = self.main_window.create_table_label(i+1)
             big_points_info = self.main_window.create_bold_label("Big_Points")
+            big_points_info.setFixedWidth(200)
             small_points_info = self.main_window.create_bold_label("Small_Points")
+            small_points_info.setFixedWidth(200)
             
             Layout_info.addWidget(table_number)
+            Layout_info.addStretch()
             Layout_info.addWidget(big_points_info)
             Layout_info.addWidget(small_points_info)
 
@@ -95,20 +98,22 @@ class Tournament_Layout(QVBoxLayout):
                 Layout_Players = QHBoxLayout()
 
                 player_label = self.main_window.create_player_label(players[player_cnt].get("name"),j+1)
-                player_label.setFixedWidth(100)
-                player_label.setWordWrap(True)
+                # player_label.setFixedWidth(100)
+                print(players[player_cnt].get("name"))
+                # player_label.setWordWrap(True)
                 Layout_Players.addWidget(player_label)
+                Layout_Players.addStretch()
 
                 Big_points = self.main_window.create_line_edit()
                 # Big_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
                 validator = QRegularExpressionValidator(QRegularExpression("([0-9]|[1-9][0-9]|[1-9][0-9][0-9])"))
-                Big_points.setMaximumWidth(100)
+                Big_points.setFixedWidth(200)
                 Big_points.setValidator(validator)
                 Big_points.textChanged.connect(lambda text, player = player_cnt: self.big_points_change(player, text))
                 
                 Small_points = self.main_window.create_line_edit()
                 # Small_points.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-                Small_points.setMaximumWidth(100)
+                Small_points.setFixedWidth(200)
                 Small_points.setValidator(validator) 
                 Small_points.textChanged.connect(lambda text, player = player_cnt: self.small_points_change(player, text))
                 

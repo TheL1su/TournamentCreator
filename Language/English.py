@@ -28,7 +28,7 @@ class English(Language):
             "Specify_Value_For_Round" : "Specify number of games for this round!",
             "Submit_Round" : "Submit Round",
             "Save_And_Exit" : "Save Tournament and Exit!",
-            "Exit" : "End Tournament and Exit!",
+            "End_And_Exit" : "End Tournament and Exit!",
             "Table" : "Table nr: ",
             "Swiss" : "Swiss-system",
             "PlayOff" : "Play-off",

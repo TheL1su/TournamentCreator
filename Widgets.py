@@ -43,6 +43,7 @@ class WidgetsFactory:
     
     def create_line_edit(self):
         lineedit = QLineEdit()
+        
         lineedit.setStyleSheet('font-weight: normal;'+self.font_size)
         return lineedit
 
